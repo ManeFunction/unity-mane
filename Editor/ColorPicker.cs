@@ -2,7 +2,7 @@
 using UnityEditor;
 
 
-namespace Mane.Utils.Editor
+namespace Mane.Extensions.Editor
 {
     public class ColorPicker : EditorWindow
     {

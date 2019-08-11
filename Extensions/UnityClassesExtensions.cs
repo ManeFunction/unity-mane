@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-namespace Mane.Utils
+namespace Mane.Extensions
 {
     public static class UnityClassesExtensions
     {

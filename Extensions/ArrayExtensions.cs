@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
 
-namespace Mane.Utils
+namespace Mane.Extensions
 {
     public static class ArrayExtensions
     {

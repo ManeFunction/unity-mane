@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Mane.Utils
+namespace Mane.Extensions
 {
 	public static class TimeSpanExtensions
 	{

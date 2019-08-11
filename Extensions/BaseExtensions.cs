@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace Mane.Utils
+namespace Mane.Extensions
 {
     public static class BaseExtensions
     {

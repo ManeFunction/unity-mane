@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-namespace Mane.Utils
+namespace Mane.Extensions
 {
     public static class RectExtensions
     {
