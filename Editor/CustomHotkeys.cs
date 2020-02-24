@@ -11,32 +11,6 @@ namespace Mane.Extensions.Editor
 {
     public class CustomHotkeys : ScriptableObject
     {
-        [MenuItem("HotKey/Run \u2044 Stop _F5", false, 500)]
-        private static void PlayGame()
-        {
-            EditorApplication.ExecuteMenuItem("Edit/Play");
-        }
-
-        [MenuItem("HotKey/Pause _F6", false, 501)]
-        private static void PauseGame()
-        {
-            EditorApplication.ExecuteMenuItem("Edit/Pause");
-        }
-
-        [MenuItem("HotKey/Step _F7", false, 502)]
-        private static void StepGame()
-        {
-            EditorApplication.ExecuteMenuItem("Edit/Step");
-        }
-
-        [MenuItem("HotKey/Step _F7", true)]
-        private static bool StepGameCheck()
-        {
-            return Application.isPlaying;
-        }
-
-
-
         [MenuItem("HotKey/Clear Console _F8", false, 900)]
         private static void ClearConsole()
         {
@@ -46,35 +20,6 @@ namespace Mane.Extensions.Editor
             if (method != null)
             {
                 method.Invoke(new object(), null);
-            }
-        }
-
-        [MenuItem("HotKey/Create children _%&N", false, 901)]
-        private static void CreateChildren()
-        {
-            if (Selection.gameObjects == null || Selection.gameObjects.Length == 0)
-            {
-                return;
-            }
-
-            GameObject go = null;
-            for (int i = 0; i < Selection.gameObjects.Length; i++)
-            {
-                go = new GameObject("GameObject");
-                go.transform.SetParent(Selection.gameObjects[i].transform);
-                go.transform.localPosition = Vector3.zero;
-                go.transform.localScale = Vector3.one;
-                go.transform.localRotation = Quaternion.identity;
-                go.layer = Selection.gameObjects[i].layer;
-                if (Selection.gameObjects[i].GetComponent<RectTransform>() != null)
-                {
-                    go.AddComponent<RectTransform>();
-                }
-            }
-
-            if (Selection.gameObjects.Length == 1)
-            {
-                Selection.SetActiveObjectWithContext(go, Selection.activeContext);
             }
         }
 
@@ -166,13 +111,13 @@ namespace Mane.Extensions.Editor
 
         private static Scene _lastClosed;
 
-        [MenuItem("HotKey/Scenes/Unload selected _%w", false, 600)]
+        [MenuItem("HotKey/Unload scene _%w", false, 600)]
         private static void UnloadSelectedScene()
         {
             SaveSelectedSceneOrLastAndClose(false);
         }
 
-        [MenuItem("HotKey/Scenes/Remove selected _%#w", false, 601)]
+        [MenuItem("HotKey/Remove scene _%#w", false, 601)]
         private static void RemoveScene()
         {
             SaveSelectedSceneOrLastAndClose(true);
@@ -190,13 +135,13 @@ namespace Mane.Extensions.Editor
             }
         }
 
-        [MenuItem("HotKey/Scenes/Reopen last closed _%t", false, 602)]
+        [MenuItem("HotKey/Reopen scene _%t", false, 602)]
         private static void LoadLastUnloadedScene()
         {
             EditorSceneManager.OpenScene(_lastClosed.path, OpenSceneMode.Additive);
         }
 
-        [MenuItem("HotKey/Scenes/Reopen last closed _%t", true, 602)]
+        [MenuItem("HotKey//Reopen scene _%t", true, 602)]
         private static bool LoadLastUnloadedSceneCheck()
         {
             return _lastClosed.IsValid();
