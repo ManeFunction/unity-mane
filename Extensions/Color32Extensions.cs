@@ -52,8 +52,10 @@ namespace Mane.Extensions
 
         public static uint ToUInt(this Color32 color)
         {
-            return (uint)((color.a << 24) | (color.r << 16) |
-                          (color.g << 8) | (color.b << 0));
+            return (uint)(color.a << 24
+                        | color.r << 16
+                        | color.g << 8
+                        | color.b);
         }
 
         public static Color32 ToColor32(this uint color)
@@ -61,7 +63,7 @@ namespace Mane.Extensions
             byte a = (byte)(color >> 24);
             byte r = (byte)(color >> 16);
             byte g = (byte)(color >> 8);
-            byte b = (byte)(color >> 0);
+            byte b = (byte)color;
 
             return new Color32(r, g, b, a);
         }
