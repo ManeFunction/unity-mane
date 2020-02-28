@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +11,7 @@ namespace Mane.Extensions
         /// <summary>
         /// Get component or add it if no one was found.
         /// </summary>
-        public static T GetRequiredComponent<T>(this GameObject gameObject) where T : MonoBehaviour
+        public static T GetRequiredComponent<T>(this GameObject gameObject) where T : Component
         {
             T component = gameObject.GetComponent<T>();
             if (component == null)
@@ -24,10 +25,8 @@ namespace Mane.Extensions
         /// <summary>
         /// Gets first found component from root objects on scene.
         /// </summary>
-        public static T GetRootComponent<T>(this Scene scene) where T : MonoBehaviour
+        public static T GetRootComponent<T>(this Scene scene) where T : Component
         {
-            T result = null;
-
             if (!scene.isLoaded)
             {
                 return null;
@@ -35,14 +34,7 @@ namespace Mane.Extensions
 
             // search for active objects
             T[] objects = Object.FindObjectsOfType<T>();
-            foreach (T obj in objects)
-            {
-                if (obj.gameObject.scene == scene)
-                {
-                    result = obj;
-                    break;
-                }
-            }
+            T result = objects.FirstOrDefault(obj => obj.gameObject.scene == scene);
 
             if (result != null)
             {
