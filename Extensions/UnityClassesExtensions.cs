@@ -8,6 +8,20 @@ namespace Mane.Extensions
     public static class UnityClassesExtensions
     {
         /// <summary>
+        /// Get component or add it if no one was found.
+        /// </summary>
+        public static T GetRequiredComponent<T>(this GameObject gameObject) where T : MonoBehaviour
+        {
+            T component = gameObject.GetComponent<T>();
+            if (component == null)
+            {
+                component = gameObject.AddComponent<T>();
+            }
+
+            return component;
+        }
+        
+        /// <summary>
         /// Gets first found component from root objects on scene.
         /// </summary>
         public static T GetRootComponent<T>(this Scene scene) where T : MonoBehaviour
