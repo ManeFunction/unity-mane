@@ -9,7 +9,7 @@ namespace Mane.Extensions.Editor
         [MenuItem("Window/Color Picker %&C")]
         public static void ShowWindow()
         {
-            GetWindow(typeof(ColorPicker));
+            GetWindow(typeof(ColorPicker)).titleContent = new GUIContent("Color Picker");
         }
 
         [SerializeField] private Color color = Color.white;
