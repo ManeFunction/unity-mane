@@ -34,18 +34,12 @@ namespace Mane.Extensions.Editor
             }
 
             DateTime t = DateTime.Now;
-            string path = Application.dataPath.RemoveLastPathComponent() + "/Temp/Screenshots";
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-
-            string scrName =
-                $"Temp/Screenshots/Screenshot_{t.Year}_{t.Month:00}_{t.Day:00}_{t.Hour:00}_{t.Minute:00}_{t.Second:00}.png";
+            string scrName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + 
+                             $"/Screenshot_{t.Year}_{t.Month:00}_{t.Day:00}_{t.Hour:00}_{t.Minute:00}_{t.Second:00}.png";
 
             ScreenCapture.CaptureScreenshot(scrName, 1);
 
-            Debug.Log(scrName + " saved to the project folder!");
+            Debug.Log($"Screenshot captured: {scrName}");
         }
 
         [MenuItem("HotKey/Enable \u2044 Disable selected GO _F4", false, 903)]
