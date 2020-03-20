@@ -17,7 +17,7 @@
 
         public static float ParseFloat(this string str, float defaultValue = 0f)
         {
-            if (!float.TryParse(str, out var result))
+            if (!float.TryParse(str, out float result))
             {
                 result = defaultValue;
             }
@@ -27,7 +27,7 @@
 
         public static int ParseInt(this string str, int defaultValue = 0)
         {
-            if (!int.TryParse(str, out var result))
+            if (!int.TryParse(str, out int result))
             {
                 result = defaultValue;
             }
@@ -37,7 +37,7 @@
 
         public static ushort ParseUShort(this string str, ushort defaultValue = 0)
         {
-            if (!ushort.TryParse(str, out var result))
+            if (!ushort.TryParse(str, out ushort result))
             {
                 result = defaultValue;
             }
