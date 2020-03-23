@@ -11,7 +11,7 @@ namespace Mane.Extensions.Editor
 {
     public class CustomHotkeys : ScriptableObject
     {
-        [MenuItem("HotKey/Clear Console _F8", false, 900)]
+        [MenuItem("Mane Utils/Clear Console _F8", false, 900)]
         private static void ClearConsole()
         {
             Assembly assembly = Assembly.GetAssembly(typeof(SceneView));
@@ -23,7 +23,7 @@ namespace Mane.Extensions.Editor
             }
         }
 
-        [MenuItem("HotKey/Take screenshot _F10", false, 902)]
+        [MenuItem("Mane Utils/Take screenshot _F10", false, 902)]
         public static void Capture()
         {
             if (!Application.isPlaying)
@@ -42,7 +42,7 @@ namespace Mane.Extensions.Editor
             Debug.Log($"Screenshot captured: {scrName}");
         }
 
-        [MenuItem("HotKey/Enable \u2044 Disable selected GO _F4", false, 903)]
+        [MenuItem("Mane Utils/Enable \u2044 Disable selected GO _F4", false, 903)]
         private static void ChangeSelectedObjectState()
         {
             GameObject go = Selection.activeGameObject;
@@ -53,7 +53,7 @@ namespace Mane.Extensions.Editor
             }
         }
 
-        [MenuItem("HotKey/Enable \u2044 Disable selected GO _F4", true, 903)]
+        [MenuItem("Mane Utils/Enable \u2044 Disable selected GO _F4", true, 903)]
         private static bool ChangeSelectedObjectStateCheck()
         {
             return Selection.activeGameObject;
@@ -61,7 +61,7 @@ namespace Mane.Extensions.Editor
 
 
 
-        [MenuItem("HotKey/Clear saved data _%F12", false, 800)]
+        [MenuItem("Mane Utils/Clear saved data _%F12", false, 800)]
         private static void ClearSavedData()
         {
             string path = Application.persistentDataPath;
@@ -94,7 +94,7 @@ namespace Mane.Extensions.Editor
             Directory.Delete(path);
         }
 
-        [MenuItem("HotKey/Delete all PlayerPrefs _%#F12", false, 801)]
+        [MenuItem("Mane Utils/Delete all PlayerPrefs _%#F12", false, 801)]
         private static void DeletePlayerPrefs()
         {
             PlayerPrefs.DeleteAll();
@@ -105,13 +105,13 @@ namespace Mane.Extensions.Editor
 
         private static Scene _lastClosed;
 
-        [MenuItem("HotKey/Unload scene _%w", false, 600)]
+        [MenuItem("Mane Utils/Unload scene _%w", false, 600)]
         private static void UnloadSelectedScene()
         {
             SaveSelectedSceneOrLastAndClose(false);
         }
 
-        [MenuItem("HotKey/Remove scene _%#w", false, 601)]
+        [MenuItem("Mane Utils/Remove scene _%#w", false, 601)]
         private static void RemoveScene()
         {
             SaveSelectedSceneOrLastAndClose(true);
@@ -129,13 +129,13 @@ namespace Mane.Extensions.Editor
             }
         }
 
-        [MenuItem("HotKey/Reopen scene _%t", false, 602)]
+        [MenuItem("Mane Utils/Reopen scene _%t", false, 602)]
         private static void LoadLastUnloadedScene()
         {
             EditorSceneManager.OpenScene(_lastClosed.path, OpenSceneMode.Additive);
         }
 
-        [MenuItem("HotKey//Reopen scene _%t", true, 602)]
+        [MenuItem("Mane Utils/Reopen scene _%t", true, 602)]
         private static bool LoadLastUnloadedSceneCheck()
         {
             return _lastClosed.IsValid();
