@@ -1,0 +1,18 @@
+{
+  "name": "com.mane.utils",
+  "version": "1.0.0",
+  "displayName": "Mane Utils",
+  "description": "Some extensions and features to make your Unity work easier!",
+  "unity": "2019.1",
+  "unityRelease": "0b5",
+ "keywords": [
+    "utils",
+    "extensions",
+    "manefunction"
+  ],
+  "author": {
+    "name": "Mane Function",
+    "email": "mfunc@outlook.com",
+    "url": "https://github.com/ManeFunction"
+  }
+}
