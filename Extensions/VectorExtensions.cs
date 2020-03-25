@@ -153,5 +153,9 @@ namespace Mane.Extensions
             
             return new Vector2(onNormal.x * num2 / num1, onNormal.y * num2 / num1);
         }
+
+        public static float Volume(this Vector3 size) => size.x * size.y * size.z;
+
+        public static float Area(this Vector2 size) => size.x * size.y;
     }
 }
