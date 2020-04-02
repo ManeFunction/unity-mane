@@ -11,6 +11,31 @@ namespace Mane.Extensions.Editor
 {
     public class CustomHotkeys : ScriptableObject
     {
+        [MenuItem("Mane Utils/Run \u2044 Stop _F5", false, 500)]
+        private static void PlayGame()
+        {
+            EditorApplication.ExecuteMenuItem("Edit/Play");
+        }
+
+        [MenuItem("Mane Utils/Pause _F6", false, 501)]
+        private static void PauseGame()
+        {
+            EditorApplication.ExecuteMenuItem("Edit/Pause");
+        }
+
+        [MenuItem("Mane Utils/Step _F7", false, 502)]
+        private static void StepGame()
+        {
+            EditorApplication.ExecuteMenuItem("Edit/Step");
+        }
+
+        [MenuItem("Mane Utils/Step _F7", true)]
+        private static bool StepGameCheck()
+        {
+            return Application.isPlaying;
+        }
+        
+        
         [MenuItem("Mane Utils/Clear Console _F8", false, 900)]
         private static void ClearConsole()
         {
