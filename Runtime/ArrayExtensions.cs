@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 
@@ -205,6 +206,54 @@ namespace Mane.Extensions
                     break;
                 }
             }
+        }
+        
+        
+        public static T GetRandom<T>(this IReadOnlyList<T> list, out int selectedIdx)
+        {
+            selectedIdx = Random.Range(0, list.Count);
+        
+            return list[selectedIdx];
+        }
+        
+        public static T GetRandom<T>(this IReadOnlyList<T> list)
+        {
+            return GetRandom(list, out int _);
+        }
+
+        /// <summary>
+        /// Return List of random elements from the source collection without duplicates 
+        /// </summary>
+        public static List<T> GetRandom<T>(this IEnumerable<T> list, int count)
+        {
+            List<T> result = new List<T>(count);
+            List<T> listCopy = new List<T>(list);
+
+            for(int i = 0, c = Mathf.Min(listCopy.Count, count); i < c; i++)
+            {
+                T copy = listCopy.GetRandom();
+                result.Add(copy);
+                listCopy.Remove(copy);
+            }
+
+            return result;
+        }
+
+
+        /// <summary>
+        /// Return '-1' if element not in the collection
+        /// </summary>
+        public static int GetIndexOf<T>(this IReadOnlyList<T> list, T element)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].Equals(element))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
         }
     }
 }
