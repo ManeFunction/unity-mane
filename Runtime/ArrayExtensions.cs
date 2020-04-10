@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -224,10 +225,10 @@ namespace Mane.Extensions
         /// <summary>
         /// Return List of random elements from the source collection without duplicates 
         /// </summary>
-        public static List<T> GetRandom<T>(this IEnumerable<T> list, int count)
+        public static List<T> GetRandom<T>(this IEnumerable<T> collection, int count)
         {
             List<T> result = new List<T>(count);
-            List<T> listCopy = new List<T>(list);
+            List<T> listCopy = new List<T>(collection);
 
             for(int i = 0, c = Mathf.Min(listCopy.Count, count); i < c; i++)
             {
@@ -237,6 +238,15 @@ namespace Mane.Extensions
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// DO NOT THREAD-SAFE!
+        /// But pretty efficient for single thread apps with LINQ queries
+        /// </summary>
+        public static T RandomOrDefault<T>(this IEnumerable<T> collection)
+        {
+            return collection.ElementAtOrDefault(Random.Range(0, collection.Count()));
         }
 
 
