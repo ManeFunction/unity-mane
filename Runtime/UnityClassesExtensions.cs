@@ -95,6 +95,15 @@ namespace Mane.Extensions
         }
 
 
+        public static T Duplicate<T>(this T source) where T : Component
+        {
+            T clone = Object.Instantiate(source, source.transform.parent);
+            clone.transform.SetSiblingIndex(source.transform.GetSiblingIndex() + 1);
+
+            return clone;
+        }
+
+
         public static void Reset(this Transform transform, float z = 0f)
         {
             transform.localPosition = new Vector3(0f, 0f, z);
