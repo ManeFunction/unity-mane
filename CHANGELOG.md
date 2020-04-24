@@ -1,1 +1,1 @@
-Added RandomOrDefault<T> for IEnumerable<T>
+Added Duplicate() method for Unity Components (similar to Cmd+D but for scripts)
