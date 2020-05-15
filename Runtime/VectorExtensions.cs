@@ -5,123 +5,159 @@ namespace Mane.Extensions
 {
     public static class VectorExtensions
     {
-        public static Vector3 Translate(this Vector3 vector, float deltaX, float deltaY, float deltaZ)
+        public static Vector3 Translate(this Vector3 v, float dX, float dY, float dZ)
         {
-            vector.x += deltaX;
-            vector.y += deltaY;
-            vector.z += deltaZ;
+            v.x += dX;
+            v.y += dY;
+            v.z += dZ;
             
-            return vector;
+            return v;
         }
 
-        public static Vector3 Translate(this Vector3 vector, Vector3 offset)
+        public static Vector3 Translate(this Vector3 v, Vector3 d)
         {
-            vector.x += offset.x;
-            vector.y += offset.y;
-            vector.z += offset.z;
+            v.x += d.x;
+            v.y += d.y;
+            v.z += d.z;
             
-            return vector;
+            return v;
         }
 
-        public static Vector3 Translate(this Vector3 vector, Vector2 offset)
+        public static Vector3 Translate(this Vector3 v, Vector2 d)
         {
-            vector.x += offset.x;
-            vector.y += offset.y;
+            v.x += d.x;
+            v.y += d.y;
             
-            return vector;
+            return v;
         }
 
-        public static Vector2 Translate(this Vector2 vector, float deltaX, float deltaY)
+        public static Vector2 Translate(this Vector2 v, float dX, float dY)
         {
-            vector.x += deltaX;
-            vector.y += deltaY;
+            v.x += dX;
+            v.y += dY;
             
-            return vector;
+            return v;
         }
 
-        public static Vector2 Translate(this Vector2 vector, Vector2 offset)
+        public static Vector2 Translate(this Vector2 v, Vector2 d)
         {
-            vector.x += offset.x;
-            vector.y += offset.y;
+            v.x += d.x;
+            v.y += d.y;
             
-            return vector;
+            return v;
         }
         
-        public static Vector3 Translate(this Vector2 vector, float deltaX, float deltaY, float deltaZ)
+        public static Vector3 Translate(this Vector2 v, float dX, float dY, float dZ)
         {
-            return new Vector3(vector.x + deltaX, vector.y + deltaY, deltaZ);
+            return new Vector3(v.x + dX, v.y + dY, dZ);
+        }
+        
+        
+        public static Vector3 TranslateX(this Vector3 v, float dX)
+        {
+            v.x += dX;
+
+            return v;
+        }
+
+        public static Vector3 TranslateY(this Vector3 v, float dY)
+        {
+            v.y += dY;
+
+            return v;
+        }
+
+        public static Vector3 TranslateZ(this Vector3 v, float dZ)
+        {
+            v.z += dZ;
+
+            return v;
+        }
+        
+        public static Vector2 TranslateX(this Vector2 v, float dX)
+        {
+            v.x += dX;
+
+            return v;
+        }
+
+        public static Vector2 TranslateY(this Vector2 v, float dY)
+        {
+            v.y += dY;
+
+            return v;
         }
 
         
-        public static Vector3 SetX(this Vector3 vector, float x)
+        public static Vector3 SetX(this Vector3 v, float x)
         {
-            vector.x = x;
+            v.x = x;
             
-            return vector;
+            return v;
         }
 
-        public static Vector3 SetY(this Vector3 vector, float y)
+        public static Vector3 SetY(this Vector3 v, float y)
         {
-            vector.y = y;
+            v.y = y;
             
-            return vector;
+            return v;
         }
 
-        public static Vector3 SetZ(this Vector3 vector, float z)
+        public static Vector3 SetZ(this Vector3 v, float z)
         {
-            vector.z = z;
+            v.z = z;
             
-            return vector;
+            return v;
         }
 
-        public static Vector2 SetX(this Vector2 vector, float x)
+        public static Vector2 SetX(this Vector2 v, float x)
         {
-            vector.x = x;
+            v.x = x;
             
-            return vector;
+            return v;
         }
 
-        public static Vector2 SetY(this Vector2 vector, float y)
+        public static Vector2 SetY(this Vector2 v, float y)
         {
-            vector.y = y;
+            v.y = y;
             
-            return vector;
+            return v;
         }
         
 
-        public static Vector3 FlipX(this Vector3 vector)
+        public static Vector3 FlipX(this Vector3 v)
         {
-            vector.x *= -1;
+            v.x *= -1;
             
-            return vector;
+            return v;
         }
 
-        public static Vector3 FlipY(this Vector3 vector)
+        public static Vector3 FlipY(this Vector3 v)
         {
-            vector.y *= -1;
+            v.y *= -1;
             
-            return vector;
+            return v;
         }
 
-        public static Vector3 FlipZ(this Vector3 vector)
+        public static Vector3 FlipZ(this Vector3 v)
         {
-            vector.z *= -1;
+            v.z *= -1;
             
-            return vector;
+            return v;
         }
 
-        public static Vector2 FlipX(this Vector2 vector)
+        public static Vector2 FlipX(this Vector2 v)
         {
-            vector.x *= -1;
+            v.x *= -1;
             
-            return vector;
+            return v;
         }
 
-        public static Vector2 FlipY(this Vector2 vector)
+        public static Vector2 FlipY(this Vector2 v)
         {
-            vector.y *= -1;
+            v.y *= -1;
             
-            return vector;
+            return v;
         }
 
 
@@ -142,14 +178,14 @@ namespace Mane.Extensions
             return v;
         }
         
-        public static Vector2 Project(this Vector2 vector, Vector2 onNormal)
+        public static Vector2 Project(this Vector2 v, Vector2 onNormal)
         {
             float num1 = Vector2.Dot(onNormal, onNormal);
             if (num1 < Mathf.Epsilon)
             {
                 return Vector2.zero;
             }
-            float num2 = Vector2.Dot(vector, onNormal);
+            float num2 = Vector2.Dot(v, onNormal);
             
             return new Vector2(onNormal.x * num2 / num1, onNormal.y * num2 / num1);
         }

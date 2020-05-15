@@ -1,1 +1,1 @@
-Added Duplicate() method for Unity Components (similar to Cmd+D but for scripts)
+Added separate Translate methods for Vector extensions.
