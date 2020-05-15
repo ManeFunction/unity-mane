@@ -95,6 +95,14 @@ namespace Mane.Extensions
         }
 
 
+        public static GameObject Duplicate(this GameObject source)
+        {
+            GameObject clone = Object.Instantiate(source, source.transform.parent);
+            clone.transform.SetSiblingIndex(source.transform.GetSiblingIndex() + 1);
+
+            return clone;
+        }
+        
         public static T Duplicate<T>(this T source) where T : Component
         {
             T clone = Object.Instantiate(source, source.transform.parent);

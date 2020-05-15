@@ -1,1 +1,1 @@
-Added separate Translate methods for Vector extensions.
+Added Duplicate method for GameObject itself, not only the Componet.
