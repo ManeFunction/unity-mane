@@ -1,1 +1,1 @@
-Added Duplicate method for GameObject itself, not only the Componet.
+Added Clear() method for arrays that fills array with default values.
