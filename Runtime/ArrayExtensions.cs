@@ -120,6 +120,20 @@ namespace Mane.Extensions
 
             return array;
         }
+        
+        
+        /// <summary>
+        /// Fills array with default values
+        /// </summary>
+        public static T[] Clear<T>(this T[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = default;
+            }
+
+            return array;
+        }
 
 
         public static void Shuffle<T>(this IList<T> list)
