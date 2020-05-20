@@ -1,1 +1,1 @@
-Added Clear() method for arrays that fills array with default values.
+Fixed Transform.Reset() rotation extension.

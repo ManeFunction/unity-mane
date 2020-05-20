@@ -116,7 +116,7 @@ namespace Mane.Extensions
         {
             transform.localPosition = new Vector3(0f, 0f, z);
             transform.localScale = Vector3.one;
-            transform.rotation = Quaternion.identity;
+            transform.localRotation = Quaternion.identity;
         }
         
         
