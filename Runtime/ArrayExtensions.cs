@@ -224,6 +224,20 @@ namespace Mane.Extensions
         }
         
         
+        public static void ForEach<T>(this IEnumerable<T> list, Action<T> action)
+        {
+            if (action == null)
+            {
+                return;
+            }
+
+            foreach (T element in list)
+            {
+                action(element);
+            }
+        }
+        
+        
         public static T GetRandom<T>(this IReadOnlyList<T> list, out int selectedIdx)
         {
             selectedIdx = Random.Range(0, list.Count);
