@@ -1,1 +1,1 @@
-Fixed Transform.Reset() rotation extension.
+Added simplified ForeEach extension loop for IEnumerable.
