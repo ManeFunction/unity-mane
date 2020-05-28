@@ -1,1 +1,1 @@
-Added simplified ForeEach extension loop for IEnumerable.
+Added string Extension to Reverse() text.

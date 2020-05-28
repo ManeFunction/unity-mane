@@ -1,4 +1,6 @@
-﻿namespace Mane.Extensions
+﻿using System;
+
+namespace Mane.Extensions
 {
     public static class StringExtensions
     {
@@ -43,6 +45,13 @@
             }
 
             return result;
+        }
+        
+        public static string Reverse(this string str)
+        {
+            char[] charArray = str.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
         }
     }
 }
