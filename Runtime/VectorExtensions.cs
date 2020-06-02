@@ -160,6 +160,11 @@ namespace Mane.Extensions
             return v;
         }
 
+        public static Vector3 AddZ(this Vector2 v, float z = 0f)
+        {
+            return new Vector3(v.x, v.y, z);
+        }
+
 
         public static Vector2 Clamp(this Vector2 v, float a, float b)
         {
