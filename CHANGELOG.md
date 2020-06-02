@@ -1,1 +1,1 @@
-Added string Extension to Reverse() text.
+Added Vector2.AddZ() extension, returning new Vector3.
