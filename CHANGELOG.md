@@ -1,1 +1,1 @@
-Added Vector2.AddZ() extension, returning new Vector3.
+Added Gizmos class with Plane gizmo.
