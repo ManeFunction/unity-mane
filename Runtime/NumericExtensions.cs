@@ -45,5 +45,10 @@ namespace Mane.Extensions
         {
             return !IsEven(value);
         }
+        
+        public static float Map(this float value, float sourceFrom, float sourceTo, float destFrom, float destTo)
+        {
+            return (value - sourceFrom) / (sourceTo - sourceFrom) * (destTo - destFrom) + destFrom;
+        }
     }
 }

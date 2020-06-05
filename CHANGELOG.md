@@ -1,1 +1,1 @@
-Added Gizmos class with Plane gizmo.
+Added float.Map() extension to remap value from one range to another.
