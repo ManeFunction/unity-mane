@@ -1,1 +1,1 @@
-Added float.Map() extension to remap value from one range to another.
+Added Vector3.IsInPolygon() extension to check is point inside convex polygon or not.
