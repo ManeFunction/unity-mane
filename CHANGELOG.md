@@ -1,1 +1,1 @@
-Added Vector3.IsInPolygon() extension to check is point inside convex polygon or not.
+Added Vector3.ClosestPointOnLine() extension.
