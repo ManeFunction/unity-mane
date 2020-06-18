@@ -226,15 +226,18 @@ namespace Mane.Extensions
         /// </summary>
         public static bool IsInPolygon(this Vector3 point, Vector3[] poly)
         {
-            List<float> coef = poly.Skip(1)
-                                   .Select((p, i) => 
-                                           (point.y - poly[i].y) * (p.x - poly[i].x) 
-                                         - (point.x - poly[i].x) * (p.y - poly[i].y))
-                                   .ToList();
+            float[] coef = new float[poly.Length];
+            for (int i = 0; i < poly.Length; i++)
+            {
+                Vector3 prev = poly[i == 0 ? poly.Length - 1 : i - 1];
+                Vector3 cur = poly[i];
+                coef[i] = (point.y - cur.y) * (prev.x - cur.x) 
+                        - (point.x - cur.x) * (prev.y - cur.y);
+            }
 
             if (coef.Any(p => Math.Abs(p) < float.Epsilon)) return true;
 
-            for (int i = 1; i < coef.Count; i++)
+            for (int i = 1; i < coef.Length; i++)
             {
                 if (coef[i] * coef[i - 1] < 0) return false;
             }

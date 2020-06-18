@@ -1,1 +1,1 @@
-Added Vector3.ClosestPointOnLine() extension.
+Close polygon automatically in Vector3.IsInPolygon() extension without input points duplicating.
