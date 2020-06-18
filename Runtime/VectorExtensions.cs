@@ -201,7 +201,26 @@ namespace Mane.Extensions
         public static float Volume(this Vector3 size) => size.x * size.y * size.z;
 
         public static float Area(this Vector2 size) => size.x * size.y;
+
+        // Thanks to bronxbomber92 (https://forum.unity.com/threads/math-problem.8114/#post-59715)
+        public static Vector3 ClosestPointOnLine(this Vector3 vPoint, Vector3 vA, Vector3 vB)
+        {
+            Vector3 vVector1 = vPoint - vA;
+            Vector3 vVector2 = (vB - vA).normalized;
+ 
+            float d = Vector3.Distance(vA, vB);
+            float t = Vector3.Dot(vVector2, vVector1);
+ 
+            if (t <= 0) return vA;
+            if (t >= d) return vB;
+ 
+            Vector3 vVector3 = vVector2 * t;
+            Vector3 vClosestPoint = vA + vVector3;
+ 
+            return vClosestPoint;
+        }
         
+        // Thanks to Saeed Amiri (https://stackoverflow.com/questions/4243042/c-sharp-point-in-polygon)
         /// <summary>
         /// Define polygon with points CW or CCW, works with convex polygons
         /// </summary>
