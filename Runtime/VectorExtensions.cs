@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 
 namespace Mane.Extensions
@@ -198,5 +201,26 @@ namespace Mane.Extensions
         public static float Volume(this Vector3 size) => size.x * size.y * size.z;
 
         public static float Area(this Vector2 size) => size.x * size.y;
+        
+        /// <summary>
+        /// Define polygon with points CW or CCW, works with convex polygons
+        /// </summary>
+        public static bool IsInPolygon(this Vector3 point, Vector3[] poly)
+        {
+            List<float> coef = poly.Skip(1)
+                                   .Select((p, i) => 
+                                           (point.y - poly[i].y) * (p.x - poly[i].x) 
+                                         - (point.x - poly[i].x) * (p.y - poly[i].y))
+                                   .ToList();
+
+            if (coef.Any(p => Math.Abs(p) < float.Epsilon)) return true;
+
+            for (int i = 1; i < coef.Count; i++)
+            {
+                if (coef[i] * coef[i - 1] < 0) return false;
+            }
+            
+            return true;
+        }
     }
 }
