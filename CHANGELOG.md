@@ -1,1 +1,1 @@
-Close polygon automatically in Vector3.IsInPolygon() extension without input points duplicating.
+Added ReadOnly attribute for inspector properties.
