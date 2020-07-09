@@ -1,1 +1,1 @@
-Added ReadOnly attribute for inspector properties.
+Added Sphere Gizmo to help you position objects without graphics.
