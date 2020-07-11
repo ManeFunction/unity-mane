@@ -51,6 +51,7 @@ namespace Mane.Extensions
         {
             char[] charArray = str.ToCharArray();
             Array.Reverse(charArray);
+            
             return new string(charArray);
         }
     }

@@ -14,6 +14,6 @@ public class SphereGizmo : MonoBehaviour
         Gizmos.color = color;
     }
     #else
-    private void Awake() => Destroy(this);
+    private void Awake() { Destroy(this); }
     #endif
 }

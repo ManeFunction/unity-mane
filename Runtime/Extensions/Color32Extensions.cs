@@ -5,10 +5,16 @@ namespace Mane.Extensions
 {
     public static class Color32Extensions
     {
-        public static Color32 RandomColor => new Color32(
-            (byte)Random.Range(0, 256), 
-            (byte)Random.Range(0, 256),
-            (byte)Random.Range(0, 256), 255);
+        public static Color32 RandomColor
+        {
+            get
+            {
+                return new Color32(
+                    (byte)Random.Range(0, 256),
+                    (byte)Random.Range(0, 256),
+                    (byte)Random.Range(0, 256), 255);
+            }
+        }
 
 
         public static Color32 Set(this Color32 c, byte r, byte g, byte b, byte a)
