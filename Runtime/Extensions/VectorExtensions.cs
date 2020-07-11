@@ -235,7 +235,7 @@ namespace Mane.Extensions
                         - (point.x - cur.x) * (prev.y - cur.y);
             }
 
-            if (coef.Any(p => Math.Abs(p) < float.Epsilon)) return true;
+            if (coef.Any(p => Math.Abs(p) < Single.Epsilon)) return true;
 
             for (int i = 1; i < coef.Length; i++)
             {
@@ -243,6 +243,38 @@ namespace Mane.Extensions
             }
             
             return true;
+        }
+
+        /// <summary>
+        /// Tried to make it thread safe, but anyway, be aware...
+        /// </summary>
+        public static Vector3 Average(this IEnumerable<Vector3> values)
+        {
+            Vector3 sum = Vector3.zero;
+            int total = 0;
+            values.ForEach(v =>
+            {
+                sum += v;
+                total++;
+            });
+
+            return sum / total;
+        }
+
+        /// <summary>
+        /// Tried to make it thread safe, but anyway, be aware...
+        /// </summary>
+        public static Vector2 Average(this IEnumerable<Vector2> values)
+        {
+            Vector2 sum = Vector2.zero;
+            int total = 0;
+            values.ForEach(v =>
+            {
+                sum += v;
+                total++;
+            });
+
+            return sum / total;
         }
     }
 }

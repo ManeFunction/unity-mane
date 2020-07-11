@@ -5,10 +5,16 @@ namespace Mane.Extensions
 {
     public static class ColorExtensions
     {
-        public static Color RandomColor => new Color(
-            Random.value, 
-            Random.value, 
-            Random.value);
+        public static Color RandomColor
+        {
+            get
+            {
+                return new Color(
+                    Random.value,
+                    Random.value,
+                    Random.value);
+            }
+        }
 
 
         public static float GetBrightness(this Color color)
