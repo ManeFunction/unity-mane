@@ -1,1 +1,1 @@
-Added fully-functional Layer property drawer.
+Added DropdownList attribute (Property Drawer) you can use with string or int values.
