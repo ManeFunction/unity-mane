@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Mane.Extensions.Editor
 {
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
-    public class ReadOnlyDrawer : PropertyDrawer
+    public class ReadOnlyPropertyDrawer : PropertyDrawer
     {
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
