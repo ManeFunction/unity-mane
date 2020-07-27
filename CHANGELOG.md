@@ -1,1 +1,1 @@
-Added DropdownList attribute (Property Drawer) you can use with string or int values.
+Some improvements in Property Drawers.
