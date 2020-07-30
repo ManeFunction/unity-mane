@@ -253,12 +253,29 @@ namespace Mane.Extensions
         /// <summary>
         /// Return List of random elements from the source collection without duplicates 
         /// </summary>
-        public static List<T> GetRandom<T>(this IEnumerable<T> collection, int count)
+        public static List<T> GetRandom<T>(this IEnumerable<T> collection, int count,
+            bool getMaxWithDuplicates = false)
         {
             List<T> result = new List<T>(count);
             List<T> listCopy = new List<T>(collection);
 
-            for(int i = 0, c = Mathf.Min(listCopy.Count, count); i < c; i++)
+            int limit;
+            if (getMaxWithDuplicates)
+            {
+                while (listCopy.Count < count)
+                {
+                    result.AddRange(listCopy);
+                    count -= listCopy.Count;
+                }
+
+                limit = count;
+            }
+            else
+            {
+                limit = Mathf.Min(listCopy.Count, count);
+            }
+
+            for (int i = 0; i < limit; i++)
             {
                 T copy = listCopy.GetRandom();
                 result.Add(copy);
