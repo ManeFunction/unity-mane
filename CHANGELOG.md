@@ -1,1 +1,1 @@
-Some improvements in Property Drawers.
+Added option to IEnumerable.GetRandom() to allows getting extended lists with duplicates.
