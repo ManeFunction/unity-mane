@@ -1,1 +1,1 @@
-Added option to IEnumerable.GetRandom() to allows getting extended lists with duplicates.
+Vector2/3.Average doesn't return NaN vectors anymore.

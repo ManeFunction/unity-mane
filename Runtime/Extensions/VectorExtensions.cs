@@ -250,6 +250,8 @@ namespace Mane.Extensions
         /// </summary>
         public static Vector3 Average(this IEnumerable<Vector3> values)
         {
+            if (!values.Any()) return Vector3.zero;
+        
             Vector3 sum = Vector3.zero;
             int total = 0;
             values.ForEach(v =>
@@ -266,6 +268,8 @@ namespace Mane.Extensions
         /// </summary>
         public static Vector2 Average(this IEnumerable<Vector2> values)
         {
+            if (!values.Any()) return Vector2.zero;
+            
             Vector2 sum = Vector2.zero;
             int total = 0;
             values.ForEach(v =>
