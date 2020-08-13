@@ -205,9 +205,9 @@ namespace Mane.Extensions
 
 
         /// <summary>
-        /// Return 'true' in func to break the cycle
+        /// Return 'false' in func to break the cycle
         /// </summary>
-        public static void ForEach<T>(this IEnumerable<T> list, Func<T, bool> breakFunc)
+        public static void ForEachCancellable<T>(this IEnumerable<T> list, Func<T, bool> breakFunc)
         {
             if (breakFunc == null)
             {
@@ -216,7 +216,7 @@ namespace Mane.Extensions
 
             foreach (T element in list)
             {
-                if (breakFunc(element))
+                if (!breakFunc(element))
                 {
                     break;
                 }
