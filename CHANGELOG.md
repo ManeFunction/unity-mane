@@ -1,5 +1,5 @@
 1.2.7:
-	- Added npm packages.
+    - Added npm packages.
 
 1.2.6:
     - Renamed breakable ForEach() collection extension to ForEachCancellable() to prevent unnecessary calls 
