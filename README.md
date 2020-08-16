@@ -1,11 +1,11 @@
 # unity-mane
 Some extensions and features to make your Unity work easier!
 
-From version 1.2.7 finally with **npm packages**!
+From version 1.2.7 finally with **npm packages**!  
 What means **Unity Package Manager** support with versions and updates!
 
-To add this or any other of my packages to your project paste to **manifest.json**
-my packages repository scope registry
+To add this or any other of my packages to your project,  
+paste my packages feed address to **manifest.json**
 ```json
   "scopedRegistries": [
     {
@@ -24,6 +24,5 @@ and add this project dependency (version can vary)
     
     }
 ```
-**If you are using Unity 2018 or earlier, use my legacy scope:**
-
+**If you are using Unity 2018 or earlier, use my legacy feed:**  
 https://pkgs.dev.azure.com/manefunction/unity-mane/_packaging/unity-2018/npm/registry/
