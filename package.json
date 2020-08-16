@@ -1,11 +1,12 @@
 {
   "name": "com.manefunction.utils",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "displayName": "Mane Utils",
   "description": "Some extensions and features to make your Unity work easier!",
   "unity": "2019.1",
   "unityRelease": "0b5",
   "keywords": [
+    "unity",
     "utils",
     "extensions",
     "manefunction"
