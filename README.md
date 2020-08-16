@@ -4,8 +4,8 @@ Some extensions and features to make your Unity work easier!
 From version 1.2.7 finally with **npm packages**!
 What means **Unity Package Manager** support with versions and updates!
 
-To add this or any other of my packages to your project paste to **manifest.json**  
-my packages feed
+To add this or any other of my packages to your project,  
+paste my packages feed address to **manifest.json**
 ```json
   "scopedRegistries": [
     {
