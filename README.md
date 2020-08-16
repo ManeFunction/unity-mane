@@ -21,8 +21,9 @@ and add this project dependency (version can vary)
 ```json
   "dependencies": {
     "com.manefunction.utils": "1.2.7", 
-    # other dependencies...
+    
     }
 ```
 **If you are using Unity 2018 or earlier, use my legacy scope:**
+
 https://pkgs.dev.azure.com/manefunction/unity-mane/_packaging/unity-2018/npm/registry/
