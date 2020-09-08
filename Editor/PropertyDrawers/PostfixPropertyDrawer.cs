@@ -44,6 +44,8 @@ namespace Mane.Extensions.Editor
             EditorGUI.PropertyField(fieldRect, property, label, true);
 
             Rect postfixRect = position;
+            postfixRect.x = position.x + position.width - _postfixWidth;
+            postfixRect.width = _postfixWidth;
             EditorGUI.LabelField(postfixRect, attr.Text, _postfixStyle);
         }
     }
