@@ -1,3 +1,6 @@
+1.2.8:
+    - Added Postfix attribute (Property Drawer).
+
 1.2.7:
     - Added npm packages.
 
