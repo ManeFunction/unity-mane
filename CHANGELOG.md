@@ -1,3 +1,6 @@
+1.2.9:
+    - Fixed issue with updating NPM package through the UPM system.
+
 1.2.8:
     - Added Postfix attribute (Property Drawer).
 
