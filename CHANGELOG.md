@@ -1,3 +1,6 @@
+1.3.0:
+    - Added ToVectorN float extensions to ease vectors init with the same components.
+
 1.2.8:
     - Added Postfix attribute (Property Drawer).
 

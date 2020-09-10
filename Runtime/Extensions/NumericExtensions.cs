@@ -50,5 +50,20 @@ namespace Mane.Extensions
         {
             return (value - sourceFrom) / (sourceTo - sourceFrom) * (destTo - destFrom) + destFrom;
         }
+
+        public static Vector2 ToVector2(this float value)
+        {
+            return new Vector2(value, value);
+        }
+
+        public static Vector3 ToVector3(this float value)
+        {
+            return new Vector3(value, value, value);
+        }
+
+        public static Vector4 ToVector4(this float value)
+        {
+            return new Vector4(value, value, value, value);
+        }
     }
 }
