@@ -1,3 +1,6 @@
+1.3.1:
+    - Added SelfConcat collections extension that allows to concatenate collection w/ itself multiple times. 
+
 1.3.0:
     - Added ToVectorN float extensions to ease vectors init with the same components.
 

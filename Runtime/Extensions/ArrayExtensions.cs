@@ -310,5 +310,28 @@ namespace Mane.Extensions
 
             return -1;
         }
+
+        /// <summary>
+        /// DO NOT THREAD-SAFE!
+        /// </summary>
+        public static IEnumerable<T> SelfConcat<T>(this IEnumerable<T> list, int times)
+        {
+            if (times == 1)
+            {
+                return list;
+            }
+            
+            if (times <= 0)
+            {
+                return null;
+            }
+
+            IEnumerable<T> res = list;
+            for (int i = 1; i < times; i++)
+            {
+                res = res.Concat(list);
+            }
+            return res;
+        }
     }
 }
