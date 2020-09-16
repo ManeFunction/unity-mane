@@ -1,3 +1,6 @@
+1.3.2:
+    - Added RandomBetween extension for Vector2 and Vector2Int.
+
 1.3.1:
     - Added SelfConcat collections extension that allows to concatenate collection w/ itself multiple times. 
 
