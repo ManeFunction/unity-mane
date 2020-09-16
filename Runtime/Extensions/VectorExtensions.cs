@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 namespace Mane.Extensions
@@ -279,6 +280,16 @@ namespace Mane.Extensions
             });
 
             return sum / total;
+        }
+
+        public static float RandomBetween(this Vector2 value)
+        {
+            return Random.Range(value.x, value.y);
+        }
+
+        public static int RandomBetween(this Vector2Int value)
+        {
+            return Random.Range(value.x, value.y);
         }
     }
 }
