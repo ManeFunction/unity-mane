@@ -142,7 +142,7 @@ namespace Mane.Extensions
             while (n > 1)
             {
                 n--;
-                int k = Random.Range(0, n + 1);
+                int k = UnityEngine.Random.Range(0, n + 1);
                 T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
@@ -240,7 +240,7 @@ namespace Mane.Extensions
         
         public static T GetRandom<T>(this IReadOnlyList<T> list, out int selectedIdx)
         {
-            selectedIdx = Random.Range(0, list.Count);
+            selectedIdx = UnityEngine.Random.Range(0, list.Count);
         
             return list[selectedIdx];
         }
@@ -291,7 +291,7 @@ namespace Mane.Extensions
         /// </summary>
         public static T RandomOrDefault<T>(this IEnumerable<T> collection)
         {
-            return collection.ElementAtOrDefault(Random.Range(0, collection.Count()));
+            return collection.ElementAtOrDefault(UnityEngine.Random.Range(0, collection.Count()));
         }
 
 

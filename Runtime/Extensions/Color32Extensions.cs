@@ -10,9 +10,9 @@ namespace Mane.Extensions
             get
             {
                 return new Color32(
-                    (byte)Random.Range(0, 256),
-                    (byte)Random.Range(0, 256),
-                    (byte)Random.Range(0, 256), 255);
+                    (byte)UnityEngine.Random.Range(0, 256),
+                    (byte)UnityEngine.Random.Range(0, 256),
+                    (byte)UnityEngine.Random.Range(0, 256), 255);
             }
         }
 

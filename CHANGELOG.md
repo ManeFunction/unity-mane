@@ -1,3 +1,6 @@
+1.3.3:
+    - Added Random.FlipCoin() and Random.ThrowDice(d) methods for fast events randomization.
+
 1.3.2:
     - Added RandomBetween extension for Vector2 and Vector2Int.
 
