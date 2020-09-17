@@ -284,12 +284,12 @@ namespace Mane.Extensions
 
         public static float RandomBetween(this Vector2 value)
         {
-            return Random.Range(value.x, value.y);
+            return UnityEngine.Random.Range(value.x, value.y);
         }
 
         public static int RandomBetween(this Vector2Int value)
         {
-            return Random.Range(value.x, value.y);
+            return UnityEngine.Random.Range(value.x, value.y);
         }
     }
 }

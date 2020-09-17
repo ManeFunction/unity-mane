@@ -10,9 +10,9 @@ namespace Mane.Extensions
             get
             {
                 return new Color(
-                    Random.value,
-                    Random.value,
-                    Random.value);
+                    UnityEngine.Random.value,
+                    UnityEngine.Random.value,
+                    UnityEngine.Random.value);
             }
         }
 
