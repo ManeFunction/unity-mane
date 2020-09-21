@@ -209,7 +209,7 @@ namespace Mane.Extensions
         /// </summary>
         public static void ForEachCancellable<T>(this IEnumerable<T> list, Func<T, bool> breakFunc)
         {
-            if (breakFunc == null)
+            if (breakFunc == null || list == null)
             {
                 return;
             }
@@ -226,7 +226,7 @@ namespace Mane.Extensions
         
         public static void ForEach<T>(this IEnumerable<T> list, Action<T> action)
         {
-            if (action == null)
+            if (action == null || list == null)
             {
                 return;
             }
