@@ -1,3 +1,6 @@
+1.3.4:
+    - ForEach collections extensions doesn't throw exceptions for null collections anymore.
+
 1.3.3:
     - Added Random.FlipCoin() and Random.ThrowDice(d) methods for fast events randomization.
 
