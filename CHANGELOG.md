@@ -1,3 +1,6 @@
+1.3.6:
+    - ScrollRect.SnapTo: Added offset for custom snapping + refactoring.
+
 1.3.5:
     - Added SnapTo extension for the ScrollRect.
 
