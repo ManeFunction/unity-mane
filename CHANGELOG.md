@@ -1,3 +1,6 @@
+1.3.5:
+    - Added SnapTo extension for the ScrollRect.
+
 1.3.4:
     - ForEach collections extensions doesn't throw exceptions for null collections anymore.
 
