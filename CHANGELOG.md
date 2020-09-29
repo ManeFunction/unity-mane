@@ -1,3 +1,6 @@
+1.3.7:
+    - Added workaround Extension GameObject.IsPrefab for the runtime.
+
 1.3.6:
     - ScrollRect.SnapTo: Added offset for custom snapping + refactoring.
 
