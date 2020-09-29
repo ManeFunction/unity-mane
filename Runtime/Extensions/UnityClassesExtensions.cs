@@ -172,5 +172,13 @@ namespace Mane.Extensions
                 }
             }
         }
+
+        public static bool IsPrefab(this GameObject go)
+        {
+            // There is no "legit" way to know is GameObject prefab
+            // or not besides PrefabUtility, but it's not available
+            // in a runtime, so this is the most obvious workaround.
+            return go.scene.rootCount == 0;
+        }
     }
 }
