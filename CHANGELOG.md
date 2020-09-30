@@ -1,3 +1,6 @@
+1.3.8:
+    - Added Aligner component to help you align item stacks with constant offset.
+
 1.3.7:
     - Added workaround Extension GameObject.IsPrefab for the runtime.
 
