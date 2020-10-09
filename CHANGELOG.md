@@ -1,3 +1,7 @@
+1.3.9:
+    - Split BaseExtensions class to BaseClassesExtensions and Tools.
+    - Added Delayed MonoBehaviour extension to delay actions.
+
 1.3.8:
     - Added Aligner component to help you align item stacks with constant offset.
 

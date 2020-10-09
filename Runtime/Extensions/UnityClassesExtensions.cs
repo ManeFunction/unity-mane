@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 
 namespace Mane.Extensions
@@ -179,6 +182,28 @@ namespace Mane.Extensions
             // or not besides PrefabUtility, but it's not available
             // in a runtime, so this is the most obvious workaround.
             return go.scene.rootCount == 0;
+        }
+
+        public static void Delayed(this MonoBehaviour target, Action action, float delay)
+        {
+            if (action == null) return;
+
+            if (delay <= 0f)
+            {
+                action.Invoke();
+                
+                return;
+            }
+            
+            target.StartCoroutine(Coroutine());
+
+            
+            IEnumerator Coroutine()
+            {
+                yield return new WaitForSeconds(delay);
+                
+                action.Invoke();
+            }
         }
     }
 }
