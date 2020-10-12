@@ -287,9 +287,9 @@ namespace Mane.Extensions
             return UnityEngine.Random.Range(value.x, value.y);
         }
 
-        public static int RandomBetween(this Vector2Int value)
+        public static int RandomBetween(this Vector2Int value, bool inclusiveMax = false)
         {
-            return UnityEngine.Random.Range(value.x, value.y);
+            return UnityEngine.Random.Range(value.x, inclusiveMax ? value.y + 1 : value.y);
         }
     }
 }

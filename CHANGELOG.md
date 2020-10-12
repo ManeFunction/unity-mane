@@ -1,3 +1,6 @@
+1.3.10:
+    - Added flag to Vector2Int.RandomBetween for inclusive range.
+
 1.3.9:
     - Split BaseExtensions class to BaseClassesExtensions and Tools.
     - Added Delayed MonoBehaviour extension to delay actions.
