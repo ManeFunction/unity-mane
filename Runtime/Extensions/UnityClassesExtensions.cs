@@ -205,5 +205,30 @@ namespace Mane.Extensions
                 action.Invoke();
             }
         }
+
+        public static void DelayedFrames(this MonoBehaviour target, Action action, int frames)
+        {
+            if (action == null) return;
+
+            if (frames <= 0)
+            {
+                action.Invoke();
+                
+                return;
+            }
+            
+            target.StartCoroutine(Coroutine());
+
+            
+            IEnumerator Coroutine()
+            {
+                while (frames-- > 0)
+                {
+                    yield return null;
+                }
+
+                action.Invoke();
+            }
+        }
     }
 }

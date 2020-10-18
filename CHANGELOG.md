@@ -1,3 +1,6 @@
+1.3.11:
+    - Added DelayedFrames MonoBehaviour extension to delay execution in frames.
+
 1.3.10:
     - Added flag to Vector2Int.RandomBetween for inclusive range.
 
