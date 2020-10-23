@@ -184,18 +184,18 @@ namespace Mane.Extensions
             return go.scene.rootCount == 0;
         }
 
-        public static void Delayed(this MonoBehaviour target, Action action, float delay)
+        public static Coroutine Delayed(this MonoBehaviour target, Action action, float delay)
         {
-            if (action == null) return;
+            if (action == null) return null;
 
             if (delay <= 0f)
             {
                 action.Invoke();
                 
-                return;
+                return null;
             }
             
-            target.StartCoroutine(Coroutine());
+            return target.StartCoroutine(Coroutine());
 
             
             IEnumerator Coroutine()
@@ -206,18 +206,18 @@ namespace Mane.Extensions
             }
         }
 
-        public static void DelayedFrames(this MonoBehaviour target, Action action, int frames)
+        public static Coroutine DelayedFrames(this MonoBehaviour target, Action action, int frames)
         {
-            if (action == null) return;
+            if (action == null) return null;
 
             if (frames <= 0)
             {
                 action.Invoke();
                 
-                return;
+                return null;
             }
             
-            target.StartCoroutine(Coroutine());
+            return target.StartCoroutine(Coroutine());
 
             
             IEnumerator Coroutine()
