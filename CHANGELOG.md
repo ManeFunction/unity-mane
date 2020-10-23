@@ -1,3 +1,6 @@
+1.3.12:
+    - Added Coroutine return to Delayed and DelayedFrames (to be able to cancel the exact operation).
+
 1.3.11:
     - Added DelayedFrames MonoBehaviour extension to delay execution in frames.
 
