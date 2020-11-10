@@ -38,7 +38,7 @@ namespace Mane.Extensions
 
         public static bool IsEven(this int value)
         {
-            return value % 2 == 0;
+            return (value >> 1) << 1 == value;
         }
 
         public static bool IsOdd(this int value)
