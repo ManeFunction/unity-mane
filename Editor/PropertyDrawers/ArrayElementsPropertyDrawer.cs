@@ -61,7 +61,8 @@ namespace Mane.Extensions.Editor
                     return _titleNameProp.objectReferenceValue.ToString();
                 
                 case SerializedPropertyType.Enum:
-                    return _titleNameProp.enumNames[_titleNameProp.enumValueIndex];
+                    if (_titleNameProp.enumValueIndex < 0) break;
+                    return _titleNameProp.enumDisplayNames[_titleNameProp.enumValueIndex];
                 
                 case SerializedPropertyType.Vector2:
                     return _titleNameProp.vector2Value.ToString();
@@ -78,8 +79,10 @@ namespace Mane.Extensions.Editor
                 case SerializedPropertyType.Quaternion:
                     return _titleNameProp.quaternionValue.ToString();
                 
-                default: return string.Empty;
+                default: break;
             }
+
+            return string.Empty;
         }
     }
 }

@@ -1,3 +1,6 @@
+1.3.14:
+    - ArrayElements Attribute: Improved view for enums and fixed crash if there is no zero-valued enum item.
+
 1.3.13:
     - Added ArrayElements Attribute to change "Element N" titles.
     - Tiny performance improvement for IsOdd / IsEven methods.
