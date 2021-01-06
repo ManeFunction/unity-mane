@@ -1,3 +1,7 @@
+1.3.13:
+    - Added ArrayElements Attribute to change "Element N" titles.
+    - Tiny performance improvement for IsOdd / IsEven methods.
+
 1.3.12:
     - Added Coroutine return to Delayed and DelayedFrames (to be able to cancel the exact operation).
 
