@@ -1,3 +1,6 @@
+1.3.16:
+    - Added ReadOnlyIf attribute similar to the basic ReadOnly, but with the condition.
+
 1.3.15:
     - Aligner: Added ability to init from a prefab.
     
