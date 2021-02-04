@@ -1,3 +1,6 @@
+1.3.17:
+    - Added Random Vector2 and Vector3 getters. 
+
 1.3.16:
     - Added ReadOnlyIf attribute similar to the basic ReadOnly, but with the condition.
 
