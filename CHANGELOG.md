@@ -1,3 +1,6 @@
+1.3.18:
+    - Added EditorDebug class for Logs only for Editor.
+
 1.3.17:
     - Added Random Vector2 and Vector3 getters. 
 
