@@ -2,8 +2,10 @@
 
 public class SphereGizmo : MonoBehaviour
 {
+    #pragma warning disable CS0414
     [SerializeField] private float _size = .1f;
     [SerializeField] private Color _color = Color.magenta;
+    #pragma warning restore CS0414
     
     #if UNITY_EDITOR
     private void OnDrawGizmos()

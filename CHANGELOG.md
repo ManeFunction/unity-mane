@@ -1,3 +1,8 @@
+1.4.0:
+    - Added new Text Mesh component with Outline and Shadow support.
+    - Replaced ReadOnlyIf attribute with AvailableIf. It's more flexible, can work with methods and Property getters, and able to hide fields completely.
+    - Suppress build time warning in Sphere Gizmo.
+
 1.3.18:
     - Added EditorDebug class for Logs only for Editor.
 
