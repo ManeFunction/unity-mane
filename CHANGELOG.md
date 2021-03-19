@@ -1,3 +1,7 @@
+1.4.1:
+    - Added Animator Randomizer to randomize animation clips inside the Mecanim state machine.
+    - Added Parameter Resetter to reset any Paremeter directly from the Mecanim state machine.
+
 1.4.0:
     - Added new Text Mesh component with Outline and Shadow support.
     - Replaced ReadOnlyIf attribute with AvailableIf. It's more flexible, can work with methods and Property getters, and able to hide fields completely.
