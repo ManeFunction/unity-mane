@@ -1,3 +1,7 @@
+1.4.2:
+    - Added Collection.IsNullOrEmpty checker.
+    - Renamed Tools.GetEnumValues<T> to Enum.GetValues<T>.
+
 1.4.1:
     - Added Animator Randomizer to randomize animation clips inside the Mecanim state machine.
     - Added Parameter Resetter to reset any Paremeter directly from the Mecanim state machine.
