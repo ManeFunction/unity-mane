@@ -1,7 +1,6 @@
 ﻿using System;
 using Mane.Extensions;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Mane
 {
@@ -20,7 +19,7 @@ namespace Mane
                 if (parameter == null || animator.GetBool(parameter.Value))
                 {
                     animator.SetInteger(condition.SelectorParameter, 
-                                        Random.Range(0, condition.TotalVariants));
+                                        UnityEngine.Random.Range(0, condition.TotalVariants));
                     break;
                 }
             }

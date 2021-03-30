@@ -1,3 +1,6 @@
+1.4.3:
+    - Moved Random from Mane.Extensions.Random to Mane.Random.
+
 1.4.2:
     - Added Collection.IsNullOrEmpty checker.
     - Renamed Tools.GetEnumValues<T> to Enum.GetValues<T>.
