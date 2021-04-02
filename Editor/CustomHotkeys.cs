@@ -70,11 +70,14 @@ namespace Mane.Editor
         [MenuItem("Mane Utils/Enable \u2044 Disable selected GO _F4", false, 903)]
         private static void ChangeSelectedObjectState()
         {
-            GameObject go = Selection.activeGameObject;
-            go.SetActive(!go.activeSelf);
+            bool state = !Selection.activeGameObject.activeSelf;
+            foreach (GameObject go in Selection.gameObjects)
+            {
+                go.SetActive(state);
+            }
             if (!Application.isPlaying)
             {
-                EditorSceneManager.MarkSceneDirty(go.scene);
+                EditorSceneManager.MarkSceneDirty(Selection.activeGameObject.scene);
             }
         }
 
@@ -164,6 +167,19 @@ namespace Mane.Editor
         private static bool LoadLastUnloadedSceneCheck()
         {
             return _lastClosed.IsValid();
+        }
+        
+        [MenuItem("Mane Utils/Force Reserialize Assets", false, 1000)]
+        private static void ForceSaveAssets()
+        {
+            if (EditorUtility.DisplayDialog(
+                "Force Assets Reserialization",
+                "This may be long operation despite of the size of your project, so be aware! There is no progress bar so it may looks like that Unity is frozen, but be patient, it's working. Proceed operation?",
+                "Yes, go ahead!", "Cancel!"))
+            {
+                AssetDatabase.ForceReserializeAssets();
+                AssetDatabase.Refresh();
+            }
         }
     }
 }

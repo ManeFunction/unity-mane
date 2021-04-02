@@ -1,3 +1,7 @@
+1.5.1:
+    - Added feature to the Force Reserealize Assets from the menu.
+    - Improved GO state switching (F4) to work from multiple objects.
+
 1.5:
     - A lot of helper classes was moved from Mane.Extensions to Mane namespace.
     - Animator helpers was moved from Mane to Mane.StateMachine namespace.
