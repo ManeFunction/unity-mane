@@ -1,8 +1,8 @@
 ﻿using System;
-using Mane.Extensions;
+using Mane.Inspector;
 using UnityEngine;
 
-namespace Mane
+namespace Mane.StateMachine
 {
     public class AnimatorRandomizer : StateMachineBehaviour
     {

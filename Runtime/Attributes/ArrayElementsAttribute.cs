@@ -4,20 +4,15 @@
 
 using UnityEngine;
 
-namespace Mane.Extensions
+namespace Mane.Inspector
 {
     public class ArrayElementsAttribute : PropertyAttribute
     {
-        private string _titleVariableName;
-
-        public string TitleVariableName
-        {
-            get { return _titleVariableName; }
-        }
+        public string TitleVariableName { get; private set; }
 
         public ArrayElementsAttribute(string titleVariableName)
         {
-            _titleVariableName = titleVariableName;
+            TitleVariableName = titleVariableName;
         }
     }
 }

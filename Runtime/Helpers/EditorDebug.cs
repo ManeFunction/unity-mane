@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Mane.Extensions
+namespace Mane
 {
     public static class EditorDebug
     {

@@ -2,7 +2,7 @@
 using System.Linq;
 
 
-namespace Mane.Extensions
+namespace Mane
 {
     public static class Enum
     {

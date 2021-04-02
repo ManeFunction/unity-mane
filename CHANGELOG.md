@@ -1,3 +1,9 @@
+1.5:
+    - A lot of helper classes was moved from Mane.Extensions to Mane namespace.
+    - Animator helpers was moved from Mane to Mane.StateMachine namespace.
+    - All inspector attributes was moved from Mane.Extensions to Mane.Inspector namespace.
+    - Added EnumArray property drawer to bind enum values to array elements in inspector.
+
 1.4.3:
     - Moved Random from Mane.Extensions.Random to Mane.Random.
 

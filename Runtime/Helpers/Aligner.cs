@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Mane.Extensions;
+using UnityEngine;
 
-namespace Mane.Extensions
+namespace Mane
 {
     public class Aligner : MonoBehaviour
     {

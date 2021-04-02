@@ -7,7 +7,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
 
-namespace Mane.Extensions.Editor
+namespace Mane.Editor
 {
     public class CustomHotkeys : ScriptableObject
     {

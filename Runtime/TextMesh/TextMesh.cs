@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using Mane.Extensions;
+using Mane.Inspector;
 using UnityEngine;
 
 namespace Mane
