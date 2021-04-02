@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Mane.Extensions.Editor
+namespace Mane.Inspector.Editor
 {
     public static class PropertyDrawersHelper
     {

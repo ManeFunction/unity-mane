@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Mane.Extensions
+namespace Mane.Inspector
 {
     public class LayerAttribute : PropertyAttribute { }
 }

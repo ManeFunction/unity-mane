@@ -2,7 +2,7 @@
 using System.Reflection;
 using UnityEngine;
 
-namespace Mane.Extensions
+namespace Mane.Inspector
 {
     public class DropdownListAttribute : PropertyAttribute
     {

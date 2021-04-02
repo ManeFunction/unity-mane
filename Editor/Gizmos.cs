@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Mane.Extensions.Editor
+namespace Mane.Editor
 {
     public static class Gizmos
     {

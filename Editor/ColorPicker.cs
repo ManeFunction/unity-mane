@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Mane.Extensions;
+using UnityEngine;
 using UnityEditor;
 
 
-namespace Mane.Extensions.Editor
+namespace Mane.Editor
 {
     public class ColorPicker : EditorWindow
     {

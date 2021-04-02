@@ -3,7 +3,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace Mane.Extensions.Editor
+namespace Mane.Inspector.Editor
 {
     [CustomPropertyDrawer(typeof(AvailableIfAttribute))]
     public class AvailableIfPropertyDrawer : PropertyDrawer

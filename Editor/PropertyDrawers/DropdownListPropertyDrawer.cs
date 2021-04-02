@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Mane.Extensions.Editor
+namespace Mane.Inspector.Editor
 {
     [CustomPropertyDrawer(typeof(DropdownListAttribute))]
     public class DropdownListPropertyDrawer : PropertyDrawer

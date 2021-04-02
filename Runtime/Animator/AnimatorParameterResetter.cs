@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Mane
+namespace Mane.StateMachine
 {
     public class AnimatorParameterResetter : StateMachineBehaviour
     {

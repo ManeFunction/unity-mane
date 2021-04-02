@@ -6,7 +6,7 @@ using System.Globalization;
 using UnityEditor;
 using UnityEngine;
 
-namespace Mane.Extensions.Editor
+namespace Mane.Inspector.Editor
 {
     [CustomPropertyDrawer(typeof(ArrayElementsAttribute))]
     public class ArrayElementsDrawer : PropertyDrawer
