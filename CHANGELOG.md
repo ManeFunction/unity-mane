@@ -1,3 +1,6 @@
+1.5.2:
+    - Added List.InitWith, used capacity as a count.
+
 1.5.1:
     - Added feature to the Force Reserealize Assets from the menu.
     - Improved GO state switching (F4) to work from multiple objects.
