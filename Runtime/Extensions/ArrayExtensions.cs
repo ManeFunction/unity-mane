@@ -20,6 +20,11 @@ namespace Mane.Extensions
 
             return list;
         }
+        
+        public static List<T> InitWith<T>(this List<T> list, T with)
+        {
+            return list.InitWith(with, list.Capacity);
+        }
 
         public static L InitWith<L, T>(this L list, Func<T> with, int count) where L : IList<T>
         {
@@ -33,6 +38,11 @@ namespace Mane.Extensions
             return list;
         }
 
+        public static List<T> InitWith<T>(this List<T> list, Func<T> with)
+        {
+            return list.InitWith(with, list.Capacity);
+        }
+
         public static L InitWith<L, T>(this L list, Func<int, T> with, int count) where L : IList<T>
         {
             list.Clear();
@@ -43,6 +53,11 @@ namespace Mane.Extensions
             }
 
             return list;
+        }
+
+        public static List<T> InitWith<T>(this List<T> list, Func<int, T> with)
+        {
+            return list.InitWith(with, list.Capacity);
         }
 
 
