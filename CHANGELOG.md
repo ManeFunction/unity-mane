@@ -1,3 +1,6 @@
+1.5.3:
+    - Added Vector3..., Vector2... and Float... HistoryCaches to store values changes and calculate normalizations. 
+
 1.5.2:
     - Added List.InitWith, used capacity as a count.
 
