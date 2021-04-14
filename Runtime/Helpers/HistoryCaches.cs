@@ -10,7 +10,10 @@ namespace Mane
         private int _idx;
 
 
-        public Vector3HistoryCache(int length) => _history = new Vector3[length];
+        public Vector3HistoryCache(int length)
+        {
+            _history = new Vector3[length];
+        }
 
 
         public void Append(Vector3 value)
@@ -22,7 +25,16 @@ namespace Mane
             }
         }
 
-        public Vector3 GetAverage() => _history.Average();
+        public Vector3 GetAverage()
+        {
+            return _history.Average();
+        }
+
+        public void Clear()
+        {
+            _history.Clear();
+            _idx = 0;
+        }
     }
 
 
@@ -32,7 +44,10 @@ namespace Mane
         private int _idx;
 
 
-        public Vector2HistoryCache(int length) => _history = new Vector2[length];
+        public Vector2HistoryCache(int length)
+        {
+            _history = new Vector2[length];
+        }
 
 
         public void Append(Vector2 value)
@@ -44,7 +59,16 @@ namespace Mane
             }
         }
 
-        public Vector2 GetAverage() => _history.Average();
+        public Vector2 GetAverage()
+        {
+            return _history.Average();
+        }
+
+        public void Clear()
+        {
+            _history.Clear();
+            _idx = 0;
+        }
     }
 
 
@@ -54,7 +78,10 @@ namespace Mane
         private int _idx;
 
 
-        public FloatHistoryCache(int length) => _history = new float[length];
+        public FloatHistoryCache(int length)
+        {
+            _history = new float[length];
+        }
 
 
         public void Append(float value)
@@ -66,6 +93,15 @@ namespace Mane
             }
         }
 
-        public float GetAverage() => _history.Average();
+        public float GetAverage()
+        {
+            return _history.Average();
+        }
+        
+        public void Clear()
+        {
+            _history.Clear();
+            _idx = 0;
+        }
     }
 }

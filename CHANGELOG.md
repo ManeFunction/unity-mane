@@ -1,3 +1,7 @@
+1.5.5:
+    - Fixed old Unity versions compatibility.
+    - Added Clear methods for HistoryCaches.
+
 1.5.4:
     - Added missed Mane namespace for HistoryCache classes.
 
