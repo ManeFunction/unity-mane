@@ -1,3 +1,6 @@
+1.5.4:
+    - Added missed Mane namespace for HistoryCache classes.
+
 1.5.3:
     - Added Vector3..., Vector2... and Float... HistoryCaches to store values changes and calculate normalizations. 
 
