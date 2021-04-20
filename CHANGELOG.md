@@ -1,3 +1,6 @@
+1.5.6:
+    - Added Random.Vector2/3 methods with from-to input.
+
 1.5.5:
     - Fixed old Unity versions compatibility.
     - Added Clear methods for HistoryCaches.
