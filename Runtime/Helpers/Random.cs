@@ -28,6 +28,13 @@ namespace Mane
                 UnityEngine.Random.Range(min, max));
         }
 
+        public static Vector2 Vector2(Vector2 from, Vector2 to)
+        {
+            return new Vector2(
+                UnityEngine.Random.Range(from.x, to.x),
+                UnityEngine.Random.Range(from.y, to.y));
+        }
+
         public static Vector3 Vector3(float min, float max, bool sameForAllAxes = false)
         {
             if (sameForAllAxes)
@@ -41,6 +48,14 @@ namespace Mane
                 UnityEngine.Random.Range(min, max),
                 UnityEngine.Random.Range(min, max),
                 UnityEngine.Random.Range(min, max));
+        }
+
+        public static Vector3 Vector3(Vector3 from, Vector3 to)
+        {
+            return new Vector3(
+                UnityEngine.Random.Range(from.x, to.x),
+                UnityEngine.Random.Range(from.y, to.y),
+                UnityEngine.Random.Range(from.z, to.z));
         }
     }
 }
