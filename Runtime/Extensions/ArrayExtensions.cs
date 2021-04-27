@@ -348,5 +348,13 @@ namespace Mane.Extensions
             }
             return res;
         }
+
+        /// <summary>
+        /// DO NOT THREAD-SAFE!
+        /// </summary>
+        public static IEnumerable<T> TakeLast<T>(this IEnumerable<T> collection, int count)
+        {
+            return collection.Skip(Math.Max(0, collection.Count() - count));
+        }
     }
 }
