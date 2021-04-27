@@ -1,3 +1,6 @@
+1.5.7:
+    - Added TakeLast() LINQ extension.
+
 1.5.6:
     - Added Random.Vector2/3 methods with from-to input.
 
