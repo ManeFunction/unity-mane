@@ -291,5 +291,24 @@ namespace Mane.Extensions
         {
             return UnityEngine.Random.Range(value.x, inclusiveMax ? value.y + 1 : value.y);
         }
+
+        public static Vector2 Divide(this Vector2 dividend, Vector2 divisor)
+        {
+            return new Vector2
+            {
+                x = dividend.x / divisor.x,
+                y = dividend.y / divisor.y
+            };
+        }
+
+        public static Vector3 Divide(this Vector3 dividend, Vector3 divisor)
+        {
+            return new Vector3
+            {
+                x = dividend.x / divisor.x,
+                y = dividend.y / divisor.y,
+                z = dividend.z / divisor.z
+            };
+        }
     }
 }
