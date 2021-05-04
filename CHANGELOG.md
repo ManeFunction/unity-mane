@@ -1,3 +1,6 @@
+1.5.8:
+    - Added Vector.Divide methods to apply a per-component division.
+
 1.5.7:
     - Added TakeLast() LINQ extension.
 
