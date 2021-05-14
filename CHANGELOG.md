@@ -1,3 +1,6 @@
+1.5.9:
+    - Added Area component to define area and get random positions from it.
+
 1.5.8:
     - Added Vector.Divide methods to apply a per-component division.
 
