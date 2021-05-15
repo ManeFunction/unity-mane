@@ -1,3 +1,6 @@
+1.5.11:
+    - Added Random.Range01().
+
 1.5.10:
     - Added Editor for the new Area component.
 
