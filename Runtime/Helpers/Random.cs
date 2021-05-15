@@ -14,6 +14,11 @@ namespace Mane
             return UnityEngine.Random.Range(0f, 1f) < .5f;
         }
 
+        public static float Range01()
+        {
+            return UnityEngine.Random.Range(0f, 1f);
+        }
+
         public static Vector2 Vector2(float min, float max, bool sameForAllAxes = false)
         {
             if (sameForAllAxes)
