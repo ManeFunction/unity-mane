@@ -50,14 +50,6 @@ namespace Mane
         {
             CalculateCache();
         }
-
-        private void OnDrawGizmosSelected()
-        {
-            Color color = Gizmos.color;
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireCube(_worldCenter, _size);
-            Gizmos.color = color;
-        }
 #endif
     }
 }
