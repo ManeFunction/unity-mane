@@ -1,3 +1,6 @@
+1.5.10:
+    - Added Editor for the new Area component.
+
 1.5.9:
     - Added Area component to define area and get random positions from it.
 
