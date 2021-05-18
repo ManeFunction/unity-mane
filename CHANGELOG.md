@@ -1,3 +1,6 @@
+1.5.12:
+    - Added EnumArrayOdds drawer to show odds from weights array.
+
 1.5.11:
     - Added Random.Range01().
 
