@@ -1,3 +1,6 @@
+1.5.13:
+    - Fixed an exception when ArrayElements got an empty object reference.
+
 1.5.12:
     - Added EnumArrayOdds drawer to show odds from weights array.
 

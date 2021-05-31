@@ -58,6 +58,8 @@ namespace Mane.Inspector.Editor
                     return _titleNameProp.colorValue.ToString();
                 
                 case SerializedPropertyType.ObjectReference:
+                    if (!_titleNameProp.objectReferenceValue)
+                        return "None (Empty Object Ref)";
                     return _titleNameProp.objectReferenceValue.ToString();
                 
                 case SerializedPropertyType.Enum:
