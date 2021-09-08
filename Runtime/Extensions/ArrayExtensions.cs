@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -351,7 +351,22 @@ namespace Mane.Extensions
         /// </summary>
         public static IEnumerable<T> TakeLast<T>(this IEnumerable<T> collection, int count)
         {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+            
             return collection.Skip(Math.Max(0, collection.Count() - count));
+        }
+        
+        /// <summary>
+        /// Works exactly as an Enumerable.Any, but search for the multiple entries
+        /// </summary>
+        public static bool Any<TSource>(this IEnumerable<TSource> source,
+            Func<TSource, bool> predicate, int count)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+            
+            int n = 0;
+            return source.Any(element => predicate(element) && ++n == count);
         }
     }
 }
