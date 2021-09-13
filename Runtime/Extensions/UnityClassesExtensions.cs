@@ -122,6 +122,12 @@ namespace Mane.Extensions
             transform.localRotation = Quaternion.identity;
         }
         
+        public static void RotateAround(this Transform transform, Vector3 pivot, Quaternion rotation)
+        {
+            transform.position = rotation * (transform.position - pivot) + pivot;
+            transform.rotation = rotation * transform.rotation;
+        }
+        
         
         public static void SetLayerRecursively(this GameObject go, int newLayer)
         {

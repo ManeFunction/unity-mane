@@ -1,3 +1,7 @@
+1.5.17:
+    - Added ChildrenTransformFreezer to keep children w/o changes while parent is transforming.
+    - Added Transform.RotateAround using Quaternion.
+
 1.5.16:
     - Just a version up to fix an NPM package issues. 
 
