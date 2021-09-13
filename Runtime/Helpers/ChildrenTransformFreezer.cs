@@ -32,7 +32,7 @@ namespace Mane
                 
                 foreach (Transform child in children)
                 {
-                    if (child == transform) continue;
+                    if (child == transform || child.parent != transform) continue;
                     
                     if (!_rotateButKeepGeometry)
                         child.RotateAround(position, rotationShift);
