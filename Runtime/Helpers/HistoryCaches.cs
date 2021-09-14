@@ -4,100 +4,63 @@ using UnityEngine;
 
 namespace Mane
 {
-    public class Vector3HistoryCache
+    public class Vector3HistoryCache : HistoryCache<Vector3>
     {
-        private readonly Vector3[] _history;
-        private int _idx;
+        public Vector3HistoryCache(int length) : base(length) { }
 
-
-        public Vector3HistoryCache(int length)
-        {
-            _history = new Vector3[length];
-        }
-
-
-        public void Append(Vector3 value)
-        {
-            _history[_idx++] = value;
-            if (_idx == _history.Length)
-            {
-                _idx = 0;
-            }
-        }
-
-        public Vector3 GetAverage()
+        public override Vector3 GetAverage()
         {
             return _history.Average();
-        }
-
-        public void Clear()
-        {
-            _history.Clear();
-            _idx = 0;
         }
     }
 
 
-    public class Vector2HistoryCache
+    public class Vector2HistoryCache : HistoryCache<Vector2>
     {
-        private readonly Vector2[] _history;
-        private int _idx;
+        public Vector2HistoryCache(int length) : base(length) { }
 
-
-        public Vector2HistoryCache(int length)
-        {
-            _history = new Vector2[length];
-        }
-
-
-        public void Append(Vector2 value)
-        {
-            _history[_idx++] = value;
-            if (_idx == _history.Length)
-            {
-                _idx = 0;
-            }
-        }
-
-        public Vector2 GetAverage()
+        public override Vector2 GetAverage()
         {
             return _history.Average();
-        }
-
-        public void Clear()
-        {
-            _history.Clear();
-            _idx = 0;
         }
     }
 
 
-    public class FloatHistoryCache
+    public class FloatHistoryCache : HistoryCache<float>
     {
-        private readonly float[] _history;
-        private int _idx;
+        public FloatHistoryCache(int length) : base(length) { }
 
-
-        public FloatHistoryCache(int length)
-        {
-            _history = new float[length];
-        }
-
-
-        public void Append(float value)
-        {
-            _history[_idx++] = value;
-            if (_idx == _history.Length)
-            {
-                _idx = 0;
-            }
-        }
-
-        public float GetAverage()
+        public override float GetAverage()
         {
             return _history.Average();
         }
+    }
+
+
+    public abstract class HistoryCache<T>
+    {
+        protected readonly T[] _history;
+        private int _idx;
+
+
+        protected HistoryCache(int length)
+        {
+            _history = new T[length];
+        }
+
+
+        public abstract T GetAverage();
+
         
+        public void Append(T value)
+        {
+            _history[_idx++] = value;
+            if (_idx == _history.Length)
+            {
+                _idx = 0;
+            }
+        }
+
         public void Clear()
         {
             _history.Clear();
