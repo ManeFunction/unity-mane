@@ -1,3 +1,7 @@
+1.5.15:
+    - Added IEnumerable.Any version, but with entries count.
+    - Optimise Shuffle with elements decomposition.
+
 1.5.14:
     - Added MonoBehaviour.TryKillCoroutine extension with ref clearing.
 
