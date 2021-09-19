@@ -1,3 +1,8 @@
+1.5.19:
+    - Improved History Cache: Allowed to create your own caches.
+    - Added Force assets re-serialiser for only selected objects.
+    - Added ability to apply transform changes to prefab for a bunch of objects at once. 
+
 1.5.18:
     - Fixed an issue in ChildrenTransformFreezer with nested children.
 

@@ -247,7 +247,7 @@ namespace Mane.Extensions
         }
 
         /// <summary>
-        /// Tried to make it thread safe, but anyway, be aware...
+        /// Be aware! NOT thread safe!
         /// </summary>
         public static Vector3 Average(this IEnumerable<Vector3> values)
         {
@@ -265,7 +265,7 @@ namespace Mane.Extensions
         }
 
         /// <summary>
-        /// Tried to make it thread safe, but anyway, be aware...
+        /// Be aware! NOT thread safe!
         /// </summary>
         public static Vector2 Average(this IEnumerable<Vector2> values)
         {
