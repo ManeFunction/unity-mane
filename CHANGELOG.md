@@ -1,3 +1,7 @@
+1.5.20:
+    - Dramatically optimise prefab transform changes application.
+    - Added menu entries for fast prefabs changes application.
+
 1.5.19:
     - Improved History Cache: Allowed to create your own caches.
     - Added Force assets re-serialiser for only selected objects.

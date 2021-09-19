@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ namespace Mane.Editor
 {
     public static class PrefabReserialiser
     {
-        [MenuItem("Assets/Force Re-serialise Asset(s)")]
+        [MenuItem("Assets/Force Re-serialise Asset(s)", false, 45)]
         private static void ReserialiseAssets()
         {
             AssetDatabase.ForceReserializeAssets(Selection.objects
@@ -18,22 +18,50 @@ namespace Mane.Editor
             }
         }
         
-        [MenuItem("GameObject/Apply Transform Changes", false, -1)]
-        private static void CleanPrefab()
+        [MenuItem("GameObject/Apply Prefab(s) Changes", false, -10)]
+        private static void ApplyPrefabs()
+        {
+            foreach (Object obj in Selection.objects)
+                ApplyChanges(obj as GameObject);
+        }
+        
+        [MenuItem("GameObject/Apply Prefab(s) Transform Changes", false, -9)]
+        private static void ApplyPrefabsTransform()
+        {
+            foreach (Object obj in Selection.objects)
+                ApplyTransformChanges(obj as GameObject);
+        }
+
+        [MenuItem("GameObject/Apply Prefab(s) Changes (+Transform)", false, -8)]
+        private static void ApplyPrefabsAll()
         {
             foreach (Object obj in Selection.objects)
             {
-                GameObject go = obj as GameObject;
-                if (!go) return;
-                
-                SerializedObject so = new SerializedObject(go.transform);
-                var i = so.GetIterator();
-                while (i.Next(true))
-                    PrefabUtility.ApplyPropertyOverride(i,
-                        PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(go),
-                        InteractionMode.UserAction);
-                EditorUtility.SetDirty(obj);
+                ApplyChanges(obj as GameObject);
+                ApplyTransformChanges(obj as GameObject);
             }
+        }
+
+
+        private static void ApplyChanges(GameObject gameObject)
+        {
+            if (!gameObject) return;
+            
+            PrefabUtility.ApplyPrefabInstance(gameObject, InteractionMode.UserAction);
+            EditorUtility.SetDirty(gameObject);
+        }
+
+        private static void ApplyTransformChanges(GameObject gameObject)
+        {
+            if (!gameObject) return;
+            
+            SerializedObject so = new SerializedObject(gameObject.transform);
+            string path = PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(gameObject);
+            PrefabUtility.ApplyPropertyOverride(so.FindProperty("m_LocalRotation"),
+                path, InteractionMode.UserAction);
+            PrefabUtility.ApplyPropertyOverride(so.FindProperty("m_LocalPosition"),
+                path, InteractionMode.UserAction);
+            EditorUtility.SetDirty(gameObject);
         }
     }
 }
