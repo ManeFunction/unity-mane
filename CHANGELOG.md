@@ -1,3 +1,6 @@
+1.5.16:
+    - Just a version up to fix an NPM package issues. 
+
 1.5.15:
     - Added IEnumerable.Any version, but with entries count.
     - Optimise Shuffle with elements decomposition.
