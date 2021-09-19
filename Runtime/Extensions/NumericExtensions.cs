@@ -26,6 +26,21 @@ namespace Mane.Extensions
             return result;
         }
 
+        public static float Clamp01(this float value)
+        {
+            return value.Clamp(0f, 1f);
+        }
+
+        public static double Clamp01(this double value)
+        {
+            return value.Clamp(0d, 1d);
+        }
+
+        public static decimal Clamp01(this decimal value)
+        {
+            return value.Clamp(0m, 1m);
+        }
+
 
         public static float Cut(this float value, int tail)
         {

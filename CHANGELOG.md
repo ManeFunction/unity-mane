@@ -1,3 +1,6 @@
+1.5.21:
+    - Added Clamp01 for float, double and decimal types.
+
 1.5.20:
     - Dramatically optimise prefab transform changes application.
     - Added menu entries for fast prefabs changes application.
