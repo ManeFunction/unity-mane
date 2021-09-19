@@ -1,3 +1,6 @@
+1.5.18:
+    - Fixed an issue in ChildrenTransformFreezer with nested children.
+
 1.5.17:
     - Added ChildrenTransformFreezer to keep children w/o changes while parent is transforming.
     - Added Transform.RotateAround using Quaternion.
