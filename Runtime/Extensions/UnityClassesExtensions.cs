@@ -230,5 +230,14 @@ namespace Mane.Extensions
                 action.Invoke();
             }
         }
+
+        public static bool TryKillCoroutine(this MonoBehaviour target, ref Coroutine coroutine)
+        {
+            if (coroutine == null || !target) return false;
+
+            target.StopCoroutine(coroutine);
+            coroutine = null;
+            return true;
+        }
     }
 }

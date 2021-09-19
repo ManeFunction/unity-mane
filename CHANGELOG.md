@@ -1,3 +1,6 @@
+1.5.14:
+    - Added MonoBehaviour.TryKillCoroutine extension with ref clearing.
+
 1.5.13:
     - Fixed an exception when ArrayElements got an empty object reference.
 
