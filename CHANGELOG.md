@@ -1,3 +1,6 @@
+1.5.22:
+    - Renamed TextMesh to ManeText for proper work of Add/GetComponent.
+
 1.5.21:
     - Added Clamp01 for float, double and decimal types.
 

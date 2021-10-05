@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mane
 {
-    public partial class TextMesh
+    public partial class ManeText
     {
         private static readonly List<Material> MaterialsCache = new List<Material>();
 

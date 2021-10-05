@@ -8,9 +8,9 @@ namespace Mane
     [ExecuteInEditMode]
     [RequireComponent(typeof(MeshFilter))]
     [RequireComponent(typeof(MeshRenderer))]
-    public partial class TextMesh : MonoBehaviour
+    public partial class ManeText : MonoBehaviour
     {
-        private const string Shader = "TextMesh/Alpha";
+        private const string Shader = "ManeText/Alpha";
         private static readonly int AlphaColor = UnityEngine.Shader.PropertyToID("_AlphaColor");
 
 
@@ -336,7 +336,7 @@ namespace Mane
             {
                 if (_size == Vector2.zero)
                 {
-                    TextMeshInfo info = GetWrappedText();
+                    ManeTextInfo info = GetWrappedText();
                     if (info != null)
                     {
                         float baseLine = _font.lineHeight / _font.fontSize * _fontSize + _spacingY;
@@ -493,7 +493,7 @@ namespace Mane
 
             UpdateMaterial();
 
-            TextMeshInfo info = GetWrappedText();
+            ManeTextInfo info = GetWrappedText();
 
             Vector3[] vertices;
             int[] triangles;
@@ -648,7 +648,7 @@ namespace Mane
             }
         }
 
-        private TextMeshInfo GetWrappedText()
+        private ManeTextInfo GetWrappedText()
         {
             // Break process if there is negative area size or no text
             if (_font == null || _maxWidth < 0 || _maxHeight < 0 || string.IsNullOrEmpty(_text))
@@ -658,7 +658,7 @@ namespace Mane
             _font.RequestCharactersInTexture(_text, _fontSize);
 
             // Creating stuff
-            TextMeshInfo res = new TextMeshInfo();
+            ManeTextInfo res = new ManeTextInfo();
             StringBuilder sb = new StringBuilder();
             int textLength = _text.Length, start = 0, offset = 0, linesCount = 0, maxLines = int.MaxValue;
             float substringWidth = 0, lineWidth = 0;
