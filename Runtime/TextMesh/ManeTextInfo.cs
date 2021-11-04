@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-public class TextMeshInfo
+public class ManeTextInfo
 {
     public readonly List<string> String = new List<string>();
     public readonly List<float> Length = new List<float>();
