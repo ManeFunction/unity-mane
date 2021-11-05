@@ -1,3 +1,6 @@
+1.5.23:
+    - Added Missing Reference Finder to search for missing references, lost components and deleted prefabs.
+
 1.5.22:
     - Renamed TextMesh to ManeText for proper work of Add/GetComponent.
 
