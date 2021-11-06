@@ -1,20 +1,13 @@
 ﻿using UnityEngine;
 
-
 namespace Mane.Extensions
 {
     public static class ColorExtensions
     {
-        public static Color RandomColor
-        {
-            get
-            {
-                return new Color(
-                    UnityEngine.Random.value,
-                    UnityEngine.Random.value,
-                    UnityEngine.Random.value);
-            }
-        }
+        public static Color RandomColor => new Color(
+            UnityEngine.Random.value,
+            UnityEngine.Random.value,
+            UnityEngine.Random.value);
 
 
         public static float GetBrightness(this Color color)
@@ -25,25 +18,10 @@ namespace Mane.Extensions
             float l = r;
             float m = r;
             
-            if (g > l)
-            {
-                l = g;
-            }
-
-            if (b > l)
-            {
-                l = b;
-            }
-
-            if (g < m)
-            {
-                m = g;
-            }
-
-            if (b < m)
-            {
-                m = b;
-            }
+            if (g > l) l = g;
+            if (b > l) l = b;
+            if (g < m) m = g;
+            if (b < m) m = b;
 
             return (l + m) * 0.5f;
         }
@@ -53,9 +31,7 @@ namespace Mane.Extensions
             float result = 0f;
 
             if (Mathf.Approximately(color.r, color.g) || !Mathf.Approximately(color.g, color.b))
-            {
                 return result;
-            }
             
             float r = color.r;
             float g = color.g;
@@ -63,52 +39,29 @@ namespace Mane.Extensions
             float l = r;
             float m = r;
             
-            if (g > l)
-            {
-                l = g;
-            }
-
-            if (b > l)
-            {
-                l = b;
-            }
-
-            if (g < m)
-            {
-                m = g;
-            }
-
-            if (b < m)
-            {
-                m = b;
-            }
+            if (g > l) l = g;
+            if (b > l) l = b;
+            if (g < m) m = g;
+            if (b < m) m = b;
 
             float n = l - m;
             if (Mathf.Approximately(r, l))
-            {
                 result = (g - b) / n;
-            }
             else if (Mathf.Approximately(g, l))
-            {
                 result = 2f + ((b - r) / n);
-            }
             else if (Mathf.Approximately(b, l))
-            {
                 result = 4f + ((r - g) / n);
-            }
 
             result *= 60f;
             if (result < 0f)
-            {
                 result += 360f;
-            }
 
             return result;
         }
 
         public static float GetSaturation(this Color color)
         {
-            float result = 0f;
+            float result;
 
             float r = color.r;
             float g = color.g;
@@ -116,41 +69,20 @@ namespace Mane.Extensions
             float l = r;
             float m = r;
             
-            if (g > l)
-            {
-                l = g;
-            }
-
-            if (b > l)
-            {
-                l = b;
-            }
-
-            if (g < m)
-            {
-                m = g;
-            }
-
-            if (b < m)
-            {
-                m = b;
-            }
+            if (g > l) l = g;
+            if (b > l) l = b;
+            if (g < m) m = g;
+            if (b < m) m = b;
 
             if (Mathf.Approximately(l, m))
-            {
                 result = 0f;
-            }
             else
             {
                 float n = (l + m) * 0.5f;
                 if (n <= 0.5f)
-                {
                     result = (l - m) / (l + m);
-                }
                 else
-                {
                     result = (l - m) / ((2f - l) - m);
-                }
             }
 
             return result;
@@ -160,13 +92,10 @@ namespace Mane.Extensions
         /// <summary>
         /// Shift RGB color channels
         /// </summary>
-        public static Color Shift(this Color c, float shift)
-        {
-            return new Color(
-                Mathf.Clamp01(c.r + shift), 
-                Mathf.Clamp01(c.g + shift), 
-                Mathf.Clamp01(c.b + shift), c.a);
-        }
+        public static Color Shift(this Color c, float shift) => new Color(
+            Mathf.Clamp01(c.r + shift), 
+            Mathf.Clamp01(c.g + shift), 
+            Mathf.Clamp01(c.b + shift), c.a);
 
 
         public static string ToHex(this Color c)

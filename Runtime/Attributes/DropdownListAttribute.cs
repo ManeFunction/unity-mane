@@ -6,7 +6,7 @@ namespace Mane.Inspector
 {
     public class DropdownListAttribute : PropertyAttribute
     {
-        public string[] Strings { get; private set; }
+        public string[] Strings { get; }
 
         public DropdownListAttribute(params string[] strings) { Strings = strings; }
 
@@ -14,13 +14,9 @@ namespace Mane.Inspector
         {
             MethodInfo method = type.GetMethod(methodName);
             if (method != null)
-            {
                 Strings = method.Invoke(null, null) as string[];
-            }
             else
-            {
                 Debug.LogError($"Dropdown List: Can't find method {methodName} in {type}");
-            }
         }
     }
 }

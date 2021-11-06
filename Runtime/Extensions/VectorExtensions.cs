@@ -4,7 +4,6 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-
 namespace Mane.Extensions
 {
     public static class VectorExtensions
@@ -51,12 +50,10 @@ namespace Mane.Extensions
             return v;
         }
         
-        public static Vector3 Translate(this Vector2 v, float dX, float dY, float dZ)
-        {
-            return new Vector3(v.x + dX, v.y + dY, dZ);
-        }
-        
-        
+        public static Vector3 Translate(this Vector2 v, float dX, float dY, float dZ) => 
+            new Vector3(v.x + dX, v.y + dY, dZ);
+
+
         public static Vector3 TranslateX(this Vector3 v, float dX)
         {
             v.x += dX;
@@ -164,10 +161,7 @@ namespace Mane.Extensions
             return v;
         }
 
-        public static Vector3 AddZ(this Vector2 v, float z = 0f)
-        {
-            return new Vector3(v.x, v.y, z);
-        }
+        public static Vector3 AddZ(this Vector2 v, float z = 0f) => new Vector3(v.x, v.y, z);
 
 
         public static Vector2 Clamp(this Vector2 v, float a, float b)
@@ -191,9 +185,8 @@ namespace Mane.Extensions
         {
             float num1 = Vector2.Dot(onNormal, onNormal);
             if (num1 < Mathf.Epsilon)
-            {
                 return Vector2.zero;
-            }
+            
             float num2 = Vector2.Dot(v, onNormal);
             
             return new Vector2(onNormal.x * num2 / num1, onNormal.y * num2 / num1);
@@ -239,9 +232,7 @@ namespace Mane.Extensions
             if (coef.Any(p => Math.Abs(p) < Single.Epsilon)) return true;
 
             for (int i = 1; i < coef.Length; i++)
-            {
                 if (coef[i] * coef[i - 1] < 0) return false;
-            }
             
             return true;
         }
@@ -282,33 +273,23 @@ namespace Mane.Extensions
             return sum / total;
         }
 
-        public static float RandomBetween(this Vector2 value)
-        {
-            return UnityEngine.Random.Range(value.x, value.y);
-        }
+        public static float RandomBetween(this Vector2 value) => 
+            UnityEngine.Random.Range(value.x, value.y);
 
-        public static int RandomBetween(this Vector2Int value, bool inclusiveMax = false)
-        {
-            return UnityEngine.Random.Range(value.x, inclusiveMax ? value.y + 1 : value.y);
-        }
+        public static int RandomBetween(this Vector2Int value, bool inclusiveMax = false) => 
+            UnityEngine.Random.Range(value.x, inclusiveMax ? value.y + 1 : value.y);
 
-        public static Vector2 Divide(this Vector2 dividend, Vector2 divisor)
+        public static Vector2 Divide(this Vector2 dividend, Vector2 divisor) => new Vector2
         {
-            return new Vector2
-            {
-                x = dividend.x / divisor.x,
-                y = dividend.y / divisor.y
-            };
-        }
+            x = dividend.x / divisor.x,
+            y = dividend.y / divisor.y
+        };
 
-        public static Vector3 Divide(this Vector3 dividend, Vector3 divisor)
+        public static Vector3 Divide(this Vector3 dividend, Vector3 divisor) => new Vector3
         {
-            return new Vector3
-            {
-                x = dividend.x / divisor.x,
-                y = dividend.y / divisor.y,
-                z = dividend.z / divisor.z
-            };
-        }
+            x = dividend.x / divisor.x,
+            y = dividend.y / divisor.y,
+            z = dividend.z / divisor.z
+        };
     }
 }

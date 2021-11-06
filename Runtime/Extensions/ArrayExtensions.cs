@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-
 namespace Mane.Extensions
 {
     public static class ArrayExtensions
@@ -13,59 +12,45 @@ namespace Mane.Extensions
             list.Clear();
 
             for (int i = 0; i < count; i++)
-            {
                 list.Add(with);
-            }
 
             return list;
         }
         
-        public static List<T> InitWith<T>(this List<T> list, T with)
-        {
-            return list.InitWith(with, list.Capacity);
-        }
+        public static List<T> InitWith<T>(this List<T> list, T with) => 
+            list.InitWith(with, list.Capacity);
 
         public static L InitWith<L, T>(this L list, Func<T> with, int count) where L : IList<T>
         {
             list.Clear();
 
             for (int i = 0; i < count; i++)
-            {
                 list.Add(with());
-            }
 
             return list;
         }
 
-        public static List<T> InitWith<T>(this List<T> list, Func<T> with)
-        {
-            return list.InitWith(with, list.Capacity);
-        }
+        public static List<T> InitWith<T>(this List<T> list, Func<T> with) => 
+            list.InitWith(with, list.Capacity);
 
         public static L InitWith<L, T>(this L list, Func<int, T> with, int count) where L : IList<T>
         {
             list.Clear();
 
             for (int i = 0; i < count; i++)
-            {
                 list.Add(with(i));
-            }
 
             return list;
         }
 
-        public static List<T> InitWith<T>(this List<T> list, Func<int, T> with)
-        {
-            return list.InitWith(with, list.Capacity);
-        }
+        public static List<T> InitWith<T>(this List<T> list, Func<int, T> with) => 
+            list.InitWith(with, list.Capacity);
 
 
         public static T[] FillWith<T>(this T[] array, T with)
         {
             for (int i = 0; i < array.Length; i++)
-            {
                 array[i] = with;
-            }
 
             return array;
         }
@@ -73,9 +58,7 @@ namespace Mane.Extensions
         public static T[] FillWith<T>(this T[] array, Func<T> with)
         {
             for (int i = 0; i < array.Length; i++)
-            {
                 array[i] = with();
-            }
 
             return array;
         }
@@ -83,9 +66,7 @@ namespace Mane.Extensions
         public static T[] FillWith<T>(this T[] array, Func<int, T> with)
         {
             for (int i = 0; i < array.Length; i++)
-            {
                 array[i] = with(i);
-            }
 
             return array;
         }
@@ -95,12 +76,8 @@ namespace Mane.Extensions
             int w = array.GetLength(0);
             int h = array.GetLength(1);
             for (int j = 0; j < h; j++)
-            {
                 for (int i = 0; i < w; i++)
-                {
                     array[i, j] = with;
-                }
-            }
 
             return array;
         }
@@ -110,12 +87,8 @@ namespace Mane.Extensions
             int w = array.GetLength(0);
             int h = array.GetLength(1);
             for (int j = 0; j < h; j++)
-            {
                 for (int i = 0; i < w; i++)
-                {
                     array[i, j] = with();
-                }
-            }
 
             return array;
         }
@@ -125,12 +98,8 @@ namespace Mane.Extensions
             int w = array.GetLength(0);
             int h = array.GetLength(1);
             for (int j = 0; j < h; j++)
-            {
                 for (int i = 0; i < w; i++)
-                {
                     array[i, j] = with(i, j);
-                }
-            }
 
             return array;
         }
@@ -142,9 +111,7 @@ namespace Mane.Extensions
         public static T[] Clear<T>(this T[] array)
         {
             for (int i = 0; i < array.Length; i++)
-            {
                 array[i] = default;
-            }
 
             return array;
         }
@@ -169,9 +136,7 @@ namespace Mane.Extensions
         public static bool AddExclusive<T>(this IList<T> list, T element)
         {
             if (list.Contains(element))
-            {
                 return false;
-            }
             
             list.Add(element);
 
@@ -184,9 +149,7 @@ namespace Mane.Extensions
         public static void AddRangeExclusive<T>(this IList<T> list, IList<T> elements)
         {
             foreach (T element in elements)
-            {
                 list.AddExclusive(element);
-            }
         }
 
         /// <summary>
@@ -221,32 +184,20 @@ namespace Mane.Extensions
         /// </summary>
         public static void ForEachCancellable<T>(this IEnumerable<T> list, Func<T, bool> breakFunc)
         {
-            if (breakFunc == null || list == null)
-            {
-                return;
-            }
+            if (breakFunc == null || list == null) return;
 
             foreach (T element in list)
-            {
                 if (!breakFunc(element))
-                {
                     break;
-                }
-            }
         }
         
         
         public static void ForEach<T>(this IEnumerable<T> list, Action<T> action)
         {
-            if (action == null || list == null)
-            {
-                return;
-            }
+            if (action == null || list == null) return;
 
             foreach (T element in list)
-            {
                 action(element);
-            }
         }
         
         
@@ -257,10 +208,8 @@ namespace Mane.Extensions
             return list[selectedIdx];
         }
         
-        public static T GetRandom<T>(this IReadOnlyList<T> list)
-        {
-            return GetRandom(list, out int _);
-        }
+        public static T GetRandom<T>(this IReadOnlyList<T> list) => 
+            GetRandom(list, out int _);
 
         /// <summary>
         /// Return List of random elements from the source collection without duplicates 
@@ -283,9 +232,7 @@ namespace Mane.Extensions
                 limit = count;
             }
             else
-            {
                 limit = Mathf.Min(listCopy.Count, count);
-            }
 
             for (int i = 0; i < limit; i++)
             {
@@ -301,10 +248,8 @@ namespace Mane.Extensions
         /// DO NOT THREAD-SAFE!
         /// But pretty efficient for single thread apps with LINQ queries
         /// </summary>
-        public static T RandomOrDefault<T>(this IEnumerable<T> collection)
-        {
-            return collection.ElementAtOrDefault(UnityEngine.Random.Range(0, collection.Count()));
-        }
+        public static T RandomOrDefault<T>(this IEnumerable<T> collection) => 
+            collection.ElementAtOrDefault(UnityEngine.Random.Range(0, collection.Count()));
 
 
         /// <summary>
@@ -313,12 +258,8 @@ namespace Mane.Extensions
         public static int GetIndexOf<T>(this IReadOnlyList<T> list, T element)
         {
             for (int i = 0; i < list.Count; i++)
-            {
                 if (list[i].Equals(element))
-                {
                     return i;
-                }
-            }
 
             return -1;
         }
@@ -329,20 +270,15 @@ namespace Mane.Extensions
         public static IEnumerable<T> SelfConcat<T>(this IEnumerable<T> list, int times)
         {
             if (times == 1)
-            {
                 return list;
-            }
             
             if (times <= 0)
-            {
                 return null;
-            }
 
             IEnumerable<T> res = list;
             for (int i = 1; i < times; i++)
-            {
                 res = res.Concat(list);
-            }
+            
             return res;
         }
 
@@ -351,7 +287,8 @@ namespace Mane.Extensions
         /// </summary>
         public static IEnumerable<T> TakeLast<T>(this IEnumerable<T> collection, int count)
         {
-            if (collection == null) throw new ArgumentNullException(nameof(collection));
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
             
             return collection.Skip(Math.Max(0, collection.Count() - count));
         }
@@ -362,10 +299,13 @@ namespace Mane.Extensions
         public static bool Any<TSource>(this IEnumerable<TSource> source,
             Func<TSource, bool> predicate, int count)
         {
-            if (source == null) throw new ArgumentNullException(nameof(source));
-            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (predicate == null)
+                throw new ArgumentNullException(nameof(predicate));
             
             int n = 0;
+            
             return source.Any(element => predicate(element) && ++n == count);
         }
     }

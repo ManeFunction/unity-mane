@@ -8,11 +8,8 @@ namespace Mane.Inspector
 {
     public class ArrayElementsAttribute : PropertyAttribute
     {
-        public string TitleVariableName { get; private set; }
+        public string TitleVariableName { get; }
 
-        public ArrayElementsAttribute(string titleVariableName)
-        {
-            TitleVariableName = titleVariableName;
-        }
+        public ArrayElementsAttribute(string titleVariableName) => TitleVariableName = titleVariableName;
     }
 }

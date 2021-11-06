@@ -4,10 +4,10 @@ namespace Mane.Inspector
 {
     public class AvailableIfAttribute : PropertyAttribute
     {
-        public bool IsAvailable { get; private set; }
-        public string PropertyName { get; private set; }
-        public bool Hide { get; private set; }
-        public bool Invert { get; private set; }
+        public bool IsAvailable { get; }
+        public string PropertyName { get; }
+        public bool Hide { get; }
+        public bool Invert { get; }
 
         public AvailableIfAttribute(bool isAvailable, bool hide = false)
         {
