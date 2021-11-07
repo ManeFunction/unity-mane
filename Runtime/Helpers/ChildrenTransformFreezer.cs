@@ -12,6 +12,7 @@ namespace Mane
         private Quaternion _rotation;
         private Vector3 _scale;
 
+        
         private void Awake() => UpdateValues();
 
         private void Update()
@@ -19,7 +20,8 @@ namespace Mane
             if (transform.hasChanged)
             {
                 Transform[] children = GetComponentsInChildren<Transform>();
-                if (Collection.IsNullOrEmpty(children)) return;
+                if (Collection.IsNullOrEmpty(children))
+                    return;
 
                 Vector3 localScale = transform.localScale;
                 if (localScale.x == 0f || localScale.y == 0f || localScale.z == 0f)
@@ -32,7 +34,8 @@ namespace Mane
                 
                 foreach (Transform child in children)
                 {
-                    if (child == transform || child.parent != transform) continue;
+                    if (child == transform || child.parent != transform)
+                        continue;
                     
                     if (!_rotateButKeepGeometry)
                         child.RotateAround(position, rotationShift);

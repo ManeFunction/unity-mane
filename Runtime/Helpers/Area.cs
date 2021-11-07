@@ -17,22 +17,17 @@ namespace Mane
         private Vector3 _globalMax;
 
         
-        private void Awake()
-        {
-            CalculateCache();
-        }
+        private void Awake() => CalculateCache();
+
+#if UNITY_EDITOR
+        private void Update() => CalculateCache();
+#endif
 
 
-        public Vector3 GetLocalPosition()
-        {
-            return Random.Vector3(_localMin, _localMax);
-        }
+        public Vector3 GetLocalPosition() => Random.Vector3(_localMin, _localMax);
 
-        public Vector3 GetGlobalPosition()
-        {
-            return Random.Vector3(_globalMin, _globalMax);
-        }
-        
+        public Vector3 GetGlobalPosition() => Random.Vector3(_globalMin, _globalMax);
+
 
         private void CalculateCache()
         {
@@ -44,12 +39,5 @@ namespace Mane
             _globalMin = _worldCenter - _size * .5f;
             _globalMax = _worldCenter + _size * .5f;
         }
-
-#if UNITY_EDITOR
-        private void Update()
-        {
-            CalculateCache();
-        }
-#endif
     }
 }

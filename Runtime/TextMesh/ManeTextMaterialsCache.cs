@@ -53,11 +53,9 @@ namespace Mane
             return m;
         }
 
-        private bool ContainMaterial(Material material)
-        {
-            return material != null &&
-                   !string.IsNullOrEmpty(material.name); // it is not fair but works faster than search
-        }
+        // it is not fair but works faster than search
+        private bool ContainMaterial(Material material) => 
+            material != null && !string.IsNullOrEmpty(material.name);
 
         private void DestroyMaterial(Material material)
         {

@@ -9,6 +9,7 @@ namespace Mane
         [SerializeField] private Color _color = Color.magenta;
 #pragma warning restore CS0414
 
+        
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
@@ -18,7 +19,7 @@ namespace Mane
             Gizmos.color = color;
         }
 #else
-    private void Awake() { Destroy(this); }
+    private void Awake() => Destroy(this);
 #endif
     }
 }

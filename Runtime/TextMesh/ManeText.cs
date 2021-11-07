@@ -44,13 +44,7 @@ namespace Mane
             Material = 2,
         }
 
-        private DirtyFlags AllDirty
-        {
-            get
-            {
-                return (DirtyFlags)3;
-            }
-        }
+        private DirtyFlags AllDirty => (DirtyFlags)3;
 
 
         [SerializeField, TextArea] private string _text = string.Empty;
@@ -89,14 +83,11 @@ namespace Mane
         private DirtyFlags _dirty = (DirtyFlags)3;
 
 
-        public bool Dirty
-        {
-            get { return _dirty != DirtyFlags.None; }
-        }
+        public bool Dirty => _dirty != DirtyFlags.None;
 
         public Font @Font
         {
-            get { return _font; }
+            get => _font;
             set
             {
                 if (_font == value) return;
@@ -108,7 +99,7 @@ namespace Mane
 
         public string Text
         {
-            get { return _text; }
+            get => _text;
             set
             {
                 if (_text == value)
@@ -121,7 +112,7 @@ namespace Mane
 
         public int FontSize
         {
-            get { return _fontSize; }
+            get => _fontSize;
             set
             {
                 if (_fontSize == value)
@@ -134,7 +125,7 @@ namespace Mane
 
         public HorizontalAlignment Horizontal
         {
-            get { return _horizontal; }
+            get => _horizontal;
             set
             {
                 if (_horizontal == value)
@@ -147,7 +138,7 @@ namespace Mane
 
         public VerticalAlignment Vertical
         {
-            get { return _vertical; }
+            get => _vertical;
             set
             {
                 if (_vertical == value)
@@ -160,7 +151,7 @@ namespace Mane
 
         public int SpacingX
         {
-            get { return _spacingX; }
+            get => _spacingX;
             set
             {
                 if (_spacingX == value)
@@ -173,7 +164,7 @@ namespace Mane
 
         public int SpacingY
         {
-            get { return _spacingY; }
+            get => _spacingY;
             set
             {
                 if (_spacingY == value)
@@ -186,7 +177,7 @@ namespace Mane
 
         public int MaxWidth
         {
-            get { return _maxWidth; }
+            get => _maxWidth;
             set
             {
                 if (_maxWidth == value)
@@ -199,7 +190,7 @@ namespace Mane
 
         public int MaxHeight
         {
-            get { return _maxHeight; }
+            get => _maxHeight;
             set
             {
                 if (_maxHeight == value)
@@ -212,7 +203,7 @@ namespace Mane
 
         public bool BreakDigits
         {
-            get { return _breakDigits; }
+            get => _breakDigits;
             set
             {
                 if (_breakDigits == value)
@@ -225,7 +216,7 @@ namespace Mane
 
         public TextEffect Effect
         {
-            get { return _effect; }
+            get => _effect;
             set
             {
                 if (_effect == value)
@@ -238,7 +229,7 @@ namespace Mane
 
         public float OutlineSize
         {
-            get { return _outlineSize; }
+            get => _outlineSize;
             set
             {
                 if (Math.Abs(_outlineSize - value) < float.Epsilon) return;
@@ -251,7 +242,7 @@ namespace Mane
 
         public Color OutlineColor
         {
-            get { return _outlineColor; }
+            get => _outlineColor;
             set
             {
                 if (_outlineColor == value)
@@ -265,7 +256,7 @@ namespace Mane
 
         public Vector2 ShadowOffset
         {
-            get { return _shadowOffset; }
+            get => _shadowOffset;
             set
             {
                 if (_shadowOffset == value)
@@ -279,7 +270,7 @@ namespace Mane
 
         public Color ShadowColor
         {
-            get { return _shadowColor; }
+            get => _shadowColor;
             set
             {
                 if (_shadowColor == value)
@@ -293,7 +284,7 @@ namespace Mane
 
         public Color @Color
         {
-            get { return _color; }
+            get => _color;
             set
             {
                 if (Math.Abs(_color.a - value.a) > float.Epsilon)
@@ -321,7 +312,7 @@ namespace Mane
 
         public int SortingOrder
         {
-            get { return _sortingOrder; }
+            get => _sortingOrder;
             set
             {
                 _sortingOrder = value;
@@ -361,45 +352,19 @@ namespace Mane
             }
         }
 
-        public bool IsOutlineActive
-        {
-            get
-            {
-                return (_effect & TextEffect.Outline) != 0;
-            }
-        }
+        public bool IsOutlineActive => (_effect & TextEffect.Outline) != 0;
 
-        public bool IsShadowActive
-        {
-            get
-            {
-                return (_effect & TextEffect.Shadow) != 0;
-            }
-        }
+        public bool IsShadowActive => (_effect & TextEffect.Shadow) != 0;
 
-        public bool IsNoEffectsActive
-        {
-            get
-            {
-                return _effect == TextEffect.None;
-            }
-        }
+        public bool IsNoEffectsActive => _effect == TextEffect.None;
 
-        private void Awake()
-        {
-            Font.textureRebuilt += OnFontTextureRebuilt;
-        }
+        
+        private void Awake() => Font.textureRebuilt += OnFontTextureRebuilt;
 
-        private void Update()
-        {
-            UpdateView(true);
-        }
+        private void Update() => UpdateView(true);
 
 #if UNITY_EDITOR
-        private void OnValidate()
-        {
-            _dirty = AllDirty;
-        }
+        private void OnValidate() => _dirty = AllDirty;
 #endif
 
         private void OnDestroy()
