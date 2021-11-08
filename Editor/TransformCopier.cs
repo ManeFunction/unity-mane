@@ -38,6 +38,8 @@ namespace Mane.Inspector
                 buffer[4].ParseFloat(),
                 buffer[5].ParseFloat(),
                 buffer[6].ParseFloat());
+            
+            EditorUtility.SetDirty(target);
         }
 
         

@@ -1,3 +1,6 @@
+1.5.25:
+    - Fixed an issue when pasting global doesn't mark object as changed.
+
 1.5.24:
     - Added copy/paste menus for global Transform values (position and rotation only).
 
