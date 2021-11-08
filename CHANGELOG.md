@@ -1,3 +1,6 @@
+1.5.24:
+    - Added copy/paste menus for global Transform values (position and rotation only).
+
 1.5.23:
     - Added Missing Reference Finder to search for missing references, lost components and deleted prefabs.
 
