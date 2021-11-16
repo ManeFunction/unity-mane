@@ -1,3 +1,6 @@
+1.5.26:
+    - Children Transform Freezer: Added ability to affect disabled children.
+
 1.5.25:
     - Fixed an issue when pasting global doesn't mark object as changed.
 

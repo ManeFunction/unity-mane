@@ -6,6 +6,7 @@ namespace Mane
     [ExecuteInEditMode]
     public class ChildrenTransformFreezer : MonoBehaviour
     {
+        [SerializeField] private bool _affectDisabled;
         [SerializeField] private bool _rotateButKeepGeometry;
         
         private Vector3 _position;
@@ -19,7 +20,7 @@ namespace Mane
         {
             if (transform.hasChanged)
             {
-                Transform[] children = GetComponentsInChildren<Transform>();
+                Transform[] children = GetComponentsInChildren<Transform>(_affectDisabled);
                 if (Collection.IsNullOrEmpty(children))
                     return;
 
