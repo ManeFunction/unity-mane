@@ -7,8 +7,10 @@ namespace Mane
     public class ChildrenTransformFreezer : MonoBehaviour
     {
         [SerializeField] private bool _affectDisabled;
+        [SerializeField] private bool _keepColliders;
         [SerializeField] private bool _rotateButKeepGeometry;
-        
+
+        private Vector3 _localPosition;
         private Vector3 _position;
         private Quaternion _rotation;
         private Vector3 _scale;
@@ -44,6 +46,25 @@ namespace Mane
                     child.localPosition = child.localPosition.Divide(scaleShift);
                     child.position -= positionShift;
                 }
+
+                if (_keepColliders)
+                {
+                    Collider[] colliders = gameObject.GetComponents<Collider>();
+                    if (!Collection.IsNullOrEmpty(colliders))
+                    {
+                        Quaternion localRotationShift = Quaternion.Inverse(transform.localRotation);
+                        Vector3 localPositionShift = localRotationShift * (transform.localPosition - _localPosition);
+                        foreach (Collider c in colliders)
+                        {
+                            if (c is BoxCollider box)
+                                box.center -= localPositionShift;
+                            else if (c is SphereCollider sphere)
+                                sphere.center -= localPositionShift;
+                            else if (c is CapsuleCollider capsule)
+                                capsule.center -= localPositionShift;
+                        }
+                    }
+                }
             }
             
             UpdateValues();
@@ -52,6 +73,7 @@ namespace Mane
 
         private void UpdateValues()
         {
+            _localPosition = transform.localPosition;
             _position = transform.position;
             _rotation = transform.rotation;
             _scale = transform.localScale;
