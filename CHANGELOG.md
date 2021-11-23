@@ -1,3 +1,6 @@
+1.5.28:
+    - Children Transform Freezer: Added ability to keep nav mesh obstacles on root object in place.
+
 1.5.27:
     - Children Transform Freezer: Added ability to keep colliders on root object in place. 
 

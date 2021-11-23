@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Mane.Extensions;
+using UnityEngine.AI;
 
 namespace Mane
 {
@@ -50,10 +51,19 @@ namespace Mane
                 if (_keepColliders)
                 {
                     Collider[] colliders = gameObject.GetComponents<Collider>();
-                    if (!Collection.IsNullOrEmpty(colliders))
+                    NavMeshObstacle[] obstacles = gameObject.GetComponents<NavMeshObstacle>();
+                    bool hasColliders = !Collection.IsNullOrEmpty(colliders);
+                    bool hasObstacles = !Collection.IsNullOrEmpty(obstacles);
+
+                    Vector3 localPositionShift = default;
+                    if (hasColliders || hasObstacles)
                     {
                         Quaternion localRotationShift = Quaternion.Inverse(transform.localRotation);
-                        Vector3 localPositionShift = localRotationShift * (transform.localPosition - _localPosition);
+                        localPositionShift = localRotationShift * (transform.localPosition - _localPosition);
+                    }
+                    
+                    if (hasColliders)
+                    {
                         foreach (Collider c in colliders)
                         {
                             if (c is BoxCollider box)
@@ -63,6 +73,12 @@ namespace Mane
                             else if (c is CapsuleCollider capsule)
                                 capsule.center -= localPositionShift;
                         }
+                    }
+
+                    if (hasObstacles)
+                    {
+                        foreach (NavMeshObstacle o in obstacles)
+                            o.center -= localPositionShift;
                     }
                 }
             }
