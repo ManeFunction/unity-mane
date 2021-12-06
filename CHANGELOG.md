@@ -1,3 +1,6 @@
+1.5.29:
+    - Fixed NaN result if we Map() from range starting with zero to the range starting with zero either. 
+
 1.5.28:
     - Children Transform Freezer: Added ability to keep nav mesh obstacles on root object in place.
 

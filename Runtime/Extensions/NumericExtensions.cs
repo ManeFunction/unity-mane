@@ -40,7 +40,9 @@ namespace Mane.Extensions
         public static bool IsOdd(this int value) => !IsEven(value);
 
         public static float Map(this float value, float sourceFrom, float sourceTo, float destFrom, float destTo) => 
-            (value - sourceFrom) / (sourceTo - sourceFrom) * (destTo - destFrom) + destFrom;
+            sourceFrom == 0f && destFrom == 0f ?
+                value == 0f ? 0f : value * (destTo / sourceTo) :
+                (value - sourceFrom) / (sourceTo - sourceFrom) * (destTo - destFrom) + destFrom;
 
         public static Vector2 ToVector2(this float value) => new Vector2(value, value);
 
