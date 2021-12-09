@@ -1,3 +1,6 @@
+1.5.30:
+    - Added GameObject.IterateChildren extension to fast children iteration (recursive or not).
+
 1.5.29:
     - Fixed NaN result if we Map() from range starting with zero to the range starting with zero either. 
 

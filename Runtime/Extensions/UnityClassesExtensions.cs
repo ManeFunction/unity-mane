@@ -212,5 +212,18 @@ namespace Mane.Extensions
             
             return true;
         }
+
+        public static void IterateChildren(this GameObject parent, Action<GameObject> action, bool recursive = false)
+        {
+            int totalChildren = parent.transform.childCount;
+            for (int i = 0; i < totalChildren; i++)
+            {
+                GameObject child = parent.transform.GetChild(i).gameObject;
+                action?.Invoke(child);
+                
+                if (recursive)
+                    child.IterateChildren(action, true);
+            }
+        }
     }
 }
