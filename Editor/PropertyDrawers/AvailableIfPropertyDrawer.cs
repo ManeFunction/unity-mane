@@ -43,11 +43,7 @@ namespace Mane.Inspector.Editor
                 // Trying to get SerializedProperty
                 SerializedProperty attachedProperty =
                     property.serializedObject.FindProperty(attr.PropertyName);
-                if (attachedProperty != null)
-                {
-                    isAvailable = !attachedProperty.IsPropertyDefault();
-                }
-                else
+                if (attachedProperty == null)
                 {
                     // Trying to get Method
                     object target = property.serializedObject.targetObject;
@@ -55,25 +51,19 @@ namespace Mane.Inspector.Editor
                     MethodInfo method = type.GetMethod(attr.PropertyName);
                     // ...or a Property getter
                     if (method == null)
-                    {
                         method = type.GetProperty(attr.PropertyName)?.GetMethod;
-                    }
             
                     if (method != null)
-                    {
                         isAvailable = (bool)method.Invoke(target, null);
-                    }
                     else
-                    {
                         Debug.LogError($"AvailableIf: Can't find {attr.PropertyName} in {type}");
-                    }
                 }
+                else
+                    isAvailable = !attachedProperty.IsPropertyDefault();
             }
             
             if (attr.Invert)
-            {
                 isAvailable = !isAvailable;
-            }
 
             return (isAvailable, attr.Hide);
         }

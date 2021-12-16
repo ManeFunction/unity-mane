@@ -1,8 +1,8 @@
 {
   "name": "com.manefunction.utils",
-  "version": "1.5.23",
-  "displayName": "Mane Utils",
-  "description": "Some extensions and features to make your Unity work easier!",
+  "version": "1.5.31",
+  "displayName": "Mane Tools",
+  "description": "Some extensions and features to make your life easier!",
   "unity": "2018.1",
   "unityRelease": "0b5",
   "keywords": [
@@ -13,7 +13,7 @@
   ],
   "author": {
     "name": "Mane Function",
-    "email": "mfunc@outlook.com",
+    "email": "manework@outlook.com",
     "url": "https://github.com/ManeFunction"
   }
 }

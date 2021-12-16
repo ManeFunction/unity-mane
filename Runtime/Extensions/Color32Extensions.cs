@@ -1,20 +1,13 @@
 ﻿using UnityEngine;
 
-
 namespace Mane.Extensions
 {
     public static class Color32Extensions
     {
-        public static Color32 RandomColor
-        {
-            get
-            {
-                return new Color32(
-                    (byte)UnityEngine.Random.Range(0, 256),
-                    (byte)UnityEngine.Random.Range(0, 256),
-                    (byte)UnityEngine.Random.Range(0, 256), 255);
-            }
-        }
+        public static Color32 RandomColor => new Color32(
+            (byte)UnityEngine.Random.Range(0, 256),
+            (byte)UnityEngine.Random.Range(0, 256),
+            (byte)UnityEngine.Random.Range(0, 256), 255);
 
 
         public static Color32 Set(this Color32 c, byte r, byte g, byte b, byte a)
@@ -56,13 +49,11 @@ namespace Mane.Extensions
         }
 
 
-        public static uint ToUInt(this Color32 color)
-        {
-            return (uint)(color.a << 24
-                        | color.r << 16
-                        | color.g << 8
-                        | color.b);
-        }
+        public static uint ToUInt(this Color32 color) =>
+            (uint)(color.a << 24
+                 | color.r << 16
+                 | color.g << 8
+                 | color.b);
 
         public static Color32 ToColor32(this uint color)
         {
@@ -74,10 +65,8 @@ namespace Mane.Extensions
             return new Color32(r, g, b, a);
         }
 
-        public static string ToHex(this Color32 c)
-        {
-            return $"#{c.r:X2}{c.g:X2}{c.b:X2}{c.a:X2}";
-        }
+        public static string ToHex(this Color32 c) => 
+            $"#{c.r:X2}{c.g:X2}{c.b:X2}{c.a:X2}";
 
 
         public static float GetBrightness(this Color32 color)
@@ -105,12 +94,9 @@ namespace Mane.Extensions
         /// <summary>
         /// Shift RGB color channels
         /// </summary>
-        public static Color32 Shift(this Color32 c, byte shift)
-        {
-            return new Color32(
-                (byte)(c.r + shift).Clamp(0, 255),
-                (byte)(c.g + shift).Clamp(0, 255),
-                (byte)(c.b + shift).Clamp(0, 255), c.a);
-        }
+        public static Color32 Shift(this Color32 c, byte shift) => new Color32(
+            (byte)(c.r + shift).Clamp(0, 255),
+            (byte)(c.g + shift).Clamp(0, 255),
+            (byte)(c.b + shift).Clamp(0, 255), c.a);
     }
 }

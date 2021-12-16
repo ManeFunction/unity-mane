@@ -1,3 +1,29 @@
+1.5.31:
+    - Renamed from Mane Utils to Mane Tools.
+    - Added availability checkers for Apply Prefab... methods.
+    - Refactored all the code.
+
+1.5.30:
+    - Added GameObject.IterateChildren extension to fast children iteration (recursive or not).
+
+1.5.29:
+    - Fixed NaN result if we Map() from range starting with zero to the range starting with zero either. 
+
+1.5.28:
+    - Children Transform Freezer: Added ability to keep nav mesh obstacles on root object in place.
+
+1.5.27:
+    - Children Transform Freezer: Added ability to keep colliders on root object in place. 
+
+1.5.26:
+    - Children Transform Freezer: Added ability to affect disabled children.
+
+1.5.25:
+    - Fixed an issue when pasting global doesn't mark object as changed.
+
+1.5.24:
+    - Added copy/paste menus for global Transform values (position and rotation only).
+
 1.5.23:
     - Added Missing Reference Finder to search for missing references, lost components and deleted prefabs.
 

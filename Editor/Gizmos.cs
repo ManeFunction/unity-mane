@@ -4,10 +4,8 @@ namespace Mane.Editor
 {
     public static class Gizmos
     {
-        public static void DrawPlane(Plane plane, Vector3 drawPosition)
-        {
+        public static void DrawPlane(Plane plane, Vector3 drawPosition) => 
             DrawPlane(plane.ClosestPointOnPlane(drawPosition), plane.normal);
-        }
 
         public static void DrawPlane(Vector3 position, Vector3 normal)
         {

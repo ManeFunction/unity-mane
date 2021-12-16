@@ -7,11 +7,9 @@ namespace Mane.Inspector.Editor
     [CustomPropertyDrawer(typeof(DropdownListAttribute))]
     public class DropdownListPropertyDrawer : PropertyDrawer
     {
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            return EditorGUI.GetPropertyHeight(property, label, true);
-        }
-        
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label) => 
+            EditorGUI.GetPropertyHeight(property, label, true);
+
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             string[] list = (attribute as DropdownListAttribute).Strings;
@@ -22,13 +20,9 @@ namespace Mane.Inspector.Editor
                 property.stringValue = list[index];
             }
             else if (property.propertyType == SerializedPropertyType.Integer)
-            {
                 property.intValue = EditorGUI.Popup(position, property.displayName, property.intValue, list);
-            }
             else
-            {
                 base.OnGUI(position, property, label);
-            }
         }
     }
 }

@@ -7,9 +7,7 @@ namespace Mane.Extensions
         public static string RemoveLastPathComponent(this string str)
         {
             if (str.Length < 2)
-            {
                 return string.Empty;
-            }
             
             int index = str.LastIndexOf('/', str.Length - 2);
             
@@ -20,9 +18,7 @@ namespace Mane.Extensions
         public static float ParseFloat(this string str, float defaultValue = 0f)
         {
             if (!float.TryParse(str, out float result))
-            {
                 result = defaultValue;
-            }
 
             return result;
         }
@@ -30,9 +26,7 @@ namespace Mane.Extensions
         public static int ParseInt(this string str, int defaultValue = 0)
         {
             if (!int.TryParse(str, out int result))
-            {
                 result = defaultValue;
-            }
 
             return result;
         }
@@ -40,9 +34,7 @@ namespace Mane.Extensions
         public static ushort ParseUShort(this string str, ushort defaultValue = 0)
         {
             if (!ushort.TryParse(str, out ushort result))
-            {
                 result = defaultValue;
-            }
 
             return result;
         }

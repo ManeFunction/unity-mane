@@ -31,6 +31,7 @@ namespace Mane.Extensions
 
             scroll.content.anchoredPosition = new Vector2(x + offset, contentPos.y);
         }
+        
         public static void SnapYTo(this ScrollRect scroll, Transform item, float offset = 0f)
         {
             Canvas.ForceUpdateCanvases();

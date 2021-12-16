@@ -8,10 +8,7 @@ namespace Mane
     {
         public Vector3HistoryCache(int length) : base(length) { }
 
-        public override Vector3 GetAverage()
-        {
-            return _history.Average();
-        }
+        public override Vector3 GetAverage() => History.Average();
     }
 
 
@@ -19,10 +16,7 @@ namespace Mane
     {
         public Vector2HistoryCache(int length) : base(length) { }
 
-        public override Vector2 GetAverage()
-        {
-            return _history.Average();
-        }
+        public override Vector2 GetAverage() => History.Average();
     }
 
 
@@ -30,23 +24,17 @@ namespace Mane
     {
         public FloatHistoryCache(int length) : base(length) { }
 
-        public override float GetAverage()
-        {
-            return _history.Average();
-        }
+        public override float GetAverage() => History.Average();
     }
 
 
     public abstract class HistoryCache<T>
     {
-        protected readonly T[] _history;
+        protected readonly T[] History;
         private int _idx;
 
 
-        protected HistoryCache(int length)
-        {
-            _history = new T[length];
-        }
+        protected HistoryCache(int length) => History = new T[length];
 
 
         public abstract T GetAverage();
@@ -54,16 +42,14 @@ namespace Mane
         
         public void Append(T value)
         {
-            _history[_idx++] = value;
-            if (_idx == _history.Length)
-            {
+            History[_idx++] = value;
+            if (_idx == History.Length)
                 _idx = 0;
-            }
         }
 
         public void Clear()
         {
-            _history.Clear();
+            History.Clear();
             _idx = 0;
         }
     }

@@ -7,21 +7,18 @@ namespace Mane.Editor
 {
     public class ColorPicker : EditorWindow
     {
-        [MenuItem("Window/Color Picker %&C")]
-        public static void ShowWindow()
-        {
-            GetWindow(typeof(ColorPicker)).titleContent = new GUIContent("Color Picker");
-        }
+        [MenuItem("Mane/Color Picker %&C", false, 1000)]
+        public static void ShowWindow() => GetWindow(typeof(ColorPicker)).titleContent = new GUIContent("Color Picker");
 
-        [SerializeField] private Color color = Color.white;
+        [SerializeField] private Color _color = Color.white;
 
-        private static GUIStyle labelStyle;
+        private static GUIStyle _labelStyle;
 
         private void OnGUI()
         {
-            if (labelStyle == null)
+            if (_labelStyle == null)
             {
-                labelStyle = new GUIStyle(GUI.skin.label)
+                _labelStyle = new GUIStyle(GUI.skin.label)
                 {
                     alignment = TextAnchor.MiddleRight
                 };
@@ -30,36 +27,36 @@ namespace Mane.Editor
             // title
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Color");
-            color = EditorGUILayout.ColorField(color);
+            _color = EditorGUILayout.ColorField(_color);
             EditorGUILayout.Space();
 
             // channel values
-            color.r = DrawChannel(color.r, "R");
-            color.g = DrawChannel(color.g, "G");
-            color.b = DrawChannel(color.b, "B");
-            color.a = DrawChannel(color.a, "A");
+            _color.r = DrawChannel(_color.r, "R");
+            _color.g = DrawChannel(_color.g, "G");
+            _color.b = DrawChannel(_color.b, "B");
+            _color.a = DrawChannel(_color.a, "A");
 
             // color to hex
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("HEX", labelStyle, GUILayout.Width(30));
-            string hex = EditorGUILayout.TextField(color.ToHex());
+            EditorGUILayout.LabelField("HEX", _labelStyle, GUILayout.Width(30));
+            string hex = EditorGUILayout.TextField(_color.ToHex());
             EditorGUILayout.EndHorizontal();
 
             // hex to color
             Color c;
             if (ColorUtility.TryParseHtmlString(hex, out c))
-                color = c;
+                _color = c;
 
             // c# script
             EditorGUILayout.Space();
-            EditorGUILayout.TextField($"new Color({color.r:n3}f, {color.g:n3}f, {color.b:n3}f, {color.a:n3}f)");
+            EditorGUILayout.TextField($"new Color({_color.r:n3}f, {_color.g:n3}f, {_color.b:n3}f, {_color.a:n3}f)");
         }
 
         private float DrawChannel(float value, string label)
         {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField(label, labelStyle, GUILayout.Width(15));
+            EditorGUILayout.LabelField(label, _labelStyle, GUILayout.Width(15));
             value = EditorGUILayout.FloatField(value);
             value = EditorGUILayout.IntField((int)(255 * value)) / 255f;
             EditorGUILayout.EndHorizontal();

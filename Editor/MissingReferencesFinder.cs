@@ -7,7 +7,7 @@ namespace Mane.Editor
     {
         private GameObject _root;
 
-        [MenuItem("Mane Utils/Missing References Helper")]
+        [MenuItem("Mane/Missing References Helper", false, 1101)]
         private static void CreateWindow()
         {
             MissingReferencesEditor window = (MissingReferencesEditor)EditorWindow
@@ -33,7 +33,7 @@ namespace Mane.Editor
             }
         }
 
-        private void Scan(GameObject obj)
+        private static void Scan(GameObject obj)
         {
             if (!obj) return;
 

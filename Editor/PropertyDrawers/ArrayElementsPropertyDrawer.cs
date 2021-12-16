@@ -11,15 +11,10 @@ namespace Mane.Inspector.Editor
     [CustomPropertyDrawer(typeof(ArrayElementsAttribute))]
     public class ArrayElementsDrawer : PropertyDrawer
     {
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            return EditorGUI.GetPropertyHeight(property, label, true);
-        }
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label) => 
+            EditorGUI.GetPropertyHeight(property, label, true);
 
-        protected virtual ArrayElementsAttribute Attribute
-        {
-            get { return (ArrayElementsAttribute) attribute; }
-        }
+        protected virtual ArrayElementsAttribute Attribute => (ArrayElementsAttribute)attribute;
 
         private SerializedProperty _titleNameProp;
 
@@ -29,9 +24,7 @@ namespace Mane.Inspector.Editor
             _titleNameProp = property.serializedObject.FindProperty(fullPathName);
             string newLabel = GetTitle();
             if (string.IsNullOrEmpty(newLabel))
-            {
                 newLabel = label.text;
-            }
 
             EditorGUI.PropertyField(position, property, new GUIContent(newLabel, label.tooltip), true);
         }

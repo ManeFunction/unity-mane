@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
-
 namespace Mane.Extensions
 {
     public static class UnityClassesExtensions
@@ -18,9 +17,7 @@ namespace Mane.Extensions
         {
             T component = gameObject.GetComponent<T>();
             if (component == null)
-            {
                 component = gameObject.AddComponent<T>();
-            }
 
             return component;
         }
@@ -30,19 +27,14 @@ namespace Mane.Extensions
         /// </summary>
         public static T GetRootComponent<T>(this Scene scene) where T : Component
         {
-            if (!scene.isLoaded)
-            {
-                return null;
-            }
+            if (!scene.isLoaded) return null;
 
             // search for active objects
             T[] objects = Object.FindObjectsOfType<T>();
             T result = objects.FirstOrDefault(obj => obj.gameObject.scene == scene);
 
             if (result != null)
-            {
                 return result;
-            }
 
             // if root wasn't found try to get hidden objects instead
             List<T> results = new List<T>();
@@ -50,15 +42,11 @@ namespace Mane.Extensions
             {
                 Scene currentScene = SceneManager.GetSceneAt(i);
                 if (!currentScene.isLoaded)
-                {
                     continue;
-                }
 
                 GameObject[] allGameObjects = currentScene.GetRootGameObjects();
                 foreach (GameObject go in allGameObjects)
-                {
                     results.AddRange(go.GetComponentsInChildren<T>(true));
-                }
             }
 
             objects = results.ToArray();
@@ -67,6 +55,7 @@ namespace Mane.Extensions
                 if (obj.gameObject.scene == scene)
                 {
                     result = obj;
+                    
                     break;
                 }
             }
@@ -79,23 +68,17 @@ namespace Mane.Extensions
         {
 #if UNITY_EDITOR
             if (Application.isPlaying)
-            {
                 Object.Destroy(o);
-            }
             else
-            {
                 Object.DestroyImmediate(o);
-            }
 #else
             Object.Destroy(o);
 #endif
         }
 
 
-        public static T Instantiate<T>(this string path, Transform parent = null) where T : Object
-        {
-            return Object.Instantiate(Resources.Load<T>(path), parent);
-        }
+        public static T Instantiate<T>(this string path, Transform parent = null) where T : Object => 
+            Object.Instantiate(Resources.Load<T>(path), parent);
 
 
         public static GameObject Duplicate(this GameObject source)
@@ -131,36 +114,26 @@ namespace Mane.Extensions
         
         public static void SetLayerRecursively(this GameObject go, int newLayer)
         {
-            if (go == null)
-            {
-                return;
-            }
+            if (go == null) return;
 
             go.layer = newLayer;
             foreach (Transform child in go.transform)
             {
                 if (child != null)
-                {
                     SetLayerRecursively(child.gameObject, newLayer);
-                }
             }
         }
 
         public static void SetSortingLayerRecursively(this GameObject go, int newLayer, int? newOrder = null)
         {
-            if (go == null)
-            {
-                return;
-            }
+            if (go == null) return;
 
             Renderer renderer = go.GetComponent<Renderer>();
             if (renderer != null)
             {
                 renderer.sortingLayerID = newLayer;
                 if (newOrder.HasValue)
-                {
                     renderer.sortingOrder = newOrder.Value;
-                }
             }
 
             Canvas canvas = go.GetComponent<Canvas>();
@@ -168,27 +141,20 @@ namespace Mane.Extensions
             {
                 canvas.sortingLayerID = newLayer;
                 if (newOrder.HasValue)
-                {
                     canvas.sortingOrder = newOrder.Value;
-                }
             }
 
             foreach (Transform child in go.transform)
             {
                 if (child != null)
-                {
                     SetSortingLayerRecursively(child.gameObject, newLayer, newOrder);
-                }
             }
         }
 
-        public static bool IsPrefab(this GameObject go)
-        {
-            // There is no "legit" way to know is GameObject prefab
-            // or not besides PrefabUtility, but it's not available
-            // in a runtime, so this is the most obvious workaround.
-            return go.scene.rootCount == 0;
-        }
+        // There is no "legit" way to know is GameObject prefab
+        // or not besides PrefabUtility, but it's not available
+        // in a runtime, so this is the most obvious workaround.
+        public static bool IsPrefab(this GameObject go) => go.scene.rootCount == 0;
 
         public static Coroutine Delayed(this MonoBehaviour target, Action action, float delay)
         {
@@ -243,7 +209,21 @@ namespace Mane.Extensions
 
             target.StopCoroutine(coroutine);
             coroutine = null;
+            
             return true;
+        }
+
+        public static void IterateChildren(this GameObject parent, Action<GameObject> action, bool recursive = false)
+        {
+            int totalChildren = parent.transform.childCount;
+            for (int i = 0; i < totalChildren; i++)
+            {
+                GameObject child = parent.transform.GetChild(i).gameObject;
+                action?.Invoke(child);
+                
+                if (recursive)
+                    child.IterateChildren(action, true);
+            }
         }
     }
 }

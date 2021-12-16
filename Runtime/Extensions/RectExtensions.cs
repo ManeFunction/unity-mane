@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
 
-
 namespace Mane.Extensions
 {
     public static class RectExtensions
     {
-        public static Rect ScaleSizeBy(this Rect rect, float scale)
-        {
-            return rect.ScaleSizeBy(scale, rect.center);
-        }
+        public static Rect ScaleSizeBy(this Rect rect, float scale) => 
+            rect.ScaleSizeBy(scale, rect.center);
 
 
         public static Rect ScaleSizeBy(this Rect rect, float scale, Vector2 pivotPoint)
