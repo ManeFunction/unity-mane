@@ -1,3 +1,8 @@
+1.5.31:
+    - Renamed from Mane Utils to Mane Tools.
+    - Added availability checkers for Apply Prefab... methods.
+    - Refactored all the code.
+
 1.5.30:
     - Added GameObject.IterateChildren extension to fast children iteration (recursive or not).
 

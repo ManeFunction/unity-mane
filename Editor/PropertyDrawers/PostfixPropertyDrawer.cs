@@ -7,29 +7,20 @@ namespace Mane.Inspector.Editor
     public class PostfixPropertyDrawer : PropertyDrawer
     {
         private float _postfixWidth = -1f;
-        private GUIStyle _postfixStyle = null;
+        private GUIStyle _postfixStyle;
 
 
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            return EditorGUI.GetPropertyHeight(property, label, true);
-        }
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label) => 
+            EditorGUI.GetPropertyHeight(property, label, true);
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             PostfixAttribute attr = attribute as PostfixAttribute;
 
             if (_postfixWidth == -1f)
-            {
-                if (attr.Width == 0f)
-                {
-                    _postfixWidth = GUI.skin.label.CalcSize(new GUIContent(attr.Text)).x;
-                }
-                else
-                {
-                    _postfixWidth = attr.Width;
-                }
-            }
+                _postfixWidth = attr.Width == 0f ? 
+                    GUI.skin.label.CalcSize(new GUIContent(attr.Text)).x : 
+                    attr.Width;
 
             if (_postfixStyle == null)
             {
