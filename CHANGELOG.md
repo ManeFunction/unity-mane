@@ -1,3 +1,7 @@
+1.5.32:
+    - Fixed exceptions from Apply Prefab... checkers.
+    - Made some Editor Tools public.
+
 1.5.31:
     - Renamed from Mane Utils to Mane Tools.
     - Added availability checkers for Apply Prefab... methods.

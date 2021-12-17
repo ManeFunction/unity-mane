@@ -11,7 +11,7 @@ namespace Mane.Editor
     public static class EditorTools
     {
         [MenuItem("Mane/Clear Console _F8", false, 900)]
-        private static void ClearConsole()
+        public static void ClearConsole()
         {
             Assembly assembly = Assembly.GetAssembly(typeof(SceneView));
             Type type = assembly.GetType("UnityEditor.LogEntries");
@@ -38,6 +38,7 @@ namespace Mane.Editor
 
             Debug.Log($"Screenshot captured: {scrName}");
         }
+        
 
         [MenuItem("Mane/Enable \u2044 Disable selected GO _F4", false, 903)]
         private static void ChangeSelectedObjectState()
@@ -56,7 +57,7 @@ namespace Mane.Editor
 
 
         [MenuItem("Mane/Clear saved data _%F12", false, 800)]
-        private static void ClearSavedData()
+        public static void ClearSavedData()
         {
             string path = Application.persistentDataPath;
             if (!Directory.Exists(path))
@@ -71,6 +72,14 @@ namespace Mane.Editor
             Debug.Log("Saved data successfully cleared!");
         }
 
+        [MenuItem("Mane/Delete all PlayerPrefs _%#F12", false, 801)]
+        public static void DeletePlayerPrefs()
+        {
+            PlayerPrefs.DeleteAll();
+            Debug.Log("Player prefs successfully cleared!");
+        }
+
+        
         private static void DeleteFolder(string path)
         {
             string[] files = Directory.GetFiles(path);
@@ -82,13 +91,6 @@ namespace Mane.Editor
                 DeleteFolder(folder);
 
             Directory.Delete(path);
-        }
-
-        [MenuItem("Mane/Delete all PlayerPrefs _%#F12", false, 801)]
-        private static void DeletePlayerPrefs()
-        {
-            PlayerPrefs.DeleteAll();
-            Debug.Log("Player prefs successfully cleared!");
         }
     }
 }

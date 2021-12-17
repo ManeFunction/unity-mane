@@ -40,7 +40,7 @@ namespace Mane.Editor
         }
         
         private static bool IsPrefabSelected() => 
-            Selection.objects.Any(PrefabUtility.IsPartOfPrefabInstance);
+            Selection.objects.Any(o => o != null && PrefabUtility.IsPartOfPrefabInstance(o));
         
         
         [MenuItem("Assets/Force Re-serialise Asset(s)", false, 45)]
