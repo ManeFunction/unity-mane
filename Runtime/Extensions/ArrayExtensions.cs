@@ -309,7 +309,7 @@ namespace Mane.Extensions
             return source.Any(element => predicate(element) && ++n == count);
         }
 
-        public static Dictionary<KO, VO> Convert<KI, VI, KO, VO>(this Dictionary<KI, KO> source,
+        public static Dictionary<KO, VO> Convert<KI, VI, KO, VO>(this IReadOnlyDictionary<KI, KO> source,
             Func<KI, KO, (KO, VO)> converter)
         {
             if (converter == null) return null;
