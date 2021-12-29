@@ -1,3 +1,6 @@
+1.5.33:
+    - Added Convert extension for Dictionary.
+
 1.5.32:
     - Fixed exceptions from Apply Prefab... checkers.
     - Made some Editor Tools public.
