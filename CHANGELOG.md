@@ -1,3 +1,6 @@
+1.5.35:
+    - Fixed issues in IReadOnlyDictionary.Convert.
+
 1.5.34:
     - Moved Dictionary.Convert extension to IReadOnlyDictionary.Convert.
 
