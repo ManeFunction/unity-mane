@@ -1,3 +1,6 @@
+1.5.37:
+    - Improved EnumArrayOdds Attribute to work with public sum.
+
 1.5.36:
     - Added ClampMin and ClampMax extensions for IComparable values.
 

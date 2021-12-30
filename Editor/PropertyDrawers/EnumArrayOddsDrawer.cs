@@ -19,7 +19,7 @@ namespace Mane.Inspector.Editor
 
             var obj = property.serializedObject.targetObject;
             PropertyInfo totalWeightPropertyInfo = obj.GetType().GetProperty(attr.TotalWeightProperty, 
-                BindingFlags.NonPublic | BindingFlags.Instance);
+                BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
             if (totalWeightPropertyInfo != null && totalWeightPropertyInfo.PropertyType == typeof(float))
             {
                 float totalWeight = (float)totalWeightPropertyInfo.GetValue(obj);
