@@ -18,6 +18,12 @@ namespace Mane.Extensions
 
             return result;
         }
+        
+        public static T ClampMin<T>(this T value, T min) where T : IComparable<T> => 
+            value.CompareTo(min) < 0 ? min : value;
+        
+        public static T ClampMax<T>(this T value, T max) where T : IComparable<T> => 
+            value.CompareTo(max) > 0 ? max : value;
 
         public static float Clamp01(this float value) => value.Clamp(0f, 1f);
 

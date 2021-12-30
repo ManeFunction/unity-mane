@@ -1,3 +1,6 @@
+1.5.36:
+    - Added ClampMin and ClampMax extensions for IComparable values.
+
 1.5.35:
     - Fixed issues in IReadOnlyDictionary.Convert.
 
