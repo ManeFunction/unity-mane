@@ -1,3 +1,6 @@
+1.6.2:
+    - Improved work with prefabs editor features.
+
 1.6.1:
     - Moved path settings from the shared settings to project and machine specific prefs.
 

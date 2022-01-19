@@ -13,7 +13,7 @@ namespace Mane.Editor
         [MenuItem("GameObject/Apply Prefab(s) Changes", false, -10)]
         private static void ApplyPrefabs(MenuCommand menuCommand)
         {
-            GameObject obj = GetNextSelectedObject(menuCommand);
+            GameObject obj = menuCommand.context as GameObject;
             if (!obj) return;
             
             ApplyChanges(obj);
@@ -25,7 +25,7 @@ namespace Mane.Editor
         [MenuItem("GameObject/Apply Prefab(s) Transform Changes", false, -9)]
         private static void ApplyPrefabsTransform(MenuCommand menuCommand)
         {
-            GameObject obj = GetNextSelectedObject(menuCommand);
+            GameObject obj = menuCommand.context as GameObject;
             if (!obj) return;
             
             ApplyTransformChanges(obj);
@@ -37,7 +37,7 @@ namespace Mane.Editor
         [MenuItem("GameObject/Apply Prefab(s) Changes (+Transform)", false, -8)]
         private static void ApplyPrefabsAll(MenuCommand menuCommand)
         {
-            GameObject obj = GetNextSelectedObject(menuCommand);
+            GameObject obj = menuCommand.context as GameObject;
             if (!obj) return;
             
             ApplyChanges(obj);
@@ -77,22 +77,34 @@ namespace Mane.Editor
         [MenuItem("GameObject/Save to Prefab(s)", false, -20)]
         private static void CreatePrefabs(MenuCommand menuCommand)
         {
-            GameObject obj = GetNextSelectedObject(menuCommand);
-            if (!obj) return;
-            
-            string localPath = GetPrefabsPath() + obj.name + ".prefab";
-            EditorTools.CreateDirectoryFromAssetPath(localPath);
-            localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
-            
-            PrefabUtility.SaveAsPrefabAssetAndConnect(obj, localPath, InteractionMode.UserAction);
+            if (Selection.objects.Length > 1 && menuCommand.context != Selection.objects[0])
+                return;
+
+            if (GetSavingPopupOption())
+                PrefabSaverSettings.ShowPopup(true).SaveButtonPressed += IterateObjects;
+            else
+                IterateObjects();
+
+
+            void IterateObjects()
+            {
+                string path = GetPrefabsPath();
+                EditorTools.CreateDirectoryFromAssetPath($"{path}a.prefab");
+                
+                foreach (GameObject gameObject in Selection.gameObjects)
+                {
+                    string localPath = $"{path}{gameObject.name}.prefab";
+                    localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
+
+                    PrefabUtility.SaveAsPrefabAssetAndConnect(gameObject, localPath, InteractionMode.UserAction);
+                }
+            }
         }
 
-
-        private static GameObject GetNextSelectedObject(MenuCommand menuCommand) =>
-            Selection.gameObjects.FirstOrDefault(o => o == menuCommand.context);
+        internal static string PrefabsPathKey => $"Mane.{Application.productName}.PrefabsPath";
+        internal static string GetPrefabsPath() => EditorPrefs.GetString(PrefabsPathKey, "Assets/");
         
-        internal static string PrefsKey => $"Mane.PrefabsPath.{Application.productName}"; 
-
-        internal static string GetPrefabsPath() => EditorPrefs.GetString(PrefsKey, "Assets/");
+        internal static string SavingPopupKey => $"Mane.{Application.productName}.PathAsk"; 
+        internal static bool GetSavingPopupOption() => EditorPrefs.GetBool(SavingPopupKey, true);
     }
 }
