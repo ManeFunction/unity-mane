@@ -22,7 +22,7 @@ namespace Mane.Editor
                     // rootElement is a VisualElement. If you add any children to it, the OnGUI function
                     // isn't called because the SettingsProvider uses the UIElements drawing framework.
                     StyleSheet styleSheet = AssetDatabase
-                        .LoadAssetAtPath<StyleSheet>("Packages/com.manefunction.tools/Editor/UI/mane_settings_ui.uss");
+                        .LoadAssetAtPath<StyleSheet>("Packages/com.manefunction.utils/Editor/UI/mane_settings_ui.uss");
                     if (styleSheet)
                         rootElement.styleSheets.Add(styleSheet);
                     Label title = new Label

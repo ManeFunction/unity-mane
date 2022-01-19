@@ -11,33 +11,37 @@ namespace Mane.Editor
         private static bool ApplyPrefabsChecker() => IsPrefabSelected();
 
         [MenuItem("GameObject/Apply Prefab(s) Changes", false, -10)]
-        private static void ApplyPrefabs()
+        private static void ApplyPrefabs(MenuCommand menuCommand)
         {
-            foreach (Object obj in Selection.objects)
-                ApplyChanges(obj as GameObject);
+            GameObject obj = GetNextSelectedObject(menuCommand);
+            if (!obj) return;
+            
+            ApplyChanges(obj);
         }
 
         [MenuItem("GameObject/Apply Prefab(s) Transform Changes", true, -9)]
         private static bool ApplyPrefabsTransformChecker() => IsPrefabSelected();
         
         [MenuItem("GameObject/Apply Prefab(s) Transform Changes", false, -9)]
-        private static void ApplyPrefabsTransform()
+        private static void ApplyPrefabsTransform(MenuCommand menuCommand)
         {
-            foreach (Object obj in Selection.objects)
-                ApplyTransformChanges(obj as GameObject);
+            GameObject obj = GetNextSelectedObject(menuCommand);
+            if (!obj) return;
+            
+            ApplyTransformChanges(obj);
         }
 
         [MenuItem("GameObject/Apply Prefab(s) Changes (+Transform)", true, -8)]
         private static bool ApplyPrefabsAllChecker() => IsPrefabSelected();
         
         [MenuItem("GameObject/Apply Prefab(s) Changes (+Transform)", false, -8)]
-        private static void ApplyPrefabsAll()
+        private static void ApplyPrefabsAll(MenuCommand menuCommand)
         {
-            foreach (Object obj in Selection.objects)
-            {
-                ApplyChanges(obj as GameObject);
-                ApplyTransformChanges(obj as GameObject);
-            }
+            GameObject obj = GetNextSelectedObject(menuCommand);
+            if (!obj) return;
+            
+            ApplyChanges(obj);
+            ApplyTransformChanges(obj);
         }
         
         private static bool IsPrefabSelected() => 
@@ -73,7 +77,7 @@ namespace Mane.Editor
         [MenuItem("GameObject/Save to Prefab(s)", false, -20)]
         private static void CreatePrefabs(MenuCommand menuCommand)
         {
-            GameObject obj = Selection.gameObjects.FirstOrDefault(o => o == menuCommand.context);
+            GameObject obj = GetNextSelectedObject(menuCommand);
             if (!obj) return;
             
             string localPath = ManeSettings.GetOrCreateSettings().PrefabsSavingPath + obj.name + ".prefab";
@@ -81,5 +85,9 @@ namespace Mane.Editor
             
             PrefabUtility.SaveAsPrefabAssetAndConnect(obj, localPath, InteractionMode.UserAction);
         }
+
+
+        private static GameObject GetNextSelectedObject(MenuCommand menuCommand) =>
+            Selection.gameObjects.FirstOrDefault(o => o == menuCommand.context);
     }
 }

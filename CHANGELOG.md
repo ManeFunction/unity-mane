@@ -1,3 +1,7 @@
+1.6.0:
+    - Fixed an issue when applying prefab changes can take a loooooot of time.
+    - Changed package name back to com.manefunction.utils to fix updates.
+
 1.5.38:
     - Separate PrefabsTools from AssetsTolls.
     - Added Save to Prefab(s) context menu to save a bunch of prefabs at once.
