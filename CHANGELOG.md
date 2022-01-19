@@ -1,3 +1,6 @@
+1.6.1:
+    - Moved path settings from the shared settings to project and machine specific prefs.
+
 1.6.0:
     - Fixed an issue when applying prefab changes can take a loooooot of time.
     - Changed package name back to com.manefunction.utils to fix updates.

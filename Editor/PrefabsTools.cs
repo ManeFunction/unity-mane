@@ -80,7 +80,8 @@ namespace Mane.Editor
             GameObject obj = GetNextSelectedObject(menuCommand);
             if (!obj) return;
             
-            string localPath = ManeSettings.GetOrCreateSettings().PrefabsSavingPath + obj.name + ".prefab";
+            string localPath = GetPrefabsPath() + obj.name + ".prefab";
+            EditorTools.CreateDirectoryFromAssetPath(localPath);
             localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
             
             PrefabUtility.SaveAsPrefabAssetAndConnect(obj, localPath, InteractionMode.UserAction);
@@ -89,5 +90,9 @@ namespace Mane.Editor
 
         private static GameObject GetNextSelectedObject(MenuCommand menuCommand) =>
             Selection.gameObjects.FirstOrDefault(o => o == menuCommand.context);
+        
+        internal static string PrefsKey => $"Mane.PrefabsPath.{Application.productName}"; 
+
+        internal static string GetPrefabsPath() => EditorPrefs.GetString(PrefsKey, "Assets/");
     }
 }

@@ -92,5 +92,14 @@ namespace Mane.Editor
 
             Directory.Delete(path);
         }
+        
+        internal static void CreateDirectoryFromAssetPath(string assetPath)
+        {
+            string directoryPath = Path.GetDirectoryName(assetPath);
+            if (directoryPath == null || Directory.Exists(directoryPath)) return;
+            
+            Directory.CreateDirectory(directoryPath);
+            AssetDatabase.Refresh();
+        }
     }
 }
