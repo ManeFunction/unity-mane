@@ -1,0 +1,11 @@
+﻿.title {
+    margin-left: 9px;
+    margin-top: 2px;
+    font-size: 19px;
+    color: lightgrey;
+    -unity-font-style: bold;
+}
+
+.property {
+    margin: 5px;
+}

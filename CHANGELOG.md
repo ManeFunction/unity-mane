@@ -1,3 +1,9 @@
+1.5.38:
+    - Separate PrefabsTools from AssetsTolls.
+    - Added Save to Prefab(s) context menu to save a bunch of prefabs at once.
+    - Added Preferences page (Mane Settings). Contains a path for prefabs saving.
+    - Changed package name to com.manefunction.tools
+
 1.5.37:
     - Improved EnumArrayOdds Attribute to work with public sum.
 
