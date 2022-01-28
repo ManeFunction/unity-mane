@@ -1,3 +1,6 @@
+1.6.3:
+    - Made GameObject.SaveToPrefab extension public.
+
 1.6.2:
     - Improved work with prefabs editor features.
 

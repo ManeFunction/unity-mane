@@ -92,13 +92,17 @@ namespace Mane.Editor
                 EditorTools.CreateDirectoryFromAssetPath($"{path}a.prefab");
                 
                 foreach (GameObject gameObject in Selection.gameObjects)
-                {
-                    string localPath = $"{path}{gameObject.name}.prefab";
-                    localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
-
-                    PrefabUtility.SaveAsPrefabAssetAndConnect(gameObject, localPath, InteractionMode.UserAction);
-                }
+                    gameObject.SaveToPrefab(path);
             }
+        }
+
+        public static void SaveToPrefab(this GameObject gameObject, string path,
+            InteractionMode mode = InteractionMode.UserAction)
+        {
+            string localPath = $"{path}{gameObject.name}.prefab";
+            localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
+
+            PrefabUtility.SaveAsPrefabAssetAndConnect(gameObject, localPath, mode);
         }
 
         internal static string PrefabsPathKey => $"Mane.{Application.productName}.PrefabsPath";
