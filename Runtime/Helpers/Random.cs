@@ -50,5 +50,15 @@ namespace Mane
             UnityEngine.Random.Range(@from.x, to.x),
             UnityEngine.Random.Range(@from.y, to.y),
             UnityEngine.Random.Range(@from.z, to.z));
+        
+        public static Color Color => new Color(
+            UnityEngine.Random.value,
+            UnityEngine.Random.value,
+            UnityEngine.Random.value);
+        
+        public static Color32 Color32 => new Color32(
+            (byte)UnityEngine.Random.Range(0, 256),
+            (byte)UnityEngine.Random.Range(0, 256),
+            (byte)UnityEngine.Random.Range(0, 256), 255);
     }
 }

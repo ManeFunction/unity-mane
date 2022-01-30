@@ -1,3 +1,6 @@
+1.6.4:
+    - Moved random colors getters from Color and Color32 extensions to Random.
+
 1.6.3:
     - Made GameObject.SaveToPrefab extension public.
 

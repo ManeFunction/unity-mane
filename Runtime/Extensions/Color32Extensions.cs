@@ -1,15 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Mane.Extensions
 {
     public static class Color32Extensions
     {
-        public static Color32 RandomColor => new Color32(
-            (byte)UnityEngine.Random.Range(0, 256),
-            (byte)UnityEngine.Random.Range(0, 256),
-            (byte)UnityEngine.Random.Range(0, 256), 255);
-
-
         public static Color32 Set(this Color32 c, byte r, byte g, byte b, byte a)
         {
             c.r = r;
@@ -98,5 +93,9 @@ namespace Mane.Extensions
             (byte)(c.r + shift).Clamp(0, 255),
             (byte)(c.g + shift).Clamp(0, 255),
             (byte)(c.b + shift).Clamp(0, 255), c.a);
+        
+        
+        [Obsolete("Use Random.Color32 instead!", true)]
+        public static Color32 RandomColor => default;
     }
 }
