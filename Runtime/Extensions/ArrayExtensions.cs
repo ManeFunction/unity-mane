@@ -308,5 +308,20 @@ namespace Mane.Extensions
             
             return source.Any(element => predicate(element) && ++n == count);
         }
+
+        public static Dictionary<KO, VO> Convert<KI, VI, KO, VO>(this IReadOnlyDictionary<KI, VI> source,
+            Func<KI, VI, (KO, VO)> converter)
+        {
+            if (converter == null) return null;
+            
+            Dictionary<KO, VO> result = new Dictionary<KO, VO>(source.Count);
+            foreach (KeyValuePair<KI, VI> pair in source)
+            {
+                (KO key, VO value) = converter(pair.Key, pair.Value);
+                result.Add(key, value);
+            }
+
+            return result;
+        }
     }
 }

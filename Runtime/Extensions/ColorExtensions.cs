@@ -1,15 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Mane.Extensions
 {
     public static class ColorExtensions
     {
-        public static Color RandomColor => new Color(
-            UnityEngine.Random.value,
-            UnityEngine.Random.value,
-            UnityEngine.Random.value);
-
-
         public static float GetBrightness(this Color color)
         {
             float r = color.r;
@@ -143,5 +138,9 @@ namespace Mane.Extensions
 
             return c;
         }
+        
+        
+        [Obsolete("Use Random.Color instead!", true)]
+        public static Color RandomColor => default;
     }
 }

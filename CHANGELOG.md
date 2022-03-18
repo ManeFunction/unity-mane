@@ -1,3 +1,47 @@
+1.6.5:
+    - Made EditorTools.CreateDirectoryFromAssetPath public.
+
+1.6.4:
+    - Moved random colors getters from Color and Color32 extensions to Random.
+
+1.6.3:
+    - Made GameObject.SaveToPrefab extension public.
+
+1.6.2:
+    - Improved work with prefabs editor features.
+
+1.6.1:
+    - Moved path settings from the shared settings to project and machine specific prefs.
+
+1.6.0:
+    - Fixed an issue when applying prefab changes can take a loooooot of time.
+    - Changed package name back to com.manefunction.utils to fix updates.
+
+1.5.38:
+    - Separate PrefabsTools from AssetsTolls.
+    - Added Save to Prefab(s) context menu to save a bunch of prefabs at once.
+    - Added Preferences page (Mane Settings). Contains a path for prefabs saving.
+    - Changed package name to com.manefunction.tools
+
+1.5.37:
+    - Improved EnumArrayOdds Attribute to work with public sum.
+
+1.5.36:
+    - Added ClampMin and ClampMax extensions for IComparable values.
+
+1.5.35:
+    - Fixed issues in IReadOnlyDictionary.Convert.
+
+1.5.34:
+    - Moved Dictionary.Convert extension to IReadOnlyDictionary.Convert.
+
+1.5.33:
+    - Added Convert extension for Dictionary.
+
+1.5.32:
+    - Fixed exceptions from Apply Prefab... checkers.
+    - Made some Editor Tools public.
+
 1.5.31:
     - Renamed from Mane Utils to Mane Tools.
     - Added availability checkers for Apply Prefab... methods.
