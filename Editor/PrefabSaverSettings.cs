@@ -64,7 +64,7 @@ namespace Mane.Editor
             }
             
             if (_showButtons)
-                EditorGUILayout.Space(25);
+                EditorGUILayout.Space();
             
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
