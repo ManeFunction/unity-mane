@@ -1,3 +1,6 @@
+1.6.6:
+    - Fixed exceptions in TimeSpanExtensions.
+
 1.6.5:
     - Made EditorTools.CreateDirectoryFromAssetPath public.
 
