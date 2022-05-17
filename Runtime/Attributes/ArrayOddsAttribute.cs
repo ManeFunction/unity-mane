@@ -13,7 +13,7 @@ namespace Mane.Inspector
         public bool IsHumanReadableNumeration { get; }
 
         public ArrayOddsAttribute(string totalWeightProperty, string customLabel = default, 
-            bool useNumeration = false, bool isHumanReadableNumeration = true)
+            bool useNumeration = true, bool isHumanReadableNumeration = true)
         {
             TotalWeightProperty = totalWeightProperty;
             CustomLabel = customLabel;

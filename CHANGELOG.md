@@ -1,3 +1,6 @@
+1.6.9:
+    - Changed some default options in ArrayOdds property.
+
 1.6.8:
     - Added custom labeling system to the new ArrayOdds property drawer.
 
