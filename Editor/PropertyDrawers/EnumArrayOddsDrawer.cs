@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-using System.Reflection;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Mane.Inspector.Editor

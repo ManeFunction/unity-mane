@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿using System.Linq;
+using Mane.Extensions;
+using UnityEditor;
 using UnityEngine;
 
 namespace Mane.Inspector.Editor
@@ -12,7 +14,26 @@ namespace Mane.Inspector.Editor
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             ArrayOddsAttribute attr = (ArrayOddsAttribute) attribute;
-            string newLabel = property.GetOddsLabel(label.text, attr.TotalWeightProperty);
+
+            string customLabel = label.text;
+            if (!string.IsNullOrWhiteSpace(attr.CustomLabel))
+            {
+                if (attr.UseNumeration)
+                {
+                    var s = customLabel.Split(' ');
+                    if (s.Length > 0)
+                    {
+                        int number = s.Last().ParseInt();
+                        if (attr.IsHumanReadableNumeration)
+                            number++;
+                        customLabel = attr.CustomLabel.Replace("{0}", number.ToString());
+                    }
+                }
+                else
+                    customLabel = attr.CustomLabel;
+            }
+            
+            string newLabel = property.GetOddsLabel(customLabel, attr.TotalWeightProperty);
             
             EditorGUI.PropertyField(position, property, new GUIContent(newLabel, label.tooltip), true);
         }

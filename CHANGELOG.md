@@ -1,3 +1,6 @@
+1.6.8:
+    - Added custom labeling system to the new ArrayOdds property drawer.
+
 1.6.7:
     - Added new ArrayOdds property attribute similar to EnumArrayOdds but for the plain arrays.
 
