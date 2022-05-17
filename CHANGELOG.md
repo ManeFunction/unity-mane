@@ -1,3 +1,6 @@
+1.6.7:
+    - Added new ArrayOdds property attribute similar to EnumArrayOdds but for the plain arrays.
+
 1.6.6:
     - Fixed exceptions in TimeSpanExtensions.
 

@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿using System.Globalization;
+using System.Reflection;
+using UnityEditor;
 using UnityEngine;
 
 namespace Mane.Inspector.Editor
@@ -57,6 +59,24 @@ namespace Mane.Inspector.Editor
             }
 
             return isDefault;
+        }
+
+        public static string GetOddsLabel(this SerializedProperty property,
+            string originalLabel, string totalWeightPropertyName)
+        {
+            string result = originalLabel;
+            
+            var obj = property.serializedObject.targetObject;
+            PropertyInfo totalWeightPropertyInfo = obj.GetType().GetProperty(totalWeightPropertyName, 
+                BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+            if (totalWeightPropertyInfo != null && totalWeightPropertyInfo.PropertyType == typeof(float))
+            {
+                float totalWeight = (float)totalWeightPropertyInfo.GetValue(obj);
+                float odds = property.floatValue / totalWeight;
+                result = $"{result} ({(odds * 100f).ToString("F2", CultureInfo.InvariantCulture)}%)";
+            }
+
+            return result;
         }
     }
 }
