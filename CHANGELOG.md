@@ -1,3 +1,6 @@
+1.6.10:
+    - Added CapitalizeFirstLetter() string extension.
+
 1.6.9:
     - Changed some default options in ArrayOdds property.
 
