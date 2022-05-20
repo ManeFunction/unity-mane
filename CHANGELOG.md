@@ -1,3 +1,6 @@
+1.6.11:
+    - Renamed CapitalizeFirstLetter() to ToUpperFirst().
+
 1.6.10:
     - Added CapitalizeFirstLetter() string extension.
 

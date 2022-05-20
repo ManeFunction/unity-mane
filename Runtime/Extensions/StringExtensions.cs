@@ -47,7 +47,7 @@ namespace Mane.Extensions
             return new string(charArray);
         }
         
-        public static string CapitalizeFirstLetter(this string str)
+        public static string ToUpperFirst(this string str)
         {
             if (string.IsNullOrWhiteSpace(str))
                 return str;
