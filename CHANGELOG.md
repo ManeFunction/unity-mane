@@ -1,3 +1,7 @@
+1.6.12:
+    - Added Status Event Sender mono behaviour that send events when object is enabling/disabling.
+    - Moved all "prefab" menus to the "Prefab" submenu.
+
 1.6.11:
     - Renamed CapitalizeFirstLetter() to ToUpperFirst().
 

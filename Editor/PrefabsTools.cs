@@ -7,10 +7,10 @@ namespace Mane.Editor
 {
     public static class PrefabsTools
     {
-        [MenuItem("GameObject/Apply Prefab(s) Changes", true, -10)]
+        [MenuItem("GameObject/Prefab/Apply Prefab(s) Changes", true, 1500)]
         private static bool ApplyPrefabsChecker() => IsPrefabSelected();
 
-        [MenuItem("GameObject/Apply Prefab(s) Changes", false, -10)]
+        [MenuItem("GameObject/Prefab/Apply Prefab(s) Changes", false, 1500)]
         private static void ApplyPrefabs(MenuCommand menuCommand)
         {
             GameObject obj = menuCommand.context as GameObject;
@@ -19,10 +19,10 @@ namespace Mane.Editor
             ApplyChanges(obj);
         }
 
-        [MenuItem("GameObject/Apply Prefab(s) Transform Changes", true, -9)]
+        [MenuItem("GameObject/Prefab/Apply Prefab(s) Transform Changes", true, 1501)]
         private static bool ApplyPrefabsTransformChecker() => IsPrefabSelected();
         
-        [MenuItem("GameObject/Apply Prefab(s) Transform Changes", false, -9)]
+        [MenuItem("GameObject/Prefab/Apply Prefab(s) Transform Changes", false, 1501)]
         private static void ApplyPrefabsTransform(MenuCommand menuCommand)
         {
             GameObject obj = menuCommand.context as GameObject;
@@ -31,10 +31,10 @@ namespace Mane.Editor
             ApplyTransformChanges(obj);
         }
 
-        [MenuItem("GameObject/Apply Prefab(s) Changes (+Transform)", true, -8)]
+        [MenuItem("GameObject/Prefab/Apply Prefab(s) Changes (+Transform)", true, 1502)]
         private static bool ApplyPrefabsAllChecker() => IsPrefabSelected();
         
-        [MenuItem("GameObject/Apply Prefab(s) Changes (+Transform)", false, -8)]
+        [MenuItem("GameObject/Prefab/Apply Prefab(s) Changes (+Transform)", false, 1502)]
         private static void ApplyPrefabsAll(MenuCommand menuCommand)
         {
             GameObject obj = menuCommand.context as GameObject;
@@ -70,11 +70,11 @@ namespace Mane.Editor
         }
         
 
-        [MenuItem("GameObject/Save to Prefab(s)", true, -20)]
+        [MenuItem("GameObject/Prefab/Save to Prefab(s)", true, 1000)]
         private static bool ValidateCreatePrefab() => Selection.activeGameObject != null 
             && !EditorUtility.IsPersistent(Selection.activeGameObject);
 
-        [MenuItem("GameObject/Save to Prefab(s)", false, -20)]
+        [MenuItem("GameObject/Prefab/Save to Prefab(s)", false, 1000)]
         private static void CreatePrefabs(MenuCommand menuCommand)
         {
             if (Selection.objects.Length > 1 && menuCommand.context != Selection.objects[0])
