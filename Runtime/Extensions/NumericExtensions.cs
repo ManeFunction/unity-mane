@@ -39,6 +39,8 @@ namespace Mane.Extensions
 
             return intValue / t;
         }
+        
+        public static int RoundTo(this float value, int n) => Mathf.RoundToInt(value / n) * n;
 
 
         public static bool IsEven(this int value) => (value >> 1) << 1 == value;

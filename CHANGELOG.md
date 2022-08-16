@@ -1,3 +1,6 @@
+1.6.13:
+    - Added int.RoundTo(int) extension to round ints to 5th, for example.
+
 1.6.12:
     - Added Status Event Sender mono behaviour that send events when object is enabling/disabling.
     - Moved all "prefab" menus to the "Prefab" submenu.
