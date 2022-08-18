@@ -1,3 +1,6 @@
+1.6.15:
+    - Prefab saver: Create a property field instead of path string.
+
 1.6.14:
     - Added int.RoundTo(int) extension.
 

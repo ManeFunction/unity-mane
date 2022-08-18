@@ -25,7 +25,7 @@ namespace Mane.Editor
         }
 
 
-        [SerializeField] private string _path;
+        [SerializeField] private DefaultAsset _targetFolder;
         [SerializeField] private bool _askEveryTime;
 
         private static GUIStyle _labelStyle;
@@ -39,7 +39,10 @@ namespace Mane.Editor
         
         private void Awake()
         {
-            _path = PrefabsTools.GetPrefabsPath();
+            GUID? folderGuid = PrefabsTools.GetPrefabsPathGuid();
+            _targetFolder = folderGuid != null
+                ? AssetDatabase.LoadAssetAtPath<DefaultAsset>(AssetDatabase.GUIDToAssetPath(folderGuid.Value))
+                : null;
             _askEveryTime = PrefabsTools.GetSavingPopupOption();
         }
 
@@ -67,14 +70,13 @@ namespace Mane.Editor
                 EditorGUILayout.Space(25);
             
             EditorGUILayout.Space();
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Saving path: ", _labelStyle, GUILayout.Width(100));
-            string path = EditorGUILayout.TextField(_path);
-            EditorGUILayout.EndHorizontal();
-            if (path != _path)
+            DefaultAsset targetFolder = (DefaultAsset)EditorGUILayout.ObjectField(
+                "Target Folder", _targetFolder, typeof(DefaultAsset), false);
+            if (targetFolder != null && targetFolder != _targetFolder)
             {
-                _path = path;
-                EditorPrefs.SetString(PrefabsTools.PrefabsPathKey, _path);
+                _targetFolder = targetFolder;
+                EditorPrefs.SetString(PrefabsTools.PrefabsPathKey,
+                    AssetDatabase.GUIDFromAssetPath(AssetDatabase.GetAssetPath(_targetFolder)).ToString());
             }
             
             EditorGUILayout.Space();
@@ -91,6 +93,7 @@ namespace Mane.Editor
             if (!_showButtons) return;
             
             EditorGUILayout.Space();
+            GUI.enabled = _targetFolder;
             EditorGUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
             if (GUILayout.Button("Save", _buttonStyle))
@@ -100,6 +103,7 @@ namespace Mane.Editor
             }
             GUILayout.FlexibleSpace();
             EditorGUILayout.EndHorizontal();
+            GUI.enabled = true;
         }
     }
 }
