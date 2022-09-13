@@ -1,3 +1,6 @@
+1.6.17:
+    - Renamed SetActiveRecursively to SetActiveStateRecursively to avoid conflicts with Unity's own SetActiveRecursively.
+
 1.6.16:
     - Added GameObject.SetActiveRecursively extension to set active states recursively.
     - Added GameObject.DoRecursively extension to invoke method foreach child.

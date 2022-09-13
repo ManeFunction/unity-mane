@@ -151,7 +151,7 @@ namespace Mane.Extensions
             }
         }
         
-        public static void SetActiveRecursively(this GameObject go, bool isActive)
+        public static void SetActiveStateRecursively(this GameObject go, bool isActive)
         {
             if (go == null) return;
 
