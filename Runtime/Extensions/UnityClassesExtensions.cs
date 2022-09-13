@@ -159,7 +159,7 @@ namespace Mane.Extensions
             foreach (Transform child in go.transform)
             {
                 if (child != null)
-                    SetActiveRecursively(child.gameObject, isActive);
+                    SetActiveStateRecursively(child.gameObject, isActive);
             }
         }
         

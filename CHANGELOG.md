@@ -1,3 +1,6 @@
+1.6.18:
+    - Fixed compilation error from 1.6.17.
+
 1.6.17:
     - Renamed SetActiveRecursively to SetActiveStateRecursively to avoid conflicts with Unity's own SetActiveRecursively.
 
