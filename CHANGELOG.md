@@ -1,3 +1,7 @@
+1.6.16:
+    - Added GameObject.SetActiveRecursively extension to set active states recursively.
+    - Added GameObject.DoRecursively extension to invoke method foreach child.
+
 1.6.15:
     - Prefab saver: Create a property field instead of path string.
 

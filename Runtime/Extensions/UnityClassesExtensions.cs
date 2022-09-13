@@ -150,6 +150,30 @@ namespace Mane.Extensions
                     SetSortingLayerRecursively(child.gameObject, newLayer, newOrder);
             }
         }
+        
+        public static void SetActiveRecursively(this GameObject go, bool isActive)
+        {
+            if (go == null) return;
+
+            go.SetActive(isActive);
+            foreach (Transform child in go.transform)
+            {
+                if (child != null)
+                    SetActiveRecursively(child.gameObject, isActive);
+            }
+        }
+        
+        public static void DoRecursively(this GameObject go, Action<GameObject> action)
+        {
+            if (go == null || action == null) return;
+
+            action(go);
+            foreach (Transform child in go.transform)
+            {
+                if (child != null)
+                    DoRecursively(child.gameObject, action);
+            }
+        }
 
         // There is no "legit" way to know is GameObject prefab
         // or not besides PrefabUtility, but it's not available
