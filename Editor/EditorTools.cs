@@ -23,13 +23,6 @@ namespace Mane.Editor
         [MenuItem("Mane/Take screenshot _F10", false, 902)]
         public static void CaptureScreenshot()
         {
-            if (!Application.isPlaying)
-            {
-                Debug.LogError("Can save screenshots only in playmode!");
-                
-                return;
-            }
-
             DateTime t = DateTime.Now;
             string scrName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + 
                              $"/Screenshot_{t.Year}_{t.Month:00}_{t.Day:00}_{t.Hour:00}_{t.Minute:00}_{t.Second:00}.png";

@@ -1,3 +1,6 @@
+1.6.19:
+    - Allow screenshoter to work in editor time.
+
 1.6.18:
     - Fixed compilation error from 1.6.17.
 
