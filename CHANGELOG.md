@@ -1,3 +1,6 @@
+1.6.20:
+    - Added Sprite Camera Follower to face sprite to camera. Override it to change target camera.
+
 1.6.19:
     - Allow screenshoter to work in editor time.
 
