@@ -19,7 +19,12 @@ namespace Mane
             }
         }
         
-        private void Update() =>
-            transform.LookAt(Camera.transform.position, -Vector3.up);
+        private void Update()
+        {
+            Camera cam = Camera;
+            if (!cam) return;
+        
+            transform.LookAt(cam.transform.position, -Vector3.up);
+        }
     }
 }

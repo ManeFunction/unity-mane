@@ -1,3 +1,6 @@
+1.6.22:
+    - Negate Camera Follower exception if no camera is found.
+
 1.6.21:
     - Made Sprite Camera Follower works in Editor mode as well.
 
