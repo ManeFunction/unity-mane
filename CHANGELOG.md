@@ -1,3 +1,6 @@
+1.6.21:
+    - Made Sprite Camera Follower works in Editor mode as well.
+
 1.6.20:
     - Added Sprite Camera Follower to face sprite to camera. Override it to change target camera.
 

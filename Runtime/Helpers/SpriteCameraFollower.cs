@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Mane
 {
+    [ExecuteAlways]
     public class SpriteCameraFollower : MonoBehaviour
     {
         private Camera _camera;
