@@ -1,3 +1,6 @@
+1.6.23:
+    - Added string.FormatColored() extensions that duplicate base Format method, but with rich text coloring for float and int values.
+
 1.6.22:
     - Negate Camera Follower exception if no camera is found.
 
