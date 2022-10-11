@@ -1,6 +1,9 @@
+1.6.25:
+    - Change some string.FormatColored() overrides signatures.
+
 1.6.24:
     - Added PrefabList<T> to easy UI list managing.
-    - Fixed some formatting issues in string.FormColored().
+    - Fixed some formatting issues in string.FormatColored().
 
 1.6.23:
     - Added string.FormatColored() extensions that duplicate base Format method, but with rich text coloring for float and int values.

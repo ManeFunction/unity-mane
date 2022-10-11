@@ -59,20 +59,20 @@ namespace Mane.Extensions
             return char.ToUpper(str[0]) + str.Substring(1);
         }
 
-        public static string FormatColored(this string str, string format, float value, Color color) =>
+        public static string FormatColored(this string str, float value, string format, Color color) =>
             string.Format(str, $"<color={color.ToHex()}>{value.ToString(format)}</color>");
 
         public static string FormatColored(this string str, 
-            string f1, float v1, Color c1,
-            string f2, float v2, Color c2) =>
+            float v1, string f1, Color c1,
+            float v2, string f2, Color c2) =>
             string.Format(str,
                 $"<color={c1.ToHex()}>{v1.ToString(f1)}</color>",
                 $"<color={c2.ToHex()}>{v2.ToString(f2)}</color>");
 
         public static string FormatColored(this string str,
-            string f1, float v1, Color c1,
-            string f2, float v2, Color c2,
-            string f3, float v3, Color c3) =>
+            float v1, string f1, Color c1,
+            float v2, string f2, Color c2,
+            float v3, string f3, Color c3) =>
             string.Format(str,
                 $"<color={c1.ToHex()}>{v1.ToString(f1)}</color>",
                 $"<color={c2.ToHex()}>{v2.ToString(f2)}</color>",
