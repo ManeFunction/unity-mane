@@ -1,3 +1,6 @@
+1.6.27:
+    - Replaced old string.FormatColored() extensions with more universal substrings versions.
+
 1.6.26:
     - Added item index to PrefabList initialization process.
 
