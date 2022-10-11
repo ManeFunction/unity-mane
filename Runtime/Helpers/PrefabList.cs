@@ -9,7 +9,7 @@ namespace Mane
         [SerializeField] private T _source;
         [SerializeField] private List<T> _elements = new List<T>();
         
-        public void Init(int count, Action<T> elementInitAction)
+        public void Init(int count, Action<T, int> elementInitAction)
         {
             for (int i = 0; i < count; i++)
             {
@@ -22,7 +22,7 @@ namespace Mane
                     _elements.Add(element);
                 }
                 
-                elementInitAction?.Invoke(element);
+                elementInitAction?.Invoke(element, i);
             }
             
             while (_elements.Count > count)

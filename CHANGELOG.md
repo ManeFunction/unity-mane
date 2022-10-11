@@ -1,3 +1,6 @@
+1.6.26:
+    - Added item index to PrefabList initialization process.
+
 1.6.25:
     - Change some string.FormatColored() overrides signatures.
 
