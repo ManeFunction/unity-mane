@@ -1,3 +1,6 @@
+1.6.29:
+    - Added Count and iterator to the PrefabList class.
+
 1.6.28:
     - Added string.ColorizeRich() extension to add colors to your text.
 

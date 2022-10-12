@@ -9,6 +9,10 @@ namespace Mane
         [SerializeField] private T _source;
         [SerializeField] private List<T> _elements = new List<T>();
         
+        public int Count => _elements.Count;
+        
+        public T this[int index] => _elements[index];
+        
         public void Init(int count, Action<T, int> elementInitAction)
         {
             for (int i = 0; i < count; i++)
