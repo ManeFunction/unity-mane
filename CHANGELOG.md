@@ -1,3 +1,6 @@
+1.6.28:
+    - Added string.ColorizeRich() extension to add colors to your text.
+
 1.6.27:
     - Replaced old string.FormatColored() extensions with more universal substrings versions.
 

@@ -95,5 +95,9 @@ namespace Mane.Extensions
 
             return string.Format(str, formattedArgs);
         }
+        
+        
+        public static string ColorizeRich(this string str, Color color) =>
+            $"<color={color.ToHex()}>{str}</color>";
     }
 }
