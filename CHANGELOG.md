@@ -1,3 +1,7 @@
+1.6.30:
+    - Added int and float MinMax serializable classes with Random value generator.
+    - Added Random.SelectFrom and Random.TrySelectFrom methods to select random elements from a list of sorted odds.
+
 1.6.29:
     - Added Count and iterator to the PrefabList class.
 
