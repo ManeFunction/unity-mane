@@ -87,7 +87,7 @@ namespace Mane
         /// <summary>
         /// Try to select an element from the list of 0-1 odds, from min to max.
         /// Highly recommended to use sorted list starting from the minimal chances!
-        /// Works via N dice throws, where N is collection length.
+        /// Works via 1-N dice throws, where N is collection length.
         /// So the first elements have bigger chances overall.
         /// If no element was selected, returns -1.
         /// </summary>
