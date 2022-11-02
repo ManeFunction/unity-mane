@@ -13,6 +13,19 @@ namespace Mane
             Min = min;
             Max = max;
         }
+        
+        public static MinMax operator *(MinMax value, float n) => 
+            new MinMax(value.Min * n, value.Max * n);
+        
+        public static MinMax operator *(float n, MinMax value) => value * n;
+        
+        public static MinMax operator /(MinMax value, float n) => 
+            new MinMax(value.Min / n, value.Max / n);
+        
+        public static MinMax operator /(float n, MinMax value) => value / n;
+        
+        public static MinMax operator +(MinMax a, MinMax b) =>
+            new MinMax(a.Min + b.Min, a.Max + b.Max);
 
         public float RandomBetween => UnityEngine.Random.Range(Min, Max);
     }
@@ -28,6 +41,19 @@ namespace Mane
             Min = min;
             Max = max;
         }
+        
+        public static MinMaxInt operator *(MinMaxInt value, int n) => 
+            new MinMaxInt(value.Min * n, value.Max * n);
+        
+        public static MinMaxInt operator *(int n, MinMaxInt value) => value * n;
+        
+        public static MinMaxInt operator /(MinMaxInt value, int n) => 
+            new MinMaxInt(value.Min / n, value.Max / n);
+        
+        public static MinMaxInt operator /(int n, MinMaxInt value) => value / n;
+        
+        public static MinMaxInt operator +(MinMaxInt a, MinMaxInt b) =>
+            new MinMaxInt(a.Min + b.Min, a.Max + b.Max);
 
         /// <summary>
         /// Both inclusive!

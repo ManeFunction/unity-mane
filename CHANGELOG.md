@@ -1,4 +1,5 @@
 1.6.31:
+    - Added math operators to MimMax classes. 
     - Fixed some Random methods summary.
 
 1.6.30:
