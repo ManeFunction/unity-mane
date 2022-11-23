@@ -1,3 +1,7 @@
+1.6.32:
+    - Added AnimationEventParticleSystemInvoker to invoke ParticleSystem.Play() on animation events.
+    - Changed Mane.StateMachine namespace to Mane.AnimatorStateMachine.
+
 1.6.31:
     - Added math operators to MimMax classes. 
     - Fixed some Random methods summary.

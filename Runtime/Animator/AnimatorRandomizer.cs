@@ -2,7 +2,7 @@
 using Mane.Inspector;
 using UnityEngine;
 
-namespace Mane.StateMachine
+namespace Mane.AnimatorStateMachine
 {
     public class AnimatorRandomizer : StateMachineBehaviour
     {
