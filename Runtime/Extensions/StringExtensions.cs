@@ -101,7 +101,7 @@ namespace Mane.Extensions
             $"<color={color.ToHex()}>{str}</color>";
         
         
-        private static string GetCountedString(int count, string one, string many, string more)
+        public static string GetCountedString(this int count, string one, string many, string more)
         {
             int tens = count % 100;
             if (tens > 5 && tens < 20)

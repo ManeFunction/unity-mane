@@ -1,3 +1,6 @@
+1.6.34:
+    - Fixed wrong privacy modifier on the last extension.
+
 1.6.33:
     - Added string.GetCountedString extension to select a string from a list based on a counter.
 
