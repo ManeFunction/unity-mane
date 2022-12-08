@@ -99,5 +99,20 @@ namespace Mane.Extensions
         
         public static string ColorizeRich(this string str, Color color) =>
             $"<color={color.ToHex()}>{str}</color>";
+        
+        
+        private static string GetCountedString(int count, string one, string many, string more)
+        {
+            int tens = count % 100;
+            if (tens > 5 && tens < 20)
+                return many;
+            
+            int units = count % 10;
+            if (units == 1)
+                return one;
+            if (units > 1 && units < 5)
+                return many;
+            return more;
+        }
     }
 }

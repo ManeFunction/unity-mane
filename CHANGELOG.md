@@ -1,3 +1,6 @@
+1.6.33:
+    - Added string.GetCountedString extension to select a string from a list based on a counter.
+
 1.6.32:
     - Added AnimationEventParticleSystemInvoker to invoke ParticleSystem.Play() on animation events.
     - Changed Mane.StateMachine namespace to Mane.AnimatorStateMachine.
