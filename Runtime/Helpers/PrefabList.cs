@@ -57,5 +57,13 @@ namespace Mane
             Destroy(_elements[index].gameObject);
             _elements.RemoveAt(index);
         }
+        
+        public void ClearElements()
+        {
+            foreach (T element in _elements)
+                Destroy(element.gameObject);
+            
+            _elements.Clear();
+        }
     }
 }

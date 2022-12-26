@@ -1,3 +1,6 @@
+1.6.35:
+    - Added ClearElements() method to PrefabList. 
+
 1.6.34:
     - Fixed wrong privacy modifier on the last extension.
 
