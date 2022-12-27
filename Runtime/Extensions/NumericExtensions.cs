@@ -59,5 +59,42 @@ namespace Mane.Extensions
         public static Vector3 ToVector3(this float value) => new Vector3(value, value, value);
 
         public static Vector4 ToVector4(this float value) => new Vector4(value, value, value, value);
+
+
+        public static int SafePlus(this int value, int add)
+        {
+            try
+            {
+                return checked(value + add);
+            }
+            catch (OverflowException)
+            {
+                return add > 0 ? int.MaxValue : int.MinValue;
+            }
+        }
+        
+        public static int SafeMinus(this int value, int remove)
+        {
+            try
+            {
+                return checked(value - remove);
+            }
+            catch (OverflowException)
+            {
+                return remove > 0 ? int.MinValue : int.MaxValue;
+            }
+        }
+        
+        public static int SafeMultiply(this int value, int multiplier)
+        {
+            try
+            {
+                return checked(value * multiplier);
+            }
+            catch (OverflowException)
+            {
+                return int.MaxValue;
+            }
+        }
     }
 }

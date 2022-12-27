@@ -1,3 +1,6 @@
+1.6.36:
+    - Added SafePlus(), SafeMinus() and SafeMultiply() int extensions to avoid overflows. 
+
 1.6.35:
     - Added ClearElements() method to PrefabList. 
 
