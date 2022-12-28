@@ -1,3 +1,6 @@
+1.6.37:
+    - Added RectTransform.Set...Offset() extension methods.
+
 1.6.36:
     - Added SafePlus(), SafeMinus() and SafeMultiply() int extensions to avoid overflows. 
 
