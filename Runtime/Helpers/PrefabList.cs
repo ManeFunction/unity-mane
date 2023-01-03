@@ -1,10 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mane
 {
-    public class PrefabList<T> : MonoBehaviour where T : Component
+    public class PrefabList<T> : MonoBehaviour, IEnumerable<T> where T : Component
     {
         [SerializeField] private T _source;
         [SerializeField] private List<T> _elements = new List<T>();
@@ -65,5 +66,9 @@ namespace Mane
             
             _elements.Clear();
         }
+
+        public IEnumerator<T> GetEnumerator() => _elements.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

@@ -1,3 +1,6 @@
+1.6.38:
+    - Made PrefabList IEnumerable<T> to allow for foreach loops and LINQ.
+
 1.6.37:
     - Added RectTransform.Set...Offset() extension methods.
 
