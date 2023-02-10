@@ -1,3 +1,6 @@
+1.6.39:
+    - Added AnimationEventInvoker to invoke methods on animation events.
+
 1.6.38:
     - Made PrefabList IEnumerable<T> to allow for foreach loops and LINQ.
 
