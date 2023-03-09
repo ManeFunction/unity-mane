@@ -1,3 +1,6 @@
+1.6.40:
+    - Added GetWorldCoordinates() extension to RectTransform.
+
 1.6.39:
     - Added AnimationEventInvoker to invoke methods on animation events.
 

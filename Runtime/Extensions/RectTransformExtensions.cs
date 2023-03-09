@@ -15,5 +15,21 @@ namespace Mane.Extensions
 
         public static void SetBottomOffset(this RectTransform rt, float bottom) => 
             rt.offsetMin = new Vector2(rt.offsetMin.x, bottom);
+        
+        
+        public static Rect GetWorldCoordinates(this RectTransform uiElement)
+        {
+            if (uiElement == null)
+                return Rect.zero;
+            
+            var worldCorners = new Vector3[4];
+            uiElement.GetWorldCorners (worldCorners);
+            
+            return new Rect(
+                worldCorners[0].x,
+                worldCorners[0].y,
+                worldCorners[2].x - worldCorners[0].x,
+                worldCorners[2].y - worldCorners[0].y);
+        }
     }
 }
