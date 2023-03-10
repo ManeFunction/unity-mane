@@ -213,6 +213,31 @@ namespace Mane.Extensions
             return vClosestPoint;
         }
         
+        public static bool IsInsideRectangle(this Vector2 p, Rect rect) =>
+            p.IsInsideRectangle(rect.min, new Vector2(rect.xMin, rect.yMax),
+                                rect.max, new Vector2(rect.xMax, rect.yMin));
+        
+        public static bool IsInsideRectangle(this Vector2 p, params Vector2[] rect)
+        {
+            if (rect.Length != 4)
+                throw new ArgumentOutOfRangeException(nameof(rect), "The rect argument must be a 4 point array!");
+
+            return IsInsideRectangle(p, rect[0], rect[1], rect[2], rect[3]);
+        }
+    
+        public static bool IsInsideRectangle(this Vector2 p, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4)
+        {
+            float dot1 = Vector2.Dot(p - p1, p2 - p1);
+            float dot2 = Vector2.Dot(p - p1, p4 - p1);
+            float dot3 = Vector2.Dot(p - p3, p4 - p3);
+            float dot4 = Vector2.Dot(p - p3, p2 - p3);
+
+            return dot1 >= 0 && dot1 <= (p2 -p1).sqrMagnitude &&
+                   dot2 >= 0 && dot2 <= (p4 -p1).sqrMagnitude &&
+                   dot3 >= 0 && dot3 <= (p4 -p3).sqrMagnitude &&
+                   dot4 >= 0 && dot4 <= (p2 -p3).sqrMagnitude;
+        }
+        
         // Thanks to Saeed Amiri (https://stackoverflow.com/questions/4243042/c-sharp-point-in-polygon)
         /// <summary>
         /// Define polygon with points CW or CCW, works with convex polygons

@@ -1,3 +1,6 @@
+1.6.41:
+    - Added IsInsideRectangle() extensions to Vector2.
+
 1.6.40:
     - Added GetWorldCoordinates() extension to RectTransform.
 
