@@ -1,3 +1,6 @@
+1.6.42:
+    - Added TransformCopierWindow (Mane/Transform Copier) to copy transform data from one bunch of object to another.
+
 1.6.41:
     - Added IsInsideRectangle() extensions to Vector2.
 
