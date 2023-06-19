@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Codice.CM.SEIDInfo;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,9 +11,14 @@ namespace Mane.Inspector.Editor
     public class SerializedListPropertyDrawer : PropertyDrawer
     {
         private const string None = "None";
+        private const string NotSupported = "Only string and integer are supported!";
+        private const string InheritFrom = "Inherit your asset from SerializedListAsset!";
+        private const string ListIsEmpty = "Serialized List is empty!";
+
+        private static readonly List<Type> InitedTypes = new List<Type>();
 
         private bool _isNone;
-        private string[] _chestIDs;
+        private string[] _list;
         private bool _isInteger;
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label) =>
@@ -20,46 +26,90 @@ namespace Mane.Inspector.Editor
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
+            // check if property is string or integer
             _isInteger = property.propertyType == SerializedPropertyType.Integer;
             if (!_isInteger && property.propertyType != SerializedPropertyType.String)
             {
-                base.OnGUI(position, property, label);
+                ShowError(position, property, NotSupported);
 
                 return;
             }
 
-            if (_chestIDs == null)
+            // get list to show
+            if (_list == null)
             {
                 SerializedListAttribute attr = attribute as SerializedListAttribute;
+                
+                // check if asset was loaded
+                if (!InitedTypes.Contains(attr.ListType))
+                {
+                    // get asset path
+                    FilePathAttribute pathAttribute = attr.ListType.GetCustomAttribute<FilePathAttribute>();
+                    if (pathAttribute != null)
+                    {
+                        string path = (string)typeof(FilePathAttribute)
+                            .GetProperty("filepath", BindingFlags.NonPublic | BindingFlags.Instance)
+                            ?.GetValue(pathAttribute);
 
+                        // load asset and store the state
+                        AssetDatabase.LoadAssetAtPath($"Assets/{path}", attr.ListType);
+                        
+                        InitedTypes.Add(attr.ListType);
+                    }
+                }
+
+                // check if asset is inherited from SerializedListAsset
                 if (attr.ListType.BaseType != typeof(SerializedListAsset))
                 {
-                    base.OnGUI(position, property, label);
+                    ShowError(position, property, InheritFrom);
                     
                     return;
                 }
 
-                Type type = attr.ListType;
-                Type parentType = type.BaseType;
-                var listProperty = parentType.GetProperty("List");
-                string[] list = (string[])listProperty.GetValue(null);
+                // get list from asset
+                string[] list = (string[])attr.ListType?.BaseType
+                    ?.GetProperty("List", BindingFlags.Public | BindingFlags.Static)
+                    ?.GetValue(null);
                 
+                // check if something wrong with inheritance
+                if (list == null)
+                {
+                    ShowError(position, property, InheritFrom);
+                    
+                    return;
+                }
+                
+                // check if list is empty
+                if (list.Length == 0)
+                {
+                    ShowError(position, property, ListIsEmpty);
+                    
+                    return;
+                }
+                
+                // manage None option
                 _isNone = attr.NoneField;
-                _chestIDs = _isNone
+                _list = _isNone
                     ? new[] { None }.Concat(list).ToArray()
                     : list;
             }
 
+            // read value
             int index = _isInteger 
                 ? _isNone ? property.intValue + 1 : property.intValue
-                : Mathf.Max(0, Array.IndexOf(_chestIDs, property.stringValue));
+                : Mathf.Max(0, Array.IndexOf(_list, property.stringValue));
             
-            index = EditorGUI.Popup(position, property.displayName, index, _chestIDs);
+            // draw dropdown
+            index = EditorGUI.Popup(position, property.displayName, index, _list);
 
+            // write value
             if (_isInteger)
                 property.intValue = _isNone ? index - 1 : index;
             else
-                property.stringValue = _isNone && index == 0 ? string.Empty : _chestIDs[index];
+                property.stringValue = _isNone && index == 0 ? string.Empty : _list[index];
         }
+
+        private void ShowError(Rect position, SerializedProperty property, string label) => 
+            EditorGUI.LabelField(position, $"{property.name}: {label}");
     }
 }

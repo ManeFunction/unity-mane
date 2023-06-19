@@ -1,3 +1,6 @@
+1.6.44:
+    - Fixed compilation issues caused with the last update. Improved Serialized List attribute workflow.
+
 1.6.43:
     - Added Serialized List attribute, to serialize string or int lists from the custom asset lists. Amazing feature for GD people to expand enum-like dropdown fields without using any code.
 
