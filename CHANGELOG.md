@@ -1,3 +1,6 @@
+1.7.1:
+    - Improved errors handling in the Serialized List attribute.
+
 1.7.0:
     - Finally finished new Serialized List feature. Based on Scriptable Objects now.
 

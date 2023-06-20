@@ -14,6 +14,7 @@ namespace Mane.Inspector.Editor
         private const string NotSupported = "Only string and integer are supported!";
         private const string InheritFrom = "Inherit your asset from SerializedListAsset!";
         private const string ListIsEmpty = "Serialized List is empty!";
+        private const string AssetNotFound = "Asset not found at: {0}!";
 
         private static readonly Dictionary<Type, SerializedListAsset> InitedTypes =
             new Dictionary<Type, SerializedListAsset>();
@@ -50,13 +51,20 @@ namespace Mane.Inspector.Editor
                     {
                         string path = pathAttribute.Path;
 
-                        // load asset and store the state
-                        listAsset = (SerializedListAsset)AssetDatabase.LoadAssetAtPath(path, attr.ListType);
-
                         // check if asset is inherited from SerializedListAsset
                         if (attr.ListType.BaseType != typeof(SerializedListAsset))
                         {
                             ShowError(position, property, InheritFrom);
+                            
+                            return;
+                        }
+
+                        // load asset and store the state
+                        listAsset = (SerializedListAsset)AssetDatabase.LoadAssetAtPath(path, attr.ListType);
+                        
+                        if (listAsset == null)
+                        {
+                            ShowError(position, property, string.Format(AssetNotFound, path));
                             
                             return;
                         }
