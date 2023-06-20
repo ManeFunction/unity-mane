@@ -15,7 +15,8 @@ namespace Mane.Inspector.Editor
         private const string InheritFrom = "Inherit your asset from SerializedListAsset!";
         private const string ListIsEmpty = "Serialized List is empty!";
 
-        private static readonly List<Type> InitedTypes = new List<Type>();
+        private static readonly Dictionary<Type, SerializedListAsset> InitedTypes =
+            new Dictionary<Type, SerializedListAsset>();
 
         private bool _isNone;
         private string[] _list;
@@ -41,7 +42,7 @@ namespace Mane.Inspector.Editor
                 SerializedListAttribute attr = attribute as SerializedListAttribute;
                 
                 // check if asset was loaded
-                if (!InitedTypes.Contains(attr.ListType))
+                if (!InitedTypes.ContainsKey(attr.ListType))
                 {
                     // get asset path
                     FilePathAttribute pathAttribute = attr.ListType.GetCustomAttribute<FilePathAttribute>();
@@ -52,9 +53,10 @@ namespace Mane.Inspector.Editor
                             ?.GetValue(pathAttribute);
 
                         // load asset and store the state
-                        AssetDatabase.LoadAssetAtPath($"Assets/{path}", attr.ListType);
+                        SerializedListAsset listAsset =
+                            AssetDatabase.LoadAssetAtPath<SerializedListAsset>($"Assets/{path}");
                         
-                        InitedTypes.Add(attr.ListType);
+                        InitedTypes.Add(attr.ListType, listAsset);
                     }
                 }
 
