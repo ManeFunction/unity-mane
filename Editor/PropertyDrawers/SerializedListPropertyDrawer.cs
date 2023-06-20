@@ -42,41 +42,31 @@ namespace Mane.Inspector.Editor
                 SerializedListAttribute attr = attribute as SerializedListAttribute;
                 
                 // check if asset was loaded
-                if (!InitedTypes.ContainsKey(attr.ListType))
+                if (!InitedTypes.TryGetValue(attr.ListType, out SerializedListAsset listAsset))
                 {
                     // get asset path
                     FilePathAttribute pathAttribute = attr.ListType.GetCustomAttribute<FilePathAttribute>();
                     if (pathAttribute != null)
                     {
-                        string path = (string)typeof(FilePathAttribute)
-                            .GetProperty("filepath", BindingFlags.NonPublic | BindingFlags.Instance)
-                            ?.GetValue(pathAttribute);
+                        string path = pathAttribute.Path;
 
                         // load asset and store the state
-                        SerializedListAsset listAsset =
-                            (SerializedListAsset)AssetDatabase.LoadAssetAtPath($"Assets/{path}", attr.ListType);
+                        listAsset = (SerializedListAsset)AssetDatabase.LoadAssetAtPath(path, attr.ListType);
+
+                        // check if asset is inherited from SerializedListAsset
+                        if (attr.ListType.BaseType != typeof(SerializedListAsset))
+                        {
+                            ShowError(position, property, InheritFrom);
+                            
+                            return;
+                        }
                         
                         InitedTypes.Add(attr.ListType, listAsset);
                     }
                 }
-
-                // check if asset is inherited from SerializedListAsset
-                if (attr.ListType.BaseType != typeof(SerializedListAsset))
-                {
-                    ShowError(position, property, InheritFrom);
-                    
-                    return;
-                }
-
-                // get list from asset
-                Type type = attr.ListType;
-                Type baseType = type?.BaseType;
-                PropertyInfo listProp = baseType
-                    ?.GetProperty("List", BindingFlags.Public | BindingFlags.Static);
-                string[] list = (string[])listProp?.GetValue(null);
                 
                 // check if something wrong with inheritance
-                if (list == null)
+                if (listAsset == null || listAsset.List == null)
                 {
                     ShowError(position, property, InheritFrom);
                     
@@ -84,7 +74,7 @@ namespace Mane.Inspector.Editor
                 }
                 
                 // check if list is empty
-                if (list.Length == 0)
+                if (listAsset.List.Length == 0)
                 {
                     ShowError(position, property, ListIsEmpty);
                     
@@ -94,8 +84,8 @@ namespace Mane.Inspector.Editor
                 // manage None option
                 _isNone = attr.NoneField;
                 _list = _isNone
-                    ? new[] { None }.Concat(list).ToArray()
-                    : list;
+                    ? new[] { None }.Concat(listAsset.List).ToArray()
+                    : listAsset.List;
             }
 
             // read value

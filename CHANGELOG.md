@@ -1,3 +1,6 @@
+1.7.0:
+    - Finally finished new Serialized List feature. Based on Scriptable Objects now.
+
 1.6.47:
     - Another test... Sadly, I can't reproduce the issue in the test project.
 
