@@ -54,7 +54,7 @@ namespace Mane.Inspector.Editor
 
                         // load asset and store the state
                         SerializedListAsset listAsset =
-                            AssetDatabase.LoadAssetAtPath<SerializedListAsset>($"Assets/{path}");
+                            (SerializedListAsset)AssetDatabase.LoadAssetAtPath($"Assets/{path}", attr.ListType);
                         
                         InitedTypes.Add(attr.ListType, listAsset);
                     }

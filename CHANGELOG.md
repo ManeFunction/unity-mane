@@ -1,3 +1,6 @@
+1.6.47:
+    - Another test... Sadly, I can't reproduce the issue in the test project.
+
 1.6.46:
     - Trying to resolve strange issues that appears in real projects, but not reproducible in the test.
 
