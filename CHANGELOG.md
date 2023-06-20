@@ -1,3 +1,6 @@
+1.6.45:
+    - Decomposed some code to ease debug process.
+
 1.6.44:
     - Fixed compilation issues caused with the last update. Improved Serialized List attribute workflow.
 

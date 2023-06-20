@@ -67,9 +67,11 @@ namespace Mane.Inspector.Editor
                 }
 
                 // get list from asset
-                string[] list = (string[])attr.ListType?.BaseType
-                    ?.GetProperty("List", BindingFlags.Public | BindingFlags.Static)
-                    ?.GetValue(null);
+                Type type = attr.ListType;
+                Type baseType = type?.BaseType;
+                PropertyInfo listProp = baseType
+                    ?.GetProperty("List", BindingFlags.Public | BindingFlags.Static);
+                string[] list = (string[])listProp?.GetValue(null);
                 
                 // check if something wrong with inheritance
                 if (list == null)
