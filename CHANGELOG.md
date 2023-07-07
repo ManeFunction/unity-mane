@@ -1,3 +1,6 @@
+1.7.2:
+    - Serialized List: Added feature to get access to the list content from the runtime.
+
 1.7.1:
     - Improved errors handling in the Serialized List attribute.
 
