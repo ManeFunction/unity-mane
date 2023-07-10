@@ -1,3 +1,6 @@
+1.7.3:
+    - Added Enum.IsObsolete check.
+
 1.7.2:
     - Serialized List: Added feature to get access to the list content from the runtime.
 
