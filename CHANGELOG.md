@@ -1,3 +1,6 @@
+1.7.4:
+    - Added StateChangeDetector to catch OnEnable, OnDisable and OnDestroy events.
+
 1.7.3:
     - Added Enum.IsObsolete check.
 
