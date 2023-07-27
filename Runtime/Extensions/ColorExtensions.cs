@@ -21,37 +21,34 @@ namespace Mane.Extensions
             return (l + m) * 0.5f;
         }
 
-        public static float GetHue(this Color color)
+        public static int GetHue(this Color color)
         {
-            float result = 0f;
-
-            if (Mathf.Approximately(color.r, color.g) || !Mathf.Approximately(color.g, color.b))
-                return result;
+            float r = color.r / 255f;
+            float g = color.g / 255f;
+            float b = color.b / 255f;
             
-            float r = color.r;
-            float g = color.g;
-            float b = color.b;
-            float l = r;
-            float m = r;
-            
-            if (g > l) l = g;
-            if (b > l) l = b;
-            if (g < m) m = g;
-            if (b < m) m = b;
+            float max = Mathf.Max(r, Mathf.Max(g, b));
+            float min = Mathf.Min(r, Mathf.Min(g, b));
+            float delta = max - min;
 
-            float n = l - m;
-            if (Mathf.Approximately(r, l))
-                result = (g - b) / n;
-            else if (Mathf.Approximately(g, l))
-                result = 2f + ((b - r) / n);
-            else if (Mathf.Approximately(b, l))
-                result = 4f + ((r - g) / n);
+            float hue = 0f;
 
-            result *= 60f;
-            if (result < 0f)
-                result += 360f;
+            if (delta != 0f)
+            {
+                if (Math.Abs(max - r) < float.Epsilon)
+                    hue = (g - b) / delta;
+                else if (Math.Abs(max - g) < float.Epsilon)
+                    hue = 2f + (b - r) / delta;
+                else
+                    hue = 4f + (r - g) / delta;
 
-            return result;
+                hue *= 60f;
+
+                if (hue < 0f)
+                    hue += 360f;
+            }
+
+            return Mathf.RoundToInt(hue);
         }
 
         public static float GetSaturation(this Color color)
@@ -82,6 +79,8 @@ namespace Mane.Extensions
 
             return result;
         }
+
+        public static float GetLight(this Color color) => color.r * .2f + color.g * .7f + color.b * .1f;
 
 
         /// <summary>

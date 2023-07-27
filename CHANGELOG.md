@@ -1,3 +1,8 @@
+1.8.0:
+    - Added Hue, Saturation, Brightness and Light fields to Color Picker.
+    - Optimize Color Picker UI logic.
+    - Fixed not working Color.GetHue() extension.
+
 1.7.4:
     - Added StateChangeDetector to catch OnEnable, OnDisable and OnDestroy events.
 

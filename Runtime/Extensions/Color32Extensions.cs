@@ -85,6 +85,13 @@ namespace Mane.Extensions
             return c.GetSaturation();
         }
 
+        public static float GetLight(this Color32 color)
+        {
+            Color c = color;
+            
+            return c.GetLight();
+        }
+
 
         /// <summary>
         /// Shift RGB color channels

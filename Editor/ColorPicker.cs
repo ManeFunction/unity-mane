@@ -1,4 +1,5 @@
-﻿using Mane.Extensions;
+﻿using System.Globalization;
+using Mane.Extensions;
 using UnityEngine;
 using UnityEditor;
 
@@ -12,7 +13,28 @@ namespace Mane.Editor
 
         [SerializeField] private Color _color = Color.white;
 
+        private string _hexText;
+        private string _codeText;
+        
+        private string _hue;
+        private int _hueInt;
+        
+        private string _saturation;
+        private int _saturationInt;
+        
+        private string _brightness;
+        private int _brightnessInt;
+
+        private string _light;
+        private int _lightInt;
+
         private static GUIStyle _labelStyle;
+        
+        private void OnEnable()
+        {
+            _hexText = _color.ToHex();
+            UpdateReadOnlyFields();
+        }
 
         private void OnGUI()
         {
@@ -27,36 +49,44 @@ namespace Mane.Editor
             // title
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Color");
-            _color = EditorGUILayout.ColorField(_color);
+            Color newColor = EditorGUILayout.ColorField(_color);
             EditorGUILayout.Space();
 
             // channel values
-            _color.r = DrawChannel(_color.r, "R");
-            _color.g = DrawChannel(_color.g, "G");
-            _color.b = DrawChannel(_color.b, "B");
-            _color.a = DrawChannel(_color.a, "A");
+            newColor.r = DrawChannel(newColor.r, "R");
+            newColor.g = DrawChannel(newColor.g, "G");
+            newColor.b = DrawChannel(newColor.b, "B");
+            newColor.a = DrawChannel(newColor.a, "A");
+            
+            if (CheckColorChanged(newColor)) return;
 
             // color to hex
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("HEX", _labelStyle, GUILayout.Width(30));
-            string hex = EditorGUILayout.TextField(_color.ToHex());
+            EditorGUILayout.LabelField("HEX", _labelStyle, GUILayout.Width(30f));
+            string newHex = EditorGUILayout.TextField(_hexText);
             EditorGUILayout.EndHorizontal();
-
-            // hex to color
-            Color c;
-            if (ColorUtility.TryParseHtmlString(hex, out c))
-                _color = c;
+            
+            if (CheckHexChanged(newHex)) return;
+            
+            // color components
+            EditorGUILayout.Space();
+            DrawReadOnlyField("Hue", _hue, _hueInt);
+            DrawReadOnlyField("Saturation", _saturation, _saturationInt);
+            DrawReadOnlyField("Brightness", _brightness, _brightnessInt);
+            
+            EditorGUILayout.Space();
+            DrawReadOnlyField("Light", _light, _lightInt);
 
             // c# script
             EditorGUILayout.Space();
-            EditorGUILayout.TextField($"new Color({_color.r:n3}f, {_color.g:n3}f, {_color.b:n3}f, {_color.a:n3}f)");
+            EditorGUILayout.TextField(_codeText);
         }
 
         private float DrawChannel(float value, string label)
         {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField(label, _labelStyle, GUILayout.Width(15));
+            EditorGUILayout.LabelField(label, _labelStyle, GUILayout.Width(15f));
             value = EditorGUILayout.FloatField(value);
             value = EditorGUILayout.IntField((int)(255 * value)) / 255f;
             EditorGUILayout.EndHorizontal();
@@ -65,5 +95,67 @@ namespace Mane.Editor
 
             return value;
         }
+        
+        private void DrawReadOnlyField(string label, string value, int intValue)
+        {
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField(label, _labelStyle, GUILayout.Width(65f));
+            EditorGUILayout.TextField(value);
+            EditorGUILayout.IntField(intValue);
+            EditorGUILayout.EndHorizontal();
+        }
+
+        private bool CheckColorChanged(Color color)
+        {
+            if (_color == color)
+                return false;
+
+            _color = color;
+            _hexText = _color.ToHex();
+            
+            UpdateReadOnlyFields();
+
+            return true;
+        }
+
+        private bool CheckHexChanged(string hex)
+        {
+            if (_hexText == hex)
+                return false;
+
+            if (ColorUtility.TryParseHtmlString(hex, out Color color))
+            {
+                _color = color;
+                _hexText = hex;
+                
+                UpdateReadOnlyFields();
+            }
+            else
+                _hexText = _color.ToHex();
+
+            return true;
+        }
+
+        private void UpdateReadOnlyFields()
+        {
+            _codeText = GetCodeText();
+            
+            _hueInt = _color.GetHue();
+            _hue = (_hueInt / 360f).ToString(CultureInfo.InvariantCulture);
+            
+            float saturation = _color.GetSaturation();
+            _saturation = saturation.ToString(CultureInfo.InvariantCulture);
+            _saturationInt = (int)(saturation * 100);
+            
+            float brightness = _color.GetBrightness();
+            _brightness = brightness.ToString(CultureInfo.InvariantCulture);
+            _brightnessInt = (int)(brightness * 255);
+            
+            float light = _color.GetLight();
+            _light = light.ToString(CultureInfo.InvariantCulture);
+            _lightInt = (int)(light * 100);
+        }
+
+        private string GetCodeText() => $"new Color({_color.r:n3}f, {_color.g:n3}f, {_color.b:n3}f, {_color.a:n3}f)";
     }
 }
