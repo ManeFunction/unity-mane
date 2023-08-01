@@ -1,3 +1,7 @@
+1.8.1:
+    - Added ComponentReactivator script to re-enable scripts within a few frames after loading.
+    - Added script to calculate GameObjects, Components and Vertices count in the scene.
+
 1.8.0:
     - Added Hue, Saturation, Brightness and Light fields to Color Picker.
     - Optimize Color Picker UI logic.
