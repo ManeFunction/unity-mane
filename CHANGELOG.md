@@ -1,3 +1,6 @@
+1.8.2:
+    - Color Picker: Automatically applies HEX color from the clipboard.
+
 1.8.1:
     - Added ComponentReactivator script to re-enable scripts within a few frames after loading.
     - Added script to calculate GameObjects, Components and Vertices count in the scene.

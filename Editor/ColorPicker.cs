@@ -46,10 +46,25 @@ namespace Mane.Editor
                 };
             }
 
+            Color newColor = _color;
+            
+            // check clipboard
+            string buffer = EditorGUIUtility.systemCopyBuffer;
+            if (!string.IsNullOrWhiteSpace(buffer))
+            {
+                if (ColorUtility.TryParseHtmlString(buffer, out Color color))
+                    newColor = color;
+                else if ((buffer.Length == 6 || buffer.Length == 8) &&
+                         ColorUtility.TryParseHtmlString("#" + buffer, out color))
+                    newColor = color;
+            }
+            
+            if (CheckColorChanged(newColor)) return;
+
             // title
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Color");
-            Color newColor = EditorGUILayout.ColorField(_color);
+            newColor = EditorGUILayout.ColorField(_color);
             EditorGUILayout.Space();
 
             // channel values
