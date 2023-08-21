@@ -7,10 +7,12 @@ namespace Mane
     [ExecuteAlways]
     [RequireComponent(typeof(Text))]
     [RequireComponent(typeof(LayoutElement))]
+    [RequireComponent(typeof(ContentSizeFitter))]
     public class MaxTextSize : MonoBehaviour
     {
         [SerializeField] private Text _text;
         [SerializeField] private LayoutElement _layoutElement;
+        [SerializeField] private ContentSizeFitter _contentSizeFitter;
         
         [SerializeField] private float _maxWidth = -1;
         [SerializeField] private float _maxHeight = -1;
@@ -23,6 +25,7 @@ namespace Mane
         {
             _text = gameObject.GetRequiredComponent<Text>();
             _layoutElement = gameObject.GetRequiredComponent<LayoutElement>();
+            _contentSizeFitter = gameObject.GetRequiredComponent<ContentSizeFitter>();
             
             ReCalculateLayout();
         }
@@ -40,8 +43,29 @@ namespace Mane
         
         private void ReCalculateLayout()
         {
-            _layoutElement.preferredWidth = _maxWidth >= 0f ? Mathf.Min(_text.preferredWidth, _maxWidth) : -1f;
-            _layoutElement.preferredHeight = _maxHeight >= 0f ? Mathf.Min(_text.preferredHeight, _maxHeight) : -1f;
+            // width
+            if (_maxWidth >= 0f)
+            {
+                _layoutElement.preferredWidth = Mathf.Min(_text.preferredWidth, _maxWidth);
+                _contentSizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+            }
+            else
+            {
+                _layoutElement.preferredWidth = -1f;
+                _contentSizeFitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
+            }
+
+            // height
+            if (_maxHeight >= 0f)
+            {
+                _layoutElement.preferredHeight = Mathf.Min(_text.preferredHeight, _maxHeight);
+                _contentSizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            }
+            else
+            {
+                _layoutElement.preferredHeight = -1f;
+                _contentSizeFitter.verticalFit = ContentSizeFitter.FitMode.Unconstrained;
+            }
         }
     }
 }

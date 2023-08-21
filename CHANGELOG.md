@@ -1,3 +1,6 @@
+1.8.4:
+    - Improved MaxTextSize with ContentSizeFitter support.
+
 1.8.3:
     - Added RectTransformChangedCatcher to catch RectTransform changes.
     - Added MaxTextSize to fit text into the exact box.
