@@ -28,7 +28,8 @@ namespace Mane
         {
             _text = gameObject.GetRequiredComponent<Text>();
             _layoutElement = gameObject.GetRequiredComponent<LayoutElement>();
-            _contentSizeFitter = gameObject.GetRequiredComponent<ContentSizeFitter>();
+            
+            _contentSizeFitter = gameObject.GetComponent<ContentSizeFitter>();
             
             ReCalculateLayout();
         }

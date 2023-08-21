@@ -1,3 +1,6 @@
+1.9.0:
+    - Improved MaxTextSize editor workflow.
+
 1.8.6:
     - MaxTextSize: Made ContentSizeFitter optional to proper work with Layouts. 
 
