@@ -10,8 +10,11 @@ namespace Mane
     [RequireComponent(typeof(ContentSizeFitter))]
     public class MaxTextSize : MonoBehaviour
     {
+        [Header("Required components")]
         [SerializeField] private Text _text;
         [SerializeField] private LayoutElement _layoutElement;
+        
+        [Header("Optional components")]
         [SerializeField] private ContentSizeFitter _contentSizeFitter;
         
         [SerializeField] private float _maxWidth = -1;
@@ -47,24 +50,35 @@ namespace Mane
             if (_maxWidth >= 0f)
             {
                 _layoutElement.preferredWidth = Mathf.Min(_text.preferredWidth, _maxWidth);
-                _contentSizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+                TrySetContentSizeFitter(ContentSizeFitter.FitMode.PreferredSize, true);
             }
             else
             {
                 _layoutElement.preferredWidth = -1f;
-                _contentSizeFitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
+                TrySetContentSizeFitter(ContentSizeFitter.FitMode.Unconstrained, true);
             }
 
             // height
             if (_maxHeight >= 0f)
             {
                 _layoutElement.preferredHeight = Mathf.Min(_text.preferredHeight, _maxHeight);
-                _contentSizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+                TrySetContentSizeFitter(ContentSizeFitter.FitMode.PreferredSize, false);
             }
             else
             {
                 _layoutElement.preferredHeight = -1f;
-                _contentSizeFitter.verticalFit = ContentSizeFitter.FitMode.Unconstrained;
+                TrySetContentSizeFitter(ContentSizeFitter.FitMode.Unconstrained, false);
+            }
+            
+            
+            void TrySetContentSizeFitter(ContentSizeFitter.FitMode fitMode, bool horizontal)
+            {
+                if (!_contentSizeFitter) return;
+                
+                if (horizontal)
+                    _contentSizeFitter.horizontalFit = fitMode;
+                else
+                    _contentSizeFitter.verticalFit = fitMode;
             }
         }
     }

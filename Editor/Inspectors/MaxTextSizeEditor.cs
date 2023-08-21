@@ -35,7 +35,7 @@ namespace Mane.Editor
             EditorGUILayout.PropertyField(_contentSizeFitterProperty);
             
             GUILayout.Space(10f);
-            
+            EditorGUILayout.LabelField("Settings", EditorStyles.boldLabel);
             LayoutElementField(_maxWidthProperty, 0);
             LayoutElementField(_maxHeightProperty, 0);
 
