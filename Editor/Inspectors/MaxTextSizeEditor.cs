@@ -9,6 +9,7 @@ namespace Mane.Editor
     {
         private SerializedProperty _textProperty;
         private SerializedProperty _layoutElementProperty;
+        private SerializedProperty _contentSizeFitterProperty;
         
         private SerializedProperty _maxWidthProperty;
         private SerializedProperty _maxHeightProperty;
@@ -18,6 +19,7 @@ namespace Mane.Editor
         {
             _textProperty = serializedObject.FindProperty("_text");
             _layoutElementProperty = serializedObject.FindProperty("_layoutElement");
+            _contentSizeFitterProperty = serializedObject.FindProperty("_contentSizeFitter");
             
             _maxWidthProperty = serializedObject.FindProperty("_maxWidth");
             _maxHeightProperty = serializedObject.FindProperty("_maxHeight");
@@ -30,6 +32,7 @@ namespace Mane.Editor
             
             EditorGUILayout.PropertyField(_textProperty);
             EditorGUILayout.PropertyField(_layoutElementProperty);
+            EditorGUILayout.PropertyField(_contentSizeFitterProperty);
             
             GUILayout.Space(10f);
             

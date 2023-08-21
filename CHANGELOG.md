@@ -1,3 +1,6 @@
+1.8.5:
+    - Fixed editor issue in MaxTextSize.
+
 1.8.4:
     - Improved MaxTextSize with ContentSizeFitter support.
 
