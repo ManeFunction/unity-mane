@@ -1,19 +1,4 @@
 1.9.1:
-    - Fixed MaxTextSize editor issue.
-
-1.9.0:
-    - Improved MaxTextSize editor workflow.
-
-1.8.6:
-    - MaxTextSize: Made ContentSizeFitter optional to proper work with Layouts. 
-
-1.8.5:
-    - Fixed editor issue in MaxTextSize.
-
-1.8.4:
-    - Improved MaxTextSize with ContentSizeFitter support.
-
-1.8.3:
     - Added RectTransformChangedCatcher to catch RectTransform changes.
     - Added MaxTextSize to fit text into the exact box.
 
