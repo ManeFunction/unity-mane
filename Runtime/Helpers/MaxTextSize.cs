@@ -7,7 +7,6 @@ namespace Mane
     [ExecuteAlways]
     [RequireComponent(typeof(Text))]
     [RequireComponent(typeof(LayoutElement))]
-    [RequireComponent(typeof(ContentSizeFitter))]
     public class MaxTextSize : MonoBehaviour
     {
         [Header("Required components")]

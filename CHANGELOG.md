@@ -1,3 +1,6 @@
+1.9.1:
+    - Fixed MaxTextSize editor issue.
+
 1.9.0:
     - Improved MaxTextSize editor workflow.
 
