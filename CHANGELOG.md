@@ -1,3 +1,7 @@
+1.8.3:
+    - Added RectTransformChangedCatcher to catch RectTransform changes.
+    - Added MaxTextSize to fit text into the exact box.
+
 1.8.2:
     - Color Picker: Automatically applies HEX color from the clipboard.
 
