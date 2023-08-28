@@ -1,3 +1,6 @@
+1.9.2:
+    - Added Async.ToCoroutine extension to execute async operation using coroutine with callback.
+
 1.9.1:
     - Added RectTransformChangedCatcher to catch RectTransform changes.
     - Added MaxTextSize to fit text into the exact box.
