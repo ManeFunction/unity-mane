@@ -1,3 +1,6 @@
+1.9.3:
+    - Improved PrefabList: Added features to not destroy elements and better Init.
+
 1.9.2:
     - Added Async.ToCoroutine extension to execute async operation using coroutine with callback.
 
