@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Mane
 {
@@ -9,7 +8,6 @@ namespace Mane
     {
         public static IEnumerator ToCoroutine<T>(Task<T> task, Action<bool, T> callback)
         {
-            yield return new WaitUntil(() => task.IsCompleted);
             while (!task.IsCompleted)
             {
                 if (task.IsFaulted || task.IsCanceled)

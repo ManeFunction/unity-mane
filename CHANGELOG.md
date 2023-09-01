@@ -1,3 +1,6 @@
+1.9.4:
+    - Fixed Async.ToCoroutine cancellation issue.
+
 1.9.3:
     - Improved PrefabList: Added features to not destroy elements and better Init.
 
