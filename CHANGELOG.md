@@ -1,3 +1,7 @@
+1.10.0:
+    - Added Color Schemes to manage color palettes for UI controls.
+    - Fixed some errors from Color Picker re-painting process.
+
 1.9.4:
     - Fixed Async.ToCoroutine cancellation issue.
 

@@ -9,7 +9,8 @@ namespace Mane.Editor
     public class ColorPicker : EditorWindow
     {
         [MenuItem("Mane/Color Picker %&C", false, 1000)]
-        public static void ShowWindow() => GetWindow(typeof(ColorPicker)).titleContent = new GUIContent("Color Picker");
+        public static void ShowWindow() =>
+            GetWindow(typeof(ColorPicker)).titleContent = new GUIContent("Color Picker");
 
         [SerializeField] private Color _color = Color.white;
 
@@ -58,9 +59,11 @@ namespace Mane.Editor
                          ColorUtility.TryParseHtmlString("#" + buffer, out color))
                     newColor = color;
             }
-            
-            if (CheckColorChanged(newColor)) return;
 
+            // clear buffer if color was pasted to allow future editing
+            if (CheckColorChanged(newColor))
+                EditorGUIUtility.systemCopyBuffer = string.Empty;
+                
             // title
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Color");
@@ -73,7 +76,7 @@ namespace Mane.Editor
             newColor.b = DrawChannel(newColor.b, "B");
             newColor.a = DrawChannel(newColor.a, "A");
             
-            if (CheckColorChanged(newColor)) return;
+            CheckColorChanged(newColor);
 
             // color to hex
             EditorGUILayout.Space();
@@ -82,7 +85,7 @@ namespace Mane.Editor
             string newHex = EditorGUILayout.TextField(_hexText);
             EditorGUILayout.EndHorizontal();
             
-            if (CheckHexChanged(newHex)) return;
+            CheckHexChanged(newHex);
             
             // color components
             EditorGUILayout.Space();
