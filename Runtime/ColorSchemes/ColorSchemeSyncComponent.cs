@@ -17,7 +17,13 @@ namespace Mane
                 foreach (MaskableGraphic child in _children)
                 {
                     if (child)
+                    {
+#if UNITY_EDITOR
+                        if (child.color != value)
+                            UnityEditor.EditorUtility.SetDirty(child);
+#endif
                         child.color = value;
+                    }
                 }
             }
         }

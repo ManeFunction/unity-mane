@@ -1,3 +1,6 @@
+1.10.1:
+    - Fixed an issue with Color Scheme Sync Component that prevent some colors to be saved in asset.
+
 1.10.0:
     - Added Color Schemes to manage color palettes for UI controls.
     - Fixed some errors from Color Picker re-painting process.
