@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Mane.Editor
 {
+    [CanEditMultipleObjects]
     [CustomEditor(typeof(MaxTextSize), true)]
     public class MaxTextSizeEditor : UnityEditor.Editor
     {

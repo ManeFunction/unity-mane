@@ -1,3 +1,7 @@
+1.10.2:
+    - Added StateSyncComponent to sync objects enabling state;
+    - Allow edit multiple MaxTextSize objects at once.
+
 1.10.1:
     - Fixed an issue with Color Scheme Sync Component that prevent some colors to be saved in asset.
 
