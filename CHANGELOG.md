@@ -1,3 +1,7 @@
+1.10.3:
+    - Removed ColorSchemeSyncComponent due to the errors caused by CanvasRenderer.
+    - Added a feature to add multiple bindings to the ColorSchemeComponent instead.
+
 1.10.2:
     - Added StateSyncComponent to sync objects enabling state;
     - Allow edit multiple MaxTextSize objects at once.
