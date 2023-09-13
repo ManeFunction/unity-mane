@@ -1,3 +1,7 @@
+1.10.4:
+    - Added IsInRange and Contains methods to the MinMax classes.
+    - Removed wrong division methods for MinMax classes.
+
 1.10.3:
     - Removed ColorSchemeSyncComponent due to the errors caused by CanvasRenderer.
     - Added a feature to add multiple bindings to the ColorSchemeComponent instead.
