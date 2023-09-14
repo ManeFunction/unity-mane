@@ -17,6 +17,12 @@ namespace Mane
                 fi.GetCustomAttributes(typeof(ObsoleteAttribute), false);
             return attributes.Any();
         }
+        
+        public static string ToIntString<T>(this T value) where T : struct, System.Enum =>
+            ((int)(ValueType)value).ToString();
+    
+        public static T ToIntEnum<T>(this string value) where T : struct, System.Enum =>
+            (T)System.Enum.ToObject(typeof(T), int.Parse(value));
     }
 
 

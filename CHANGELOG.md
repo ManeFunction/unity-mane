@@ -1,3 +1,7 @@
+1.10.6:
+    - Added Enum.ToIntString and string.ToIntEnum extensions to convert enums for numbered string serialization.
+    - Fixed a lot of issues in PrefabList, added isNew flag to know if is the element new or reused
+
 1.10.5:
     - Fixed exceptions when you try to set a color scheme color from a component.
     - Added feature to live update component's color when you changed it from the scheme.

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mane.Extensions;
 using UnityEngine;
 
 namespace Mane
@@ -11,58 +12,62 @@ namespace Mane
         [SerializeField] private T _source;
         [SerializeField] private List<T> _elements = new List<T>();
         
-        public int Count => _elements.Count;
+        public int Count => _destroyElements ? _elements.Count : FindTheEdge();
+
+        public int Capacity => _elements.Count;
         
         public T this[int index] => _elements[index];
         
-        public void Init(int count, Action<T, int> elementInitAction)
+        public void Init(int count, Action<T, int, bool> elementInitAction)
         {
             for (int i = 0; i < count; i++)
             {
-                T element = GetElement(i);
-                elementInitAction?.Invoke(element, i);
+                var creation = GetElement(i);
+                elementInitAction?.Invoke(creation.element, i, creation.isNew);
             }
             
             RemoveExcessElements(count);
         }
 
-        public void Init<D>(IReadOnlyList<D> data, Action<T, D, int> elementInitAction)
+        public void Init<D>(IReadOnlyList<D> data, Action<T, D, int, bool> elementInitAction)
         {
             for (int i = 0; i < data.Count; i++)
             {
-                T element = GetElement(i);
-                elementInitAction?.Invoke(element, data[i], i);
+                var creation = GetElement(i);
+                elementInitAction?.Invoke(creation.element, data[i], i, creation.isNew);
             }
             
             RemoveExcessElements(data.Count);
         }
         
-        public T AddElement(Action<T> elementInitAction)
+        public void AddElement(Action<T, bool> elementInitAction)
         {
-            T element = Instantiate(_source, transform);
-            _elements.Add(element);
+            var creation = GetElement(Count);
             
-            elementInitAction?.Invoke(element);
-            
-            return element;
+            elementInitAction?.Invoke(creation.element, creation.isNew);
         }
-        
+
         public void RemoveElement(T element)
         {
             if (_destroyElements)
             {
                 _elements.Remove(element);
-                Destroy(element.gameObject);
+                element.gameObject.SafeDestroy();
             }
             else
+            {
                 element.gameObject.SetActive(false);
+                element.transform.SetAsLastSibling();
+                _elements.Remove(element);
+                _elements.Add(element);
+            }
         }
         
         public void RemoveElementAt(int i)
         {
             if (_destroyElements)
             {
-                Destroy(_elements[i].gameObject);
+                _elements[i].gameObject.SafeDestroy();
                 _elements.RemoveAt(i);
             }
             else
@@ -85,9 +90,10 @@ namespace Mane
         }
         
 
-        private T GetElement(int i)
+        private (T element, bool isNew) GetElement(int i)
         {
             T element;
+            bool isNew = false;
             if (i < _elements.Count)
             {
                 element = _elements[i];
@@ -97,9 +103,10 @@ namespace Mane
             {
                 element = Instantiate(_source, transform);
                 _elements.Add(element);
+                isNew = true;
             }
 
-            return element;
+            return (element, isNew);
         }
 
         private void RemoveExcessElements(int count)
@@ -110,6 +117,17 @@ namespace Mane
             int i = _elements.Count - 1;    
             while (i >= count)
                 RemoveElementAt(i--);
+        }
+
+        private int FindTheEdge()
+        {
+            for (int i = 0; i < _elements.Count; i++)
+            {
+                if (!_elements[i].gameObject.activeSelf)
+                    return i;
+            }
+
+            return _elements.Count;
         }
         
 
