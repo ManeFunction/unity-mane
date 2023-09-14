@@ -13,6 +13,7 @@ namespace Mane.Editor
         private SerializedProperty _colorScheme;
 
         private MethodInfo _colorSetter;
+        private MethodInfo _objectsRefresher;
         
         private const float ButtonsWidth = 40f;
 
@@ -23,14 +24,14 @@ namespace Mane.Editor
             _graphic = serializedObject.FindProperty("_graphic");
             _colorScheme = serializedObject.FindProperty("_colorScheme");
 
-            _target.RefreshColorScheme();
+            _target.Refresh();
         }
 
         public override void OnInspectorGUI()
         {
             if (!DrawGUI()) return;
 
-            _target.RefreshColorScheme();
+            _target.Refresh();
         }
 
         private bool DrawGUI()
@@ -107,9 +108,17 @@ namespace Mane.Editor
         {
             if (_colorSetter == null)
                 _colorSetter =
-                    typeof(ColorScheme).GetMethod("SetColor", BindingFlags.Instance | BindingFlags.NonPublic);
+                    typeof(ColorScheme).GetMethod("SetColor",
+                        BindingFlags.Instance | BindingFlags.NonPublic);
 
-            _colorSetter.Invoke(_target, new object[] { i, color });
+            _colorSetter.Invoke(_target.ColorScheme, new object[] { i, color });
+            
+            if (_objectsRefresher == null)
+                _objectsRefresher =
+                    typeof(ColorSchemeComponent).GetMethod("RefreshColor",
+                        BindingFlags.Instance | BindingFlags.NonPublic);
+            
+            _objectsRefresher.Invoke(_target, new object[] { i });
         }
     }
 }

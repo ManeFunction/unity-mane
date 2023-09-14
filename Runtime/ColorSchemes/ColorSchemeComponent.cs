@@ -9,29 +9,39 @@ namespace Mane
         [SerializeField] protected GraphicCollection[] _graphic;
 
         [SerializeField] private ColorScheme _colorScheme;
-
-        protected void Awake() => RefreshColorScheme();
-
-        public void RefreshColorScheme(ColorScheme colorScheme = null)
+        
+        public ColorScheme ColorScheme
         {
-            if (colorScheme != null)
-                _colorScheme = colorScheme;
+            get => _colorScheme;
+            set
+            {
+                _colorScheme = value;
+                Refresh();
+            }
+        }
 
+        protected void Awake() => Refresh();
+
+        public void Refresh()
+        {
             if (_colorScheme == null || _graphic.Length == 0) return;
 
             for (int i = 0; i < _graphic.Length; i++)
+                RefreshColor(i);
+        }
+
+        private void RefreshColor(int i)
+        {
+            for (int j = 0; j < _graphic[i].Length; j++)
             {
-                for (int j = 0; j < _graphic[i].Length; j++)
+                MaskableGraphic graphic = _graphic[i][j];
+                if (graphic && i < _colorScheme.Length)
                 {
-                    MaskableGraphic graphic = _graphic[i][j];
-                    if (graphic && i < _colorScheme.Length)
-                    {
 #if UNITY_EDITOR
-                        if (graphic.color != _colorScheme[i])
-                            UnityEditor.EditorUtility.SetDirty(graphic);
+                    if (graphic.color != _colorScheme[i])
+                        UnityEditor.EditorUtility.SetDirty(graphic);
 #endif
-                        graphic.color = _colorScheme[i];
-                    }
+                    graphic.color = _colorScheme[i];
                 }
             }
         }

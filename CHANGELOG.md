@@ -1,3 +1,7 @@
+1.10.5:
+    - Fixed exceptions when you try to set a color scheme color from a component.
+    - Added feature to live update component's color when you changed it from the scheme.
+
 1.10.4:
     - Added IsInRange and Contains methods to the MinMax classes.
     - Removed wrong division methods for MinMax classes.
