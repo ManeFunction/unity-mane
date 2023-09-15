@@ -1,3 +1,6 @@
+1.10.7:
+    - Changed IReadOnlyList to IEnumerable in PrefabList.Init() to allow LINQ queries.
+
 1.10.6:
     - Added Enum.ToIntString and string.ToIntEnum extensions to convert enums for numbered string serialization.
     - Fixed a lot of issues in PrefabList, added isNew flag to know if is the element new or reused

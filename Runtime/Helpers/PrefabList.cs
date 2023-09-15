@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Mane.Extensions;
 using UnityEngine;
 
@@ -29,15 +30,17 @@ namespace Mane
             RemoveExcessElements(count);
         }
 
-        public void Init<D>(IReadOnlyList<D> data, Action<T, D, int, bool> elementInitAction)
+        public void Init<D>(IEnumerable<D> data, Action<T, D, int, bool> elementInitAction)
         {
-            for (int i = 0; i < data.Count; i++)
+            int i = 0;
+            foreach (D d in data)
             {
                 var creation = GetElement(i);
-                elementInitAction?.Invoke(creation.element, data[i], i, creation.isNew);
+                elementInitAction?.Invoke(creation.element, d, i, creation.isNew);
+                i++;
             }
             
-            RemoveExcessElements(data.Count);
+            RemoveExcessElements(i);
         }
         
         public void AddElement(Action<T, bool> elementInitAction)
