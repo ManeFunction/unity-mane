@@ -1,3 +1,6 @@
+1.10.8:
+    - Added MaxWidth and MinWidth properties to the MaxTextSize component.
+
 1.10.7:
     - Changed IReadOnlyList to IEnumerable in PrefabList.Init() to allow LINQ queries.
 

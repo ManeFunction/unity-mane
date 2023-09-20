@@ -21,6 +21,27 @@ namespace Mane
 
         private string _oldValue = string.Empty;
         
+        
+        public float MaxWidth
+        {
+            get => _maxWidth;
+            set
+            {
+                _maxWidth = value;
+                ReCalculateLayout();
+            }
+        }
+        
+        public float MaxHeight
+        {
+            get => _maxHeight;
+            set
+            {
+                _maxHeight = value;
+                ReCalculateLayout();
+            }
+        }
+        
 
 #if UNITY_EDITOR
         private void Reset()
