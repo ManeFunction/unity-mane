@@ -15,7 +15,8 @@ namespace Mane.Editor
         private MethodInfo _colorSetter;
         private MethodInfo _objectsRefresher;
         
-        private const float ButtonsWidth = 40f;
+        private const float LeftColumnWidth = 40f;
+        private const float RightColumnWidth = 20f;
 
         private void OnEnable()
         {
@@ -61,6 +62,7 @@ namespace Mane.Editor
                     if (graphicArray.arraySize == 0)
                         graphicArray.InsertArrayElementAtIndex(0);
 
+                    int last = graphicArray.arraySize - 1;
                     for (int j = 0; j < graphicArray.arraySize; j++)
                     {
                         EditorGUILayout.BeginHorizontal();
@@ -69,7 +71,7 @@ namespace Mane.Editor
                         {
                             EditorGUI.BeginChangeCheck();
                             Color color = EditorGUILayout.ColorField(GUIContent.none, colorScheme[i],
-                                true, true, false, GUILayout.Width(ButtonsWidth));
+                                true, true, false, GUILayout.Width(LeftColumnWidth));
                             if (EditorGUI.EndChangeCheck())
                             {
                                 Undo.RecordObject(_colorScheme.objectReferenceValue, "Change Color");
@@ -77,21 +79,28 @@ namespace Mane.Editor
                                 EditorUtility.SetDirty(_colorScheme.objectReferenceValue);
                             }
                         }
-                        else if (GUILayout.Button("-", GUILayout.Width(ButtonsWidth)))
-                        {
-                            graphicArray.DeleteArrayElementAtIndex(j);
-                            break;
-                        }
+                        else
+                            GUILayout.Label($"       {(j == last ? '\u2514' : '\u251c')}",
+                                GUILayout.Width(LeftColumnWidth));
 
                         EditorGUILayout.PropertyField(graphicArray.GetArrayElementAtIndex(j), GUIContent.none);
 
-                        if (j == graphicArray.arraySize - 1)
+                        if (j == 0)
                         {
-                            if (GUILayout.Button("+", GUILayout.Width(ButtonsWidth)))
+                            if (GUILayout.Button("+", GUILayout.Width(RightColumnWidth)))
+                            {
                                 graphicArray.InsertArrayElementAtIndex(graphicArray.arraySize - 1);
+                                break;
+                            }
                         }
                         else
-                            GUILayout.Space(ButtonsWidth + 3f);
+                        {
+                            if (GUILayout.Button("-", GUILayout.Width(RightColumnWidth)))
+                            {
+                                graphicArray.DeleteArrayElementAtIndex(j);
+                                break;
+                            }
+                        }
 
                         EditorGUILayout.EndHorizontal();
                         

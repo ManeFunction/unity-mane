@@ -1,3 +1,6 @@
+1.10.9:
+    - Improved Color Scheme Component inspector view.
+
 1.10.8:
     - Added MaxWidth and MinWidth properties to the MaxTextSize component.
 
