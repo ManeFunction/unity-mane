@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Mane
+namespace Mane.UI
 {
-    public class ColorSchemeComponent : MonoBehaviour
+    public class ColorSchemeComponent : UIBehaviour
     {
         [SerializeField] protected GraphicCollection[] _graphic;
 
@@ -20,7 +21,7 @@ namespace Mane
             }
         }
 
-        protected void Awake() => Refresh();
+        protected override void Awake() => Refresh();
 
         public void Refresh()
         {

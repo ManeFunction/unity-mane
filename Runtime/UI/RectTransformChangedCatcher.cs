@@ -1,18 +1,20 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-namespace Mane
+namespace Mane.UI
 {
     [ExecuteAlways]
+    [DisallowMultipleComponent]
     [RequireComponent(typeof(RectTransform))]
-    public class RectTransformChangedCatcher : MonoBehaviour
+    public class RectTransformChangedCatcher : UIBehaviour
     {
         [SerializeField] private RectTransform _rectTransform;
         
         public event Action<RectTransform> OnRectTransformChanged;
         
 #if UNITY_EDITOR
-        private void Reset() => _rectTransform = gameObject.GetComponent<RectTransform>();
+        protected override void Reset() => _rectTransform = gameObject.GetComponent<RectTransform>();
 #endif
 
         private void Update()

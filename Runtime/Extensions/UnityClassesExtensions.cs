@@ -23,6 +23,12 @@ namespace Mane.Extensions
         }
         
         /// <summary>
+        /// Get component or add it if no one was found.
+        /// </summary>
+        public static T GetRequiredComponent<T>(this Component component) where T : Component => 
+            component.gameObject.GetRequiredComponent<T>();
+        
+        /// <summary>
         /// Gets first found component from root objects on scene.
         /// </summary>
         public static T GetRootComponent<T>(this Scene scene) where T : Component

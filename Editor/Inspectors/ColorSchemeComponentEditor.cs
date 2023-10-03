@@ -2,7 +2,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace Mane.Editor
+namespace Mane.UI.Editor
 {
     [CustomEditor(typeof(ColorSchemeComponent), true)]
     public class ColorSchemeComponentEditor : UnityEditor.Editor

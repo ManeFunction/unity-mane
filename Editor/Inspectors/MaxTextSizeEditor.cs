@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace Mane.Editor
+namespace Mane.UI.Editor
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(MaxTextSize), true)]

@@ -1,13 +1,15 @@
 using Mane.Extensions;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Mane
+namespace Mane.UI
 {
     [ExecuteAlways]
+    [DisallowMultipleComponent]
     [RequireComponent(typeof(Text))]
     [RequireComponent(typeof(LayoutElement))]
-    public class MaxTextSize : MonoBehaviour
+    public class MaxTextSize : UIBehaviour
     {
         [Header("Required components")]
         [SerializeField] private Text _text;
@@ -44,7 +46,7 @@ namespace Mane
         
 
 #if UNITY_EDITOR
-        private void Reset()
+        protected override void Reset()
         {
             _text = gameObject.GetRequiredComponent<Text>();
             _layoutElement = gameObject.GetRequiredComponent<LayoutElement>();
@@ -54,7 +56,7 @@ namespace Mane
             ReCalculateLayout();
         }
 
-        private void OnValidate() => ReCalculateLayout();
+        protected override void OnValidate() => ReCalculateLayout();
 #endif
 
         protected void Update()
@@ -90,8 +92,10 @@ namespace Mane
                 _layoutElement.preferredHeight = -1f;
                 TrySetContentSizeFitter(ContentSizeFitter.FitMode.Unconstrained, false);
             }
-            
-            
+
+            return;
+
+
             void TrySetContentSizeFitter(ContentSizeFitter.FitMode fitMode, bool horizontal)
             {
                 if (!_contentSizeFitter) return;
