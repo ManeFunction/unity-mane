@@ -1,3 +1,6 @@
+1.10.11:
+    - Added Asset Reference Finder window.
+
 1.10.10:
     - Added GetRequiredComponent for the Component class, to call directly from the component w/o using gameObject.
     - Added Mane.UI namespace, a bit reorganised UI components.
