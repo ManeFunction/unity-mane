@@ -1,3 +1,6 @@
+1.10.13:
+    - Changed Three State Toggle public state property from custom enum to bool?.
+
 1.10.12:
     - Added Tree State Toggle with undefined state.
 

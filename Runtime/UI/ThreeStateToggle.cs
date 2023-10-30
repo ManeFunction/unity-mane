@@ -15,7 +15,7 @@ namespace Mane.UI
         
         public ThreeStateToggleEvent onStateValueChanged = new ThreeStateToggleEvent();
         
-        public event UnityAction<ToggleState> StateValueChanged
+        public event UnityAction<bool?> StateValueChanged
         {
             add => onStateValueChanged.AddListener(value.Invoke);
             remove => onStateValueChanged.RemoveListener(value.Invoke);
@@ -39,19 +39,35 @@ namespace Mane.UI
             set => throw new NotSupportedException(ToggleGroupNotSupportedMessage);
         }
 
-        public ToggleState State
+        public bool? State
         {
-            get => _state;
+            get => StateToBool(_state);
             set
             {
-                if (_state == value) return;
+                ToggleState state = BoolToState(value);
+                if (_state == state) return;
                 
-                _state = value;
+                _state = state;
                 UpdateIsOnFromState();
                 PlayUndefinedEffect(transition == Transition.None);
-                onStateValueChanged.Invoke(_state);
+                onStateValueChanged.Invoke(value);
             }
         }
+
+        private ToggleState BoolToState(bool? value) => value switch
+        {
+            true => ToggleState.On,
+            false => ToggleState.Off,
+            null => ToggleState.Undefined,
+        };
+
+        private bool? StateToBool(ToggleState state) => state switch
+        {
+            ToggleState.On => true,
+            ToggleState.Off => false,
+            ToggleState.Undefined => null,
+            _ => null,
+        };
 
         protected override void Start()
         {
@@ -88,7 +104,7 @@ namespace Mane.UI
             // Unfortunately there is no way to check if we don't have a graphic.
             if (undefinedGraphic != null)
             {
-                bool isUndefined = !Mathf.Approximately(undefinedGraphic.canvasRenderer.GetColor().a, 0);
+                bool isUndefined = !Mathf.Approximately(undefinedGraphic.canvasRenderer.GetColor().a, 0f);
                 if (isUndefined && _state != ToggleState.Undefined)
                     _state = ToggleState.Undefined;
             }
@@ -97,7 +113,7 @@ namespace Mane.UI
         }
 
         private void UpdateStateFromIsOn() => 
-            State = base.isOn ? ToggleState.On : ToggleState.Off;
+            State = StateToBool(base.isOn ? ToggleState.On : ToggleState.Off);
 
         private void UpdateIsOnFromState()
         {
@@ -120,23 +136,17 @@ namespace Mane.UI
 
             switch (State)
             {
-                case ToggleState.On:
-                    State = ToggleState.Off;
-                    break;
-                case ToggleState.Off:
-                    State = ToggleState.Undefined;
-                    break;
-                case ToggleState.Undefined:
-                    State = ToggleState.On;
-                    break;
+                case true:  State = false; break;
+                case false: State = null;  break;
+                case null:  State = true;  break;
             }
         }
         
         
         [Serializable]
-        public class ThreeStateToggleEvent : UnityEvent<ToggleState> { }
+        public class ThreeStateToggleEvent : UnityEvent<bool?> { }
 
-        public enum ToggleState
+        private enum ToggleState
         {
             Undefined,
             On,
