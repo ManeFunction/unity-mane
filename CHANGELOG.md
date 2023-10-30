@@ -1,3 +1,6 @@
+1.10.12:
+    - Added Tree State Toggle with undefined state.
+
 1.10.11:
     - Added Asset Reference Finder window.
 
