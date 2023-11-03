@@ -1,3 +1,7 @@
+1.10.15:
+    - PrefabsList: Added virtual modifier to elements management methods.
+    - Added PrefabsList.AddElementsRange() method.
+
 1.10.14:
     - Made PrefabsList abstract, added count changed events.
 

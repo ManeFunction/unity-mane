@@ -50,7 +50,7 @@ namespace Mane
             CountChanged?.Invoke(Count);
         }
         
-        public void AddElement(Action<T, bool> elementInitAction)
+        public virtual void AddElement(Action<T, bool> elementInitAction)
         {
             var creation = GetElement(Count);
             
@@ -59,8 +59,21 @@ namespace Mane
             ElementAdded?.Invoke(creation.element);
             CountChanged?.Invoke(Count);
         }
+        
+        public virtual void AddElementsRange<D>(IEnumerable<D> data, Action<T, D, int, bool> elementInitAction)
+        {
+            int i = Count;
+            foreach (D d in data)
+            {
+                var creation = GetElement(i);
+                elementInitAction?.Invoke(creation.element, d, i, creation.isNew);
+                i++;
+            }
+            
+            CountChanged?.Invoke(i);
+        }
 
-        public void RemoveElement(T element)
+        public virtual void RemoveElement(T element)
         {
             ElementWillBeRemoved?.Invoke(element);
             
@@ -80,7 +93,7 @@ namespace Mane
             CountChanged?.Invoke(Count - 1);
         }
         
-        public void RemoveElementAt(int i)
+        public virtual void RemoveElementAt(int i)
         {
             ElementWillBeRemoved?.Invoke(_elements[i]);
             
@@ -95,7 +108,7 @@ namespace Mane
             CountChanged?.Invoke(Count - 1);
         }
         
-        public void ClearElements(bool riseRemoveEvents = false)
+        public virtual void ClearElements(bool riseRemoveEvents = false)
         {
             if (riseRemoveEvents)
             {
