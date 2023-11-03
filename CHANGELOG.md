@@ -1,3 +1,6 @@
+1.10.14:
+    - Made PrefabsList abstract, added count changed events.
+
 1.10.13:
     - Changed Three State Toggle public state property from custom enum to bool?.
 

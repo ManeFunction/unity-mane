@@ -6,11 +6,15 @@ using UnityEngine;
 
 namespace Mane
 {
-    public class PrefabList<T> : MonoBehaviour, IEnumerable<T> where T : Component
+    public abstract class PrefabList<T> : MonoBehaviour, IEnumerable<T> where T : Component
     {
         [SerializeField] private bool _destroyElements = true;
         [SerializeField] private T _source;
         [SerializeField] private List<T> _elements = new List<T>();
+
+        public event Action<T> ElementAdded;
+        public event Action<T> ElementWillBeRemoved;
+        public event Action<int> CountChanged;
         
         public int Count => _destroyElements ? _elements.Count : FindTheEdge();
 
@@ -27,6 +31,8 @@ namespace Mane
             }
             
             RemoveExcessElements(count);
+            
+            CountChanged?.Invoke(Count);
         }
 
         public void Init<D>(IEnumerable<D> data, Action<T, D, int, bool> elementInitAction)
@@ -40,6 +46,8 @@ namespace Mane
             }
             
             RemoveExcessElements(i);
+            
+            CountChanged?.Invoke(Count);
         }
         
         public void AddElement(Action<T, bool> elementInitAction)
@@ -47,10 +55,15 @@ namespace Mane
             var creation = GetElement(Count);
             
             elementInitAction?.Invoke(creation.element, creation.isNew);
+
+            ElementAdded?.Invoke(creation.element);
+            CountChanged?.Invoke(Count);
         }
 
         public void RemoveElement(T element)
         {
+            ElementWillBeRemoved?.Invoke(element);
+            
             if (_destroyElements)
             {
                 _elements.Remove(element);
@@ -63,10 +76,14 @@ namespace Mane
                 _elements.Remove(element);
                 _elements.Add(element);
             }
+            
+            CountChanged?.Invoke(Count - 1);
         }
         
         public void RemoveElementAt(int i)
         {
+            ElementWillBeRemoved?.Invoke(_elements[i]);
+            
             if (_destroyElements)
             {
                 _elements[i].gameObject.SafeDestroy();
@@ -74,10 +91,19 @@ namespace Mane
             }
             else
                 _elements[i].gameObject.SetActive(false);
+            
+            CountChanged?.Invoke(Count - 1);
         }
         
-        public void ClearElements()
+        public void ClearElements(bool riseRemoveEvents = false)
         {
+            if (riseRemoveEvents)
+            {
+                int count = Count;
+                for (int i = 0; i < count; i++)
+                    ElementWillBeRemoved?.Invoke(_elements[i]);
+            }
+
             if (_destroyElements)
             {
                 foreach (T element in _elements)
@@ -89,6 +115,8 @@ namespace Mane
                 foreach (T element in _elements)
                     element.gameObject.SetActive(false);
             }
+            
+            CountChanged?.Invoke(0);
         }
         
 
