@@ -1,3 +1,7 @@
+1.10.16:
+    - Added custom InfoBox for UIElements. Not fully implemented, but can be used manually.
+    - Added SerializedProperty extension to get Attributes from it (Editor only).
+
 1.10.15:
     - PrefabsList: Added virtual modifier to elements management methods.
     - Added PrefabsList.AddElementsRange() method.
