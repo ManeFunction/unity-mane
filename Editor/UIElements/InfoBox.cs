@@ -1,3 +1,4 @@
+using Mane.Inspector;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -20,7 +21,7 @@ namespace Mane.Editor.UIElements
 
         public InfoBox() => AddToClassList("info-box");
 
-        public InfoBox(string text, MessageType type = MessageType.Info) : this()
+        public InfoBox(string text, InfoBoxType type = InfoBoxType.Info) : this()
         {
             _icon = new VisualElement();
             _icon.AddToClassList("info-box-icon");
@@ -51,16 +52,16 @@ namespace Mane.Editor.UIElements
             }
         }
 
-        private void SetIcon(MessageType type) => SetIcon(GetIconName(type), false);
+        private void SetIcon(InfoBoxType type) => SetIcon(GetIconName(type), false);
 
-        private void SetStyle(MessageType type)
+        private void SetStyle(InfoBoxType type)
         {
             switch (type)
             {
-                case MessageType.Error:
+                case InfoBoxType.Error:
                     AddToClassList(ErrorStyleName);
                     break;
-                case MessageType.Warning:
+                case InfoBoxType.Warning:
                     AddToClassList(WarningStyleName);
                     break;
             }
@@ -72,20 +73,20 @@ namespace Mane.Editor.UIElements
             RemoveFromClassList(WarningStyleName);
         }
 
-        private string GetIconName(MessageType type) => type switch
+        private string GetIconName(InfoBoxType type) => type switch
         {
-            MessageType.Info => InfoIconName,
-            MessageType.Warning => WarningIconName,
-            MessageType.Error => ErrorIconName,
+            InfoBoxType.Info => InfoIconName,
+            InfoBoxType.Warning => WarningIconName,
+            InfoBoxType.Error => ErrorIconName,
             _ => InfoIconName
         };
 
-        private MessageType GetMessageType(string iconName) => iconName switch
+        private InfoBoxType GetMessageType(string iconName) => iconName switch
         {
-            InfoIconName => MessageType.Info,
-            WarningIconName => MessageType.Warning,
-            ErrorIconName => MessageType.Error,
-            _ => MessageType.Info
+            InfoIconName => InfoBoxType.Info,
+            WarningIconName => InfoBoxType.Warning,
+            ErrorIconName => InfoBoxType.Error,
+            _ => InfoBoxType.Info
         };
 
         public new class UxmlFactory : UxmlFactory<InfoBox, UxmlTraits> { }

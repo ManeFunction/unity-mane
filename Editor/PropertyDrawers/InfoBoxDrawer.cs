@@ -12,7 +12,7 @@ namespace Mane.Inspector.Editor
 
             // Calculate the position for the help box
             Rect helpBoxRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight * 2);
-            EditorGUI.HelpBox(helpBoxRect, infoBox.Message, infoBox.Type);
+            EditorGUI.HelpBox(helpBoxRect, infoBox.Message, GetMessageType(infoBox.Type));
 
             // Adjust the position for the property field below the help box
             Rect propertyRect = new Rect(position.x,
@@ -46,5 +46,13 @@ namespace Mane.Inspector.Editor
         //
         //     return container;
         // }
+        
+        private MessageType GetMessageType(InfoBoxType type) => type switch
+        {
+            InfoBoxType.Info => MessageType.Info,
+            InfoBoxType.Warning => MessageType.Warning,
+            InfoBoxType.Error => MessageType.Error,
+            _ => MessageType.None
+        };
     }
 }

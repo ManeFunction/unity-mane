@@ -1,3 +1,6 @@
+1.10.17:
+    - Fixed an issue with InfoBox, that can cause build errors.
+
 1.10.16:
     - Added custom InfoBox for UIElements. Not fully implemented, but can be used manually.
     - Added SerializedProperty extension to get Attributes from it (Editor only).

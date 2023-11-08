@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 namespace Mane.Inspector
@@ -6,12 +5,19 @@ namespace Mane.Inspector
     public class InfoBoxAttribute : PropertyAttribute
     {
         public string Message { get; }
-        public MessageType Type { get; }
+        public InfoBoxType Type { get; }
 
-        public InfoBoxAttribute(string message, MessageType type = MessageType.Info)
+        public InfoBoxAttribute(string message, InfoBoxType type = InfoBoxType.Info)
         {
             Message = message;
             Type = type;
         }
+    }
+
+    public enum InfoBoxType
+    {
+        Info,
+        Warning,
+        Error,
     }
 }
