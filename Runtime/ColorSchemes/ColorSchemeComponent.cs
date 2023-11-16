@@ -23,6 +23,31 @@ namespace Mane.UI
 
         protected override void Awake() => Refresh();
 
+        public Color GetGraphicColor(int i)
+        {
+            if (i < _graphic.Length)
+            {
+                MaskableGraphic graphic = _graphic[i][0];
+                if (graphic)
+                    return graphic.color;
+            }
+
+            return Color.white;
+        }
+
+        public void SetGraphicsColor(int i, Color color)
+        {
+            for (int j = 0; j < _graphic[i].Length; j++)
+            {
+                MaskableGraphic graphic = _graphic[i][j];
+                if (graphic)
+                    graphic.color = color;
+            }
+        }
+        
+        public void SetColorSchemeWithoutRefresh(ColorScheme colorScheme) => 
+            _colorScheme = colorScheme;
+
         public void Refresh()
         {
             if (_colorScheme == null || _graphic.Length == 0) return;
