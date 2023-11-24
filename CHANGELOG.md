@@ -1,3 +1,6 @@
+1.10.20:
+    - Added WaitForConditionAsync extension.
+
 1.10.18:
     - Added ColorSchemeAnimator to animate color scheme changing from one color scheme to another.
     - Added public ColorSchemeComponent methods required to create custom animators.

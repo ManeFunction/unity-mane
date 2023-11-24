@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Mane
@@ -21,6 +22,15 @@ namespace Mane
             }
 
             callback?.Invoke(true, task.Result);
+        }
+        
+        public static async Task WaitForCondition(Func<bool> condition, int delayMilliseconds = 100,
+            CancellationToken cancellationToken = default)
+        {
+            while (!condition())
+            {
+                await Task.Delay(delayMilliseconds, cancellationToken);
+            }
         }
     }
 }
