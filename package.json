@@ -1,16 +1,16 @@
 {
-  "name": "com.manefunction.utils",
-  "version": "1.10.20",
+  "name": "com.manefunction.tools",
+  "version": "2.0.0",
   "displayName": "Mane Tools",
-  "description": "Some extensions and features to make your life easier!",
-  "unity": "2019.1",
-  "unityRelease": "0b5",
+  "description": "Some extensions and features to make your work in Unity a lot easier!",
+  "unity": "2021.1",
+  "unityRelease": "0f1",
   "keywords": [
     "unity",
-    "utils",
     "tools",
     "extensions",
-    "manefunction"
+    "manefunction",
+    "mane"
   ],
   "author": {
     "name": "Mane Function",
