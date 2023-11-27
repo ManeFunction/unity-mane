@@ -11,7 +11,7 @@ namespace Mane.Inspector
         {
             Transform target = command.context as Transform;
 
-            Vector3 p = target.position;
+            Vector3 p = target!.position;
             Quaternion r = target.rotation;
             GUIUtility.systemCopyBuffer = $"{p.x}:{p.y}:{p.z}:{r.x}:{r.y}:{r.z}:{r.w}";
         }
@@ -28,7 +28,7 @@ namespace Mane.Inspector
             Transform target = command.context as Transform;
             string[] buffer = GetValidClipboard();
 
-            target.position = new Vector3(
+            target!.position = new Vector3(
                 buffer[0].ParseFloat(),
                 buffer[1].ParseFloat(),
                 buffer[2].ParseFloat());

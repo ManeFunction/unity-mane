@@ -17,18 +17,16 @@ namespace Mane.Inspector.Editor
         {
             PostfixAttribute attr = attribute as PostfixAttribute;
 
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
             if (_postfixWidth == -1f)
-                _postfixWidth = attr.Width == 0f ? 
+                _postfixWidth = attr!.Width == 0f ? 
                     GUI.skin.label.CalcSize(new GUIContent(attr.Text)).x : 
                     attr.Width;
 
-            if (_postfixStyle == null)
+            _postfixStyle ??= new GUIStyle(GUI.skin.label)
             {
-                _postfixStyle = new GUIStyle(GUI.skin.label)
-                {
-                    alignment = TextAnchor.MiddleRight
-                };
-            }
+                alignment = TextAnchor.MiddleRight
+            };
 
             Rect fieldRect = position;
             fieldRect.width -= _postfixWidth;
@@ -37,7 +35,7 @@ namespace Mane.Inspector.Editor
             Rect postfixRect = position;
             postfixRect.x = position.x + position.width - _postfixWidth;
             postfixRect.width = _postfixWidth;
-            EditorGUI.LabelField(postfixRect, attr.Text, _postfixStyle);
+            EditorGUI.LabelField(postfixRect, attr!.Text, _postfixStyle);
         }
     }
 }

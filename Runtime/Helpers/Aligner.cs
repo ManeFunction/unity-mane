@@ -1,11 +1,12 @@
 ﻿using Mane.Extensions;
 using UnityEngine;
+using Mane.Inspector;
 
 namespace Mane
 {
     public class Aligner : MonoBehaviour
     {
-        [Header("Init with")]
+        [InfoBox("This component is used to fast align items in a row or column.")]
         [SerializeField] private Transform _itemPrefab;
         [SerializeField] private int _multiplications;
         

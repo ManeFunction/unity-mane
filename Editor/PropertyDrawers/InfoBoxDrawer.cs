@@ -47,7 +47,7 @@ namespace Mane.Inspector.Editor
         //     return container;
         // }
         
-        private MessageType GetMessageType(InfoBoxType type) => type switch
+        private static MessageType GetMessageType(InfoBoxType type) => type switch
         {
             InfoBoxType.Info => MessageType.Info,
             InfoBoxType.Warning => MessageType.Warning,

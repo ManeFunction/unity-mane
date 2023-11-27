@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Mane
 {
+    /// <summary>
+    /// This class is used to cache Vector3 values history and calculate average value.
+    /// </summary>
     public class Vector3HistoryCache : HistoryCache<Vector3>
     {
         public Vector3HistoryCache(int length) : base(length) { }
@@ -12,6 +15,9 @@ namespace Mane
     }
 
 
+    /// <summary>
+    /// This class is used to cache Vector2 values history and calculate average value.
+    /// </summary>
     public class Vector2HistoryCache : HistoryCache<Vector2>
     {
         public Vector2HistoryCache(int length) : base(length) { }
@@ -20,6 +26,9 @@ namespace Mane
     }
 
 
+    /// <summary>
+    /// This class is used to cache float values history and calculate average value.
+    /// </summary>
     public class FloatHistoryCache : HistoryCache<float>
     {
         public FloatHistoryCache(int length) : base(length) { }
@@ -27,7 +36,7 @@ namespace Mane
         public override float GetAverage() => History.Average();
     }
 
-
+    
     public abstract class HistoryCache<T>
     {
         protected readonly T[] History;
@@ -40,6 +49,10 @@ namespace Mane
         public abstract T GetAverage();
 
         
+        /// <summary>
+        /// Appends value to the history cache. If cache is full, oldest value will be replaced.
+        /// </summary>
+        /// <param name="value">Value to append.</param>
         public void Append(T value)
         {
             History[_idx++] = value;
@@ -47,6 +60,9 @@ namespace Mane
                 _idx = 0;
         }
 
+        /// <summary>
+        /// Clears the history cache.
+        /// </summary>
         public void Clear()
         {
             History.Clear();

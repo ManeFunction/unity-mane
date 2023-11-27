@@ -73,8 +73,6 @@ namespace Mane.Inspector.Editor
                 
                 case SerializedPropertyType.Quaternion:
                     return _titleNameProp.quaternionValue.ToString();
-                
-                default: break;
             }
 
             return string.Empty;

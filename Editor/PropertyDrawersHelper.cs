@@ -5,8 +5,16 @@ using UnityEngine;
 
 namespace Mane.Inspector.Editor
 {
+    /// <summary>
+    /// Provides helper methods for working with Unity's SerializedProperty class.
+    /// </summary>
     public static class PropertyDrawersHelper
     {
+        /// <summary>
+        /// Checks if a SerializedProperty is set to its default value.
+        /// </summary>
+        /// <param name="property">The SerializedProperty to check.</param>
+        /// <returns>True if the property is set to its default value, false otherwise.</returns>
         public static bool IsPropertyDefault(this SerializedProperty property)
         {
             bool isDefault;
@@ -61,6 +69,13 @@ namespace Mane.Inspector.Editor
             return isDefault;
         }
 
+        /// <summary>
+        /// Gets a label for a SerializedProperty that includes the odds of the property's value.
+        /// </summary>
+        /// <param name="property">The SerializedProperty to get the label for.</param>
+        /// <param name="originalLabel">The original label of the property.</param>
+        /// <param name="totalWeightPropertyName">The name of the property that represents the total weight.</param>
+        /// <returns>A string representing the label of the property, including the odds of the property's value.</returns>
         public static string GetOddsLabel(this SerializedProperty property,
             string originalLabel, string totalWeightPropertyName)
         {

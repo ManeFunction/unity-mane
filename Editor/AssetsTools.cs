@@ -2,7 +2,6 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-
 namespace Mane.Editor
 {
     public static class AssetsTools
@@ -21,7 +20,7 @@ namespace Mane.Editor
         private static void ForceSaveAssets()
         {
             if (EditorUtility.DisplayDialog(
-                "Force Assets Reserialization",
+                "Force Assets Re-Serialization",
                 "This may be long operation despite of the size of your project, so be aware! There is no progress bar so it may looks like that Unity is frozen, but be patient, it's working. Proceed operation?",
                 "Yes, go ahead!", "Cancel!"))
             {

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 using UnityEditor;
-
 
 namespace Mane.Editor
 {
@@ -99,12 +97,19 @@ namespace Mane.Editor
             }
         }
 
-        public static void SaveToPrefab(this GameObject gameObject, string path,
-            InteractionMode mode = InteractionMode.UserAction)
+        /// <summary>
+        /// Saves the specified GameObject as a prefab at the given path.
+        /// </summary>
+        /// <param name="gameObject">The GameObject to save as a prefab.</param>
+        /// <param name="path">The directory path where the prefab should be saved.</param>
+        /// <param name="mode">The interaction mode for how Unity should handle errors or validation checks. Defaults to UserAction.</param>
+        public static void SaveToPrefab(this GameObject gameObject, string path, InteractionMode mode = InteractionMode.UserAction)
         {
+            // Generate the full path for the new prefab, ensuring it is unique to avoid overwriting existing files.
             string localPath = $"{path}/{gameObject.name}.prefab";
             localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
 
+            // Save the GameObject as a new prefab asset and connect it to the prefab.
             PrefabUtility.SaveAsPrefabAssetAndConnect(gameObject, localPath, mode);
         }
 

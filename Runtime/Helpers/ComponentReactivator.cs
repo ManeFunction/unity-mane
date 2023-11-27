@@ -8,6 +8,7 @@ namespace Mane
     {
         private const string Postfix = "frames";
 
+        [InfoBox("This component disables target component on Awake and enables it with delay on Start. Can be used to force re-calculate layouts or something.")]
         [SerializeField] private Behaviour _component;
         [SerializeField, Postfix(Postfix)] private int _deactivateInterval;
         [SerializeField, Postfix(Postfix)] private int _reactivateInterval = 1;

@@ -3,12 +3,21 @@ using UnityEngine.UI;
 
 namespace Mane.Extensions
 {
+    /// <summary>
+    /// Provides extension methods for UI elements.
+    /// </summary>
     public static class UiExtensions
     {
-        // Based on this discussion, but improved:
-        // https://stackoverflow.com/questions/30766020/how-to-scroll-to-a-specific-element-in-scrollrect-with-unity-ui
+        /// <summary>
+        /// Snaps a ScrollRect to a specific item.
+        /// </summary>
+        /// <param name="scroll">The ScrollRect to snap.</param>
+        /// <param name="item">The item to snap to.</param>
+        /// <param name="offset">An optional offset to apply when snapping.</param>
         public static void SnapTo(this ScrollRect scroll, Transform item, Vector2 offset = default)
         {
+            // Based on this discussion, but improved:
+            // https://stackoverflow.com/questions/30766020/how-to-scroll-to-a-specific-element-in-scrollrect-with-unity-ui
             Canvas.ForceUpdateCanvases();
 
             Vector2 contentPos = scroll.transform.InverseTransformPoint(scroll.content.position);
@@ -20,7 +29,12 @@ namespace Mane.Extensions
             scroll.content.anchoredPosition = endPos + offset;
         }
 
-        // Optimized versions
+        /// <summary>
+        /// Snaps a ScrollRect to a specific item along the X axis.
+        /// </summary>
+        /// <param name="scroll">The ScrollRect to snap.</param>
+        /// <param name="item">The item to snap to.</param>
+        /// <param name="offset">An optional offset to apply when snapping.</param>
         public static void SnapXTo(this ScrollRect scroll, Transform item, float offset = 0f)
         {
             Canvas.ForceUpdateCanvases();
@@ -32,6 +46,12 @@ namespace Mane.Extensions
             scroll.content.anchoredPosition = new Vector2(x + offset, contentPos.y);
         }
         
+        /// <summary>
+        /// Snaps a ScrollRect to a specific item along the Y axis.
+        /// </summary>
+        /// <param name="scroll">The ScrollRect to snap.</param>
+        /// <param name="item">The item to snap to.</param>
+        /// <param name="offset">An optional offset to apply when snapping.</param>
         public static void SnapYTo(this ScrollRect scroll, Transform item, float offset = 0f)
         {
             Canvas.ForceUpdateCanvases();

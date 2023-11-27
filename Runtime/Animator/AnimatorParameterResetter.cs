@@ -10,14 +10,11 @@ namespace Mane.AnimatorStateMachine
 
 
         private int? _parameterHash;
-
-
-        public int ParameterHash
+        private int ParameterHash
         {
             get
             {
-                if (_parameterHash == null)
-                    _parameterHash = Animator.StringToHash(_parameter);
+                _parameterHash ??= Animator.StringToHash(_parameter);
 
                 return _parameterHash.Value;
             }
@@ -45,7 +42,7 @@ namespace Mane.AnimatorStateMachine
         }
 
 
-        public enum ParameterType
+        private enum ParameterType
         {
             Bool = 0,
             Int = 1,

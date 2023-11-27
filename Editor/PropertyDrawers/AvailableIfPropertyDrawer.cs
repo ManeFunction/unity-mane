@@ -12,9 +12,8 @@ namespace Mane.Inspector.Editor
         {
             var attr = ProcessAttribute(property);
 
-            if (!attr.isAvailable && attr.hide) return 0f;
-            
-            return EditorGUI.GetPropertyHeight(property, label, true);
+            return attr is { isAvailable: false, hide: true } ? 0f : 
+                EditorGUI.GetPropertyHeight(property, label, true);
         }
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -36,7 +35,7 @@ namespace Mane.Inspector.Editor
         {
             AvailableIfAttribute attr = attribute as AvailableIfAttribute;
 
-            bool isAvailable = attr.IsAvailable;
+            bool isAvailable = attr!.IsAvailable;
 
             if (!string.IsNullOrEmpty(attr.PropertyName))
             {

@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEditor;
 
-
 namespace Mane.Editor
 {
     public class PrefabSaverSettings : EditorWindow
@@ -16,7 +15,7 @@ namespace Mane.Editor
                 GetWindow(typeof(PrefabSaverSettings)).Close();
             
             PrefabSaverSettings window = GetWindow(typeof(PrefabSaverSettings)) as PrefabSaverSettings;
-            window.titleContent = new GUIContent("Prefab Saver");
+            window!.titleContent = new GUIContent("Prefab Saver");
             window.minSize = new Vector2(300f, 100f);
             window.maxSize = new Vector2(500f, 150f);
             window._showButtons = showButtons;
@@ -48,23 +47,17 @@ namespace Mane.Editor
 
         private void OnGUI()
         {
-            if (_labelStyle == null)
+            _labelStyle ??= new GUIStyle(GUI.skin.label)
             {
-                _labelStyle = new GUIStyle(GUI.skin.label)
-                {
-                    alignment = TextAnchor.MiddleRight
-                };
-            }
+                alignment = TextAnchor.MiddleRight
+            };
 
-            if (_buttonStyle == null)
+            _buttonStyle ??= new GUIStyle(GUI.skin.button)
             {
-                _buttonStyle = new GUIStyle(GUI.skin.button)
-                {
-                    fixedWidth = 80f,
-                    fixedHeight = 30f,
-                    fontSize = 16
-                };
-            }
+                fixedWidth = 80f,
+                fixedHeight = 30f,
+                fontSize = 16
+            };
             
             if (_showButtons)
                 EditorGUILayout.Space(25);

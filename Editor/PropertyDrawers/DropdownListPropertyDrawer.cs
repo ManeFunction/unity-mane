@@ -12,7 +12,7 @@ namespace Mane.Inspector.Editor
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            string[] list = (attribute as DropdownListAttribute).Strings;
+            string[] list = (attribute as DropdownListAttribute)!.Strings;
             if (property.propertyType == SerializedPropertyType.String)
             {
                 int index = Mathf.Max(0, Array.IndexOf(list, property.stringValue));

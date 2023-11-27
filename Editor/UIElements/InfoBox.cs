@@ -7,7 +7,7 @@ namespace Mane.Editor.UIElements
 {
     public class InfoBox : VisualElement
     {
-        private static readonly GUID StyleGUID = new GUID("755944530f8e0404ba9ff91146e112b4");
+        private static readonly GUID StyleGUID = new("755944530f8e0404ba9ff91146e112b4");
         
         private const string InfoIconName = "console.infoicon";
         private const string WarningIconName = "console.warnicon";
@@ -73,7 +73,7 @@ namespace Mane.Editor.UIElements
             RemoveFromClassList(WarningStyleName);
         }
 
-        private string GetIconName(InfoBoxType type) => type switch
+        private static string GetIconName(InfoBoxType type) => type switch
         {
             InfoBoxType.Info => InfoIconName,
             InfoBoxType.Warning => WarningIconName,
@@ -81,7 +81,7 @@ namespace Mane.Editor.UIElements
             _ => InfoIconName
         };
 
-        private InfoBoxType GetMessageType(string iconName) => iconName switch
+        private static InfoBoxType GetMessageType(string iconName) => iconName switch
         {
             InfoIconName => InfoBoxType.Info,
             WarningIconName => InfoBoxType.Warning,
@@ -93,11 +93,10 @@ namespace Mane.Editor.UIElements
 
         public new class UxmlTraits : VisualElement.UxmlTraits
         {
-            private readonly UxmlStringAttributeDescription _text =
-                new UxmlStringAttributeDescription { name = "text" };
+            private readonly UxmlStringAttributeDescription _text = new() { name = "text" };
 
             private readonly UxmlStringAttributeDescription _iconName =
-                new UxmlStringAttributeDescription { name = "iconName", defaultValue = InfoIconName };
+                new() { name = "iconName", defaultValue = InfoIconName };
 
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
             {

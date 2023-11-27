@@ -5,11 +5,16 @@ using System;
 using System.Reflection;
 using UnityEditor.SceneManagement;
 
-
 namespace Mane.Editor
 {
+    /// <summary>
+    /// Provides a set of tools for the Unity Editor.
+    /// </summary>
     public static class EditorTools
     {
+        /// <summary>
+        /// Clears the Unity console.
+        /// </summary>
         [MenuItem("Mane/Clear Console _F8", false, 900)]
         public static void ClearConsole()
         {
@@ -20,6 +25,10 @@ namespace Mane.Editor
                 method.Invoke(new object(), null);
         }
 
+        /// <summary>
+        /// Captures a screenshot from the Game window and saves it to the desktop.
+        /// Uses the current window resolution setup for the screenshot dimensions.
+        /// </summary>
         [MenuItem("Mane/Take screenshot _F10", false, 902)]
         public static void CaptureScreenshot()
         {
@@ -46,9 +55,11 @@ namespace Mane.Editor
 
         [MenuItem("Mane/Enable \u2044 Disable selected GO _F4", true, 903)]
         private static bool ChangeSelectedObjectStateCheck() => Selection.activeGameObject;
+        
 
-
-
+        /// <summary>
+        /// Clears all saved data from game's persistent data path.
+        /// </summary>
         [MenuItem("Mane/Clear saved data _%F12", false, 800)]
         public static void ClearSavedData()
         {
@@ -65,6 +76,9 @@ namespace Mane.Editor
             Debug.Log("Saved data successfully cleared!");
         }
 
+        /// <summary>
+        /// Deletes all PlayerPrefs.
+        /// </summary>
         [MenuItem("Mane/Delete all PlayerPrefs _%#F12", false, 801)]
         public static void DeletePlayerPrefs()
         {
@@ -86,6 +100,10 @@ namespace Mane.Editor
             Directory.Delete(path);
         }
         
+        /// <summary>
+        /// Creates a directory from an asset path if it doesn't exist.
+        /// </summary>
+        /// <param name="assetPath">The path to the asset.</param>
         public static void CreateDirectoryFromAssetPath(string assetPath)
         {
             string directoryPath = Path.GetDirectoryName(assetPath);

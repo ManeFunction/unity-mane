@@ -35,17 +35,14 @@ namespace Mane.AnimatorStateMachine
             [SerializeField] private string _selectorParameter;
             [SerializeField] private int _totalVariants;
             
-            
             private int? _selectorParameterHash;
             private int? _conditionParameterHash;
-
             
             public int SelectorParameter
             {
                 get
                 {
-                    if (_selectorParameterHash == null)
-                        _selectorParameterHash = Animator.StringToHash(_selectorParameter);
+                    _selectorParameterHash ??= Animator.StringToHash(_selectorParameter);
 
                     return _selectorParameterHash.Value;
                 }
@@ -57,8 +54,7 @@ namespace Mane.AnimatorStateMachine
                 {
                     if (string.IsNullOrEmpty(_conditionParameter)) return null;
 
-                    if (_conditionParameterHash == null)
-                        _conditionParameterHash = Animator.StringToHash(_conditionParameter);
+                    _conditionParameterHash ??= Animator.StringToHash(_conditionParameter);
 
                     return _conditionParameterHash.Value;
                 }

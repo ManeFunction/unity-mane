@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Mane.Extensions;
+using Mane.Inspector;
 using UnityEngine.AI;
 
 namespace Mane
@@ -7,6 +8,7 @@ namespace Mane
     [ExecuteInEditMode]
     public class ChildrenTransformFreezer : MonoBehaviour
     {
+        [InfoBox("This component can allow you to move/rotate parent object without moving/rotating its children.")]
         [SerializeField] private bool _affectDisabled;
         [SerializeField] private bool _keepColliders;
         [SerializeField] private bool _rotateButKeepGeometry;

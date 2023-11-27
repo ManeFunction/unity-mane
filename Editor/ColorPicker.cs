@@ -3,7 +3,6 @@ using Mane.Extensions;
 using UnityEngine;
 using UnityEditor;
 
-
 namespace Mane.Editor
 {
     public class ColorPicker : EditorWindow
@@ -39,13 +38,10 @@ namespace Mane.Editor
 
         private void OnGUI()
         {
-            if (_labelStyle == null)
+            _labelStyle ??= new GUIStyle(GUI.skin.label)
             {
-                _labelStyle = new GUIStyle(GUI.skin.label)
-                {
-                    alignment = TextAnchor.MiddleRight
-                };
-            }
+                alignment = TextAnchor.MiddleRight
+            };
 
             Color newColor = _color;
             
@@ -55,8 +51,7 @@ namespace Mane.Editor
             {
                 if (ColorUtility.TryParseHtmlString(buffer, out Color color))
                     newColor = color;
-                else if ((buffer.Length == 6 || buffer.Length == 8) &&
-                         ColorUtility.TryParseHtmlString("#" + buffer, out color))
+                else if (buffer.Length is 6 or 8 && ColorUtility.TryParseHtmlString("#" + buffer, out color))
                     newColor = color;
             }
 
@@ -101,7 +96,7 @@ namespace Mane.Editor
             EditorGUILayout.TextField(_codeText);
         }
 
-        private float DrawChannel(float value, string label)
+        private static float DrawChannel(float value, string label)
         {
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField(label, _labelStyle, GUILayout.Width(15f));
@@ -114,7 +109,7 @@ namespace Mane.Editor
             return value;
         }
         
-        private void DrawReadOnlyField(string label, string value, int intValue)
+        private static void DrawReadOnlyField(string label, string value, int intValue)
         {
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField(label, _labelStyle, GUILayout.Width(65f));

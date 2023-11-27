@@ -16,7 +16,7 @@ namespace Mane.Editor
         public static void ShowWindow()
         {
             TransformCopierWindow window = (TransformCopierWindow)GetWindow(typeof(TransformCopierWindow));
-            GUIContent titleContent = new GUIContent("Transform Copier");
+            GUIContent titleContent = new("Transform Copier");
             window.titleContent = titleContent;
         }
 
@@ -39,9 +39,7 @@ namespace Mane.Editor
             EditorGUILayout.PropertyField(_targetObjectsProperty, true);
 
             if (GUILayout.Button("Copy"))
-            {
                 UpdatePrefabs();
-            }
 
             _serializedObject.ApplyModifiedProperties();
         }

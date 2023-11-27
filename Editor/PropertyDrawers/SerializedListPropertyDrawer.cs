@@ -16,8 +16,7 @@ namespace Mane.Inspector.Editor
         private const string ListIsEmpty = "Serialized List is empty!";
         private const string AssetNotFound = "Asset not found at: {0}!";
 
-        private static readonly Dictionary<Type, SerializedListAsset> InitedTypes =
-            new Dictionary<Type, SerializedListAsset>();
+        private static readonly Dictionary<Type, SerializedListAsset> InitedTypes = new();
 
         private bool _isNone;
         private string[] _list;
@@ -43,7 +42,7 @@ namespace Mane.Inspector.Editor
                 SerializedListAttribute attr = attribute as SerializedListAttribute;
                 
                 // check if asset was loaded
-                if (!InitedTypes.TryGetValue(attr.ListType, out SerializedListAsset listAsset))
+                if (!InitedTypes.TryGetValue(attr!.ListType, out SerializedListAsset listAsset))
                 {
                     // get asset path
                     FilePathAttribute pathAttribute = attr.ListType.GetCustomAttribute<FilePathAttribute>();
@@ -111,7 +110,7 @@ namespace Mane.Inspector.Editor
                 property.stringValue = _isNone && index == 0 ? string.Empty : _list[index];
         }
 
-        private void ShowError(Rect position, SerializedProperty property, string label) => 
+        private static void ShowError(Rect position, SerializedProperty property, string label) => 
             EditorGUI.LabelField(position, $"{property.name}: {label}");
     }
 }

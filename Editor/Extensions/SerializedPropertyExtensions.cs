@@ -4,8 +4,17 @@ using UnityEditor;
 
 namespace Mane.Editor.Extensions
 {
+    /// <summary>
+    /// Provides extension methods for the SerializedProperty class.
+    /// </summary>
     public static class SerializedPropertyExtensions
     {
+        /// <summary>
+        /// Gets the attribute of type T from the SerializedProperty.
+        /// </summary>
+        /// <typeparam name="T">The type of the attribute to get.</typeparam>
+        /// <param name="property">The SerializedProperty to get the attribute from.</param>
+        /// <returns>The attribute of type T, or null if the attribute is not found.</returns>
         public static T GetAttribute<T>(this SerializedProperty property) where T : Attribute
         {
             // Get the object the property belongs to

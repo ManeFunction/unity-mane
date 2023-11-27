@@ -10,8 +10,8 @@ namespace Mane.Editor
         [MenuItem("Mane/Missing References Helper", false, 1101)]
         private static void CreateWindow()
         {
-            MissingReferencesEditor window = (MissingReferencesEditor)EditorWindow
-                .GetWindowWithRect(typeof(MissingReferencesEditor), new Rect(0, 0, 300, 120));
+            MissingReferencesEditor window = (MissingReferencesEditor)
+                GetWindowWithRect(typeof(MissingReferencesEditor), new Rect(0, 0, 300, 120));
             window.titleContent = new GUIContent("Missing References Helper");
         }
 
@@ -75,6 +75,8 @@ namespace Mane.Editor
 
                 Scan(child.gameObject);
             }
+            
+            return;
 
 
             string FullPath(GameObject go) => go.transform.parent == null
