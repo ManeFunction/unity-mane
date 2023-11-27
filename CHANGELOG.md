@@ -1,3 +1,6 @@
+1.10.21:
+    - Added MainThreadDispatcher component.
+
 1.10.20:
     - Added WaitForConditionAsync extension.
 
