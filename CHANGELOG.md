@@ -1,3 +1,6 @@
+1.10.23:
+    - Added new abstract event types for the GlobalEventManager.
+
 1.10.22:
     - Added MonoSingleton class to create singletones from MonoBehaviour.
     - Added GlobalEventManager to send events between objects without direct references.

@@ -73,13 +73,32 @@ namespace Mane
     /// <summary>
     /// Base class for all events
     /// </summary>
-    public abstract class BaseEvent
+    public abstract class BaseEvent { }
+
+    /// <summary>
+    /// Base class for all events with not specified sender
+    /// </summary>
+    public abstract class SenderEvent : BaseEvent
     {
         /// <summary>
         /// The object that sent this event
         /// </summary>
-        public object Sender { get; private set; }
+        public object Sender { get; }
         
-        protected BaseEvent(object sender) => Sender = sender;
+        protected SenderEvent(object sender) => Sender = sender;
+    }
+    
+    /// <summary>
+    /// Base class for all events with specified sender
+    /// </summary>
+    /// <typeparam name="T">Type of sender</typeparam>
+    public abstract class SenderEvent<T> : BaseEvent where T : class
+    {
+        /// <summary>
+        /// The object that sent this event
+        /// </summary>
+        public T Sender { get; }
+
+        protected SenderEvent(T sender) => Sender = sender;
     }
 }
