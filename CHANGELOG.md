@@ -1,3 +1,7 @@
+1.10.22:
+    - Added MonoSingleton class to create singletones from MonoBehaviour.
+    - Added GlobalEventManager to send events between objects without direct references.
+
 1.10.21:
     - Added MainThreadDispatcher component.
 
