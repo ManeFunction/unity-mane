@@ -1,3 +1,6 @@
+1.10.24:
+    - Added CyrillicToLatin editor script to convert Cyrillic game object names to Latin.
+
 1.10.23:
     - Added new abstract event types for the GlobalEventManager.
 
