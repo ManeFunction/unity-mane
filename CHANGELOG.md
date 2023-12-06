@@ -1,3 +1,6 @@
+1.10.25:
+    - Replaced RandomBetween property in MinMax classes with GetRandomBetween() method to avoid extensive Json re-serialization. 
+
 1.10.24:
     - Added CyrillicToLatin editor script to convert Cyrillic game object names to Latin.
 

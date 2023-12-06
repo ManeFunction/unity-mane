@@ -25,7 +25,7 @@ namespace Mane
         public static MinMax operator +(MinMax a, MinMax b) =>
             new MinMax(a.Min + b.Min, a.Max + b.Max);
 
-        public float RandomBetween => UnityEngine.Random.Range(Min, Max);
+        public float GetRandomBetween() => UnityEngine.Random.Range(Min, Max);
         
         public bool Contains(float value) => value >= Min && value <= Max;
         
@@ -58,7 +58,7 @@ namespace Mane
         /// <summary>
         /// Both inclusive!
         /// </summary>
-        public int RandomBetween => UnityEngine.Random.Range(Min, Max + 1);
+        public int GetRandomBetween() => UnityEngine.Random.Range(Min, Max + 1);
         
         public bool Contains(float value, bool includeMin = true, bool includeMax = true) =>
             (includeMin ? value >= Min : value > Min) && (includeMax ? value <= Max : value < Max);
