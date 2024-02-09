@@ -1,3 +1,6 @@
+1.10.26:
+    - Added string.TryParseToIntEnum() extension to parse string to enum through the int.
+
 1.10.25:
     - Replaced RandomBetween property in MinMax classes with GetRandomBetween() method to avoid extensive Json re-serialization. 
 

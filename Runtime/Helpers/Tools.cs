@@ -23,6 +23,17 @@ namespace Mane
     
         public static T ToIntEnum<T>(this string value) where T : struct, System.Enum =>
             (T)System.Enum.ToObject(typeof(T), int.Parse(value));
+        
+        public static bool TryParseToIntEnum<T>(this string value, out T result, T defaultValue = default) where T : struct, System.Enum
+        {
+            if (int.TryParse(value, out int intValue) && System.Enum.IsDefined(typeof(T), intValue))
+            {
+                result = (T)System.Enum.ToObject(typeof(T), intValue);
+                return true;
+            }
+            result = defaultValue;
+            return false;
+        }
     }
 
 
