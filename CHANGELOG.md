@@ -1,3 +1,6 @@
+1.10.27:
+    - Fixed an issue in int.GetCountedString() extension.
+
 1.10.26:
     - Added string.TryParseToIntEnum() extension to parse string to enum through the int.
 

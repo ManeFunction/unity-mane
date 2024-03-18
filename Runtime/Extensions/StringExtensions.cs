@@ -105,7 +105,7 @@ namespace Mane.Extensions
         {
             int tens = count % 100;
             if (tens > 5 && tens < 20)
-                return many;
+                return more;
             
             int units = count % 10;
             if (units == 1)
