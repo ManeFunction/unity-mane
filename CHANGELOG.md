@@ -1,3 +1,6 @@
+1.10.29:
+    - Refactored inspector editors property access.
+
 1.10.28:
     - Added Custom Yield Instruction for coroutines that combines WaitForSeconds and WaitUntil/While. The idea is to check the condition not every frame, but every N seconds to optimize long waiting process.
 

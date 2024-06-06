@@ -11,6 +11,11 @@ namespace Mane.UI
 
         [SerializeField] private ColorScheme _colorScheme;
         
+#if UNITY_EDITOR
+        public const string GraphicPropertyName = nameof(_graphic);
+        public const string ColorSchemePropertyName = nameof(_colorScheme);
+#endif
+        
         public ColorScheme ColorScheme
         {
             get => _colorScheme;

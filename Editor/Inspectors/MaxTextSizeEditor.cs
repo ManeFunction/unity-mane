@@ -18,12 +18,12 @@ namespace Mane.UI.Editor
         
         private void OnEnable()
         {
-            _textProperty = serializedObject.FindProperty("_text");
-            _layoutElementProperty = serializedObject.FindProperty("_layoutElement");
-            _contentSizeFitterProperty = serializedObject.FindProperty("_contentSizeFitter");
+            _textProperty = serializedObject.FindProperty(MaxTextSize.TextPropertyName);
+            _layoutElementProperty = serializedObject.FindProperty(MaxTextSize.LayoutElementPropertyName);
+            _contentSizeFitterProperty = serializedObject.FindProperty(MaxTextSize.ContentSizeFitterPropertyName);
             
-            _maxWidthProperty = serializedObject.FindProperty("_maxWidth");
-            _maxHeightProperty = serializedObject.FindProperty("_maxHeight");
+            _maxWidthProperty = serializedObject.FindProperty(MaxTextSize.MaxWidthPropertyName);
+            _maxHeightProperty = serializedObject.FindProperty(MaxTextSize.MaxHeightPropertyName);
             
         }
 

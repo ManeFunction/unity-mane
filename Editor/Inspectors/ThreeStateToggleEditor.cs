@@ -18,12 +18,12 @@ namespace Mane.UI.Editor
         {
             base.OnEnable();
 
-            _transitionProperty = serializedObject.FindProperty("toggleTransition");
-            _graphicProperty = serializedObject.FindProperty("graphic");
-            _offGraphicProperty = serializedObject.FindProperty("offGraphic");
-            _undefinedGraphicProperty = serializedObject.FindProperty("undefinedGraphic");
-            _stateProperty = serializedObject.FindProperty("_state");
-            _onValueChangedProperty = serializedObject.FindProperty("onStateValueChanged");
+            _transitionProperty = serializedObject.FindProperty(ThreeStateToggle.TransitionPropertyName);
+            _graphicProperty = serializedObject.FindProperty(ThreeStateToggle.GraphicPropertyName);
+            _offGraphicProperty = serializedObject.FindProperty(ThreeStateToggle.OffGraphicPropertyName);
+            _undefinedGraphicProperty = serializedObject.FindProperty(ThreeStateToggle.UndefinedGraphicPropertyName);
+            _stateProperty = serializedObject.FindProperty(ThreeStateToggle.StatePropertyName);
+            _onValueChangedProperty = serializedObject.FindProperty(ThreeStateToggle.OnStateValueChangedPropertyName);
         }
 
         public override void OnInspectorGUI()

@@ -21,6 +21,15 @@ namespace Mane.UI
         [SerializeField] private float _maxWidth = -1;
         [SerializeField] private float _maxHeight = -1;
 
+#if UNITY_EDITOR
+        public const string TextPropertyName = nameof(_text);
+        public const string LayoutElementPropertyName = nameof(_layoutElement);
+        public const string ContentSizeFitterPropertyName = nameof(_contentSizeFitter);
+        
+        public const string MaxWidthPropertyName = nameof(_maxWidth);
+        public const string MaxHeightPropertyName = nameof(_maxHeight);
+#endif
+
         private string _oldValue = string.Empty;
         
         

@@ -22,8 +22,8 @@ namespace Mane.UI.Editor
         {
             _target = target as ColorSchemeComponent;
 
-            _graphic = serializedObject.FindProperty("_graphic");
-            _colorScheme = serializedObject.FindProperty("_colorScheme");
+            _graphic = serializedObject.FindProperty(ColorSchemeComponent.GraphicPropertyName);
+            _colorScheme = serializedObject.FindProperty(ColorSchemeComponent.ColorSchemePropertyName);
 
             _target.Refresh();
         }
@@ -57,7 +57,8 @@ namespace Mane.UI.Editor
                 for (int i = 0; i < colorCount; i++)
                 {
                     SerializedProperty graphicCollection = _graphic.GetArrayElementAtIndex(i);
-                    SerializedProperty graphicArray = graphicCollection.FindPropertyRelative("_graphic");
+                    SerializedProperty graphicArray = 
+                        graphicCollection.FindPropertyRelative(ColorSchemeComponent.GraphicPropertyName);
 
                     if (graphicArray.arraySize == 0)
                         graphicArray.InsertArrayElementAtIndex(0);
