@@ -32,5 +32,19 @@ namespace Mane
                 await Task.Delay(delayMilliseconds, cancellationToken);
             }
         }
+        
+        public static async void Synchronize(Task task, Action<bool> callback)
+        {
+            await task;
+    
+            callback?.Invoke(task.IsCompletedSuccessfully);
+        }
+
+        public static async void Synchronize<T>(Task<T> task, Action<bool, T> callback)
+        {
+            await task;
+    
+            callback?.Invoke(task.IsCompletedSuccessfully, task.Result);
+        }
     }
 }

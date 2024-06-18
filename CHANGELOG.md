@@ -1,4 +1,5 @@
 1.10.29:
+    - Added Async.Synchronize() methods to convert Task to callback-based async operation.
     - Refactored inspector editors property access.
 
 1.10.28:
