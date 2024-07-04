@@ -1,3 +1,6 @@
+1.10.30:
+    - Added MaxTMProSize to fit TMPro text to max size limits (MaxTextSize analogue)
+
 1.10.29:
     - Added Async.Synchronize() methods to convert Task to callback-based async operation.
     - Refactored inspector editors property access.
