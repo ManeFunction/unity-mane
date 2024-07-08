@@ -22,7 +22,7 @@ namespace Mane.Inspector.Editor
         {
             string fullPathName = $"{property.propertyPath}.{Attribute.TitleVariableName}";
             _titleNameProp = property.serializedObject.FindProperty(fullPathName);
-            string newLabel = GetTitle();
+            string newLabel = $"{Attribute.Prefix}{GetTitle()}{Attribute.Postfix}";
             if (string.IsNullOrEmpty(newLabel))
                 newLabel = label.text;
 

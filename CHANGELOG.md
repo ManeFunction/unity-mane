@@ -1,3 +1,6 @@
+1.10.31:
+    - Added Prefix and Postfix options to the ArrayElements SerializedField attribute.
+
 1.10.30:
     - Added MaxTMProSize to fit TMPro text to max size limits (MaxTextSize analogue)
 
