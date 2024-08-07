@@ -42,6 +42,24 @@ namespace Mane.Extensions
 
             return c;
         }
+        
+        public static Color32 SetRGB(this Color32 c, byte r, byte g, byte b)
+        {
+            c.r = r;
+            c.g = g;
+            c.b = b;
+
+            return c;
+        }
+        
+        public static Color32 SetRGB(this Color32 c, Color32 rgb)
+        {
+            c.r = rgb.r;
+            c.g = rgb.g;
+            c.b = rgb.b;
+
+            return c;
+        }
 
 
         public static uint ToUInt(this Color32 color) =>

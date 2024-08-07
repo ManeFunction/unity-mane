@@ -1,3 +1,6 @@
+1.10.32:
+    - Added SetRGB extensions to Color and Color32.
+
 1.10.31:
     - Added Prefix and Postfix options to the ArrayElements SerializedField attribute.
 

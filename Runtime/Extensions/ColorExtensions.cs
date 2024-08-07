@@ -138,6 +138,24 @@ namespace Mane.Extensions
             return c;
         }
         
+        public static Color SetRGB(this Color c, float r, float g, float b)
+        {
+            c.r = r;
+            c.g = g;
+            c.b = b;
+
+            return c;
+        }
+        
+        public static Color SetRGB(this Color c, Color rgb)
+        {
+            c.r = rgb.r;
+            c.g = rgb.g;
+            c.b = rgb.b;
+
+            return c;
+        }
+        
         
         [Obsolete("Use Random.Color instead!", true)]
         public static Color RandomColor => default;
