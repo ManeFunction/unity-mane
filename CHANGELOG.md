@@ -1,3 +1,6 @@
+1.11.0:
+    - Added SerializeReferenceDropdown attribute to select SerializeReference fields implementations from the dropdown.
+
 1.10.32:
     - Added SetRGB extensions to Color and Color32.
 
