@@ -1,3 +1,6 @@
+1.12.0:
+    - Added RectTransformPositionToAnchorEditor to convert anchoredPosition to anchors.
+
 1.11.0:
     - Added SerializeReferenceDropdown attribute to select SerializeReference fields implementations from the dropdown.
 
