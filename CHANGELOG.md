@@ -1,3 +1,7 @@
+1.13.0:
+    - Added ManeBehaviour with cached transform to replace MonoBehaviour.
+    - Added ManeUIBehaviour with cached transform and rectTransform to replace UIBehaviour.
+
 1.12.0:
     - Added RectTransformPositionToAnchorEditor to convert anchoredPosition to anchors.
 
