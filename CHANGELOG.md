@@ -1,3 +1,7 @@
+1.13.1:
+    - Renamed SerializeReferenceDropdown attribute to SerializeReferenceInterface to avoid confusion with SerializeReferenceDropdownAttribute.
+    - Do not show MonoBehaviour derivatives in the SerializeReferenceInterface dropdown.
+
 1.13.0:
     - Added ManeBehaviour with cached transform to replace MonoBehaviour.
     - Added ManeUIBehaviour with cached transform and rectTransform to replace UIBehaviour.

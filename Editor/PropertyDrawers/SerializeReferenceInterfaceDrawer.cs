@@ -6,8 +6,8 @@ using System.Linq;
 
 namespace Mane.Inspector.Editor
 {
-    [CustomPropertyDrawer(typeof(SerializeReferenceDropdownAttribute))]
-    public class SerializeReferenceDropdownDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(SerializeReferenceInterfaceAttribute))]
+    public class SerializeReferenceInterfaceDrawer : PropertyDrawer
     {
         private Type[] _cachedTypes;
         private string[] _cachedLabels;
@@ -101,9 +101,9 @@ namespace Mane.Inspector.Editor
 
         private void CacheTypeData(Type baseType)
         {
-            // Get all assignable non-abstract types
+            // Get all assignable non-abstract types, excluding UnityEngine.Object derivatives
             _cachedTypes = TypeCache.GetTypesDerivedFrom(baseType)
-                .Where(t => !t.IsAbstract && !t.IsGenericType)
+                .Where(t => !t.IsAbstract && !t.IsGenericType && !typeof(UnityEngine.Object).IsAssignableFrom(t))
                 .ToArray();
 
             // Create labels array with "None" as first option
