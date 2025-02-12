@@ -1,3 +1,6 @@
+1.13.2:
+    - SerializeReferenceInterfaces have a foldout in the inspector now if they have child properties.
+
 1.13.1:
     - Renamed SerializeReferenceDropdown attribute to SerializeReferenceInterface to avoid confusion with SerializeReferenceDropdownAttribute.
     - Do not show MonoBehaviour derivatives in the SerializeReferenceInterface dropdown.
