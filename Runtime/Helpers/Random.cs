@@ -101,5 +101,92 @@ namespace Mane
 
             return -1;
         }
+
+        public static int[] RangeWithGaps(int min, int max, int n, int gap, bool allowLessResults = false, SortingOrder sortingOrder = SortingOrder.Undefined)
+        {
+            // Input guards
+            if (gap >= max - min || n <= 0 || max <= min)
+                return null;
+
+            // Impossible scenario guard - only when we don't allow less results
+            if (!allowLessResults && (n - 1) * gap >= max - min)
+                return null;
+
+            var result = new List<int>();
+            var availableNumbers = new List<int>();
+
+            for (int i = min; i < max; i++)
+                availableNumbers.Add(i);
+
+            while (result.Count < n && availableNumbers.Count > 0)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, availableNumbers.Count);
+                int selectedNumber = availableNumbers[randomIndex];
+                result.Add(selectedNumber);
+
+                availableNumbers.RemoveAll(x => 
+                    x >= selectedNumber - gap && x <= selectedNumber + gap);
+            }
+
+            // Return null only if we couldn't get any numbers or if we need exact amount
+            if (result.Count == 0 || (!allowLessResults && result.Count < n))
+                return null;
+
+            if (sortingOrder == SortingOrder.Ascending)
+                result.Sort();
+            else if (sortingOrder == SortingOrder.Descending)
+                result.Sort((a, b) => b.CompareTo(a));
+
+            return result.ToArray();
+        }
+
+        public static float[] RangeWithGaps(float min, float max, int n, float gap, bool allowLessResults = false, SortingOrder sortingOrder = SortingOrder.Undefined)
+        {
+            // Input guards
+            if (gap >= max - min || n <= 0 || max <= min)
+                return null;
+
+            // Impossible scenario guard - only when we don't allow less results
+            if (!allowLessResults && (n - 1) * gap >= max - min)
+                return null;
+
+            var result = new List<float>();
+            
+            // For floats, we'll use direct random generation and validation
+            int maxAttempts = n * 10; // Prevent infinite loops
+            int attempts = 0;
+
+            while (result.Count < n && attempts < maxAttempts)
+            {
+                float candidate = UnityEngine.Random.Range(min, max);
+                bool isValid = true;
+
+                // Check if candidate maintains gap with all existing numbers
+                foreach (float existing in result)
+                {
+                    if (Mathf.Abs(existing - candidate) < gap)
+                    {
+                        isValid = false;
+                        break;
+                    }
+                }
+
+                if (isValid)
+                    result.Add(candidate);
+
+                attempts++;
+            }
+
+            // Return null only if we couldn't get any numbers or if we need exact amount
+            if (result.Count == 0 || (!allowLessResults && result.Count < n))
+                return null;
+
+            if (sortingOrder == SortingOrder.Ascending)
+                result.Sort();
+            else if (sortingOrder == SortingOrder.Descending)
+                result.Sort((a, b) => b.CompareTo(a));
+
+            return result.ToArray();
+        }
     }
 }

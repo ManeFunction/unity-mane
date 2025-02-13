@@ -1,3 +1,6 @@
+1.14.0:
+    - Added Random.RangeWithGaps methods to generate random number sequences with defined minimal gaps.
+
 1.13.2:
     - SerializeReferenceInterfaces have a foldout in the inspector now if they have child properties.
 
