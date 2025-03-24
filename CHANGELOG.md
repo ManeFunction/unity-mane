@@ -1,3 +1,6 @@
+1.15.0:
+    - Added MMath.RoundUp and MMath.RoundDown methods to get controllable nearest int from float values.
+
 1.14.0:
     - Added Random.RangeWithGaps methods to generate random number sequences with defined minimal gaps.
 
