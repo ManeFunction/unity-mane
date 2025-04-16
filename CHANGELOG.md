@@ -1,3 +1,6 @@
+1.15.1:
+    - Improved Rect Transform positions to Anchors converter. Now bake not only position, but size as well.
+
 1.15.0:
     - Added MMath.RoundUp and MMath.RoundDown methods to get controllable nearest int from float values.
 

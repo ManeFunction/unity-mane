@@ -3,10 +3,10 @@ using UnityEditor;
 
 namespace Mane.Inspector.Editor
 {
-    public static class RectTransformPositionToAnchorEditor
+    public static class RectTransformToAnchorsEditor
     {
-        [MenuItem("CONTEXT/RectTransform/Convert/anchoredPosition into Anchors", false, 500)]
-        private static void FreezeAnchors(MenuCommand command)
+        [MenuItem("CONTEXT/RectTransform/Convert/Bake Transform to Anchors", false, 500)]
+        private static void BakeToAnchors(MenuCommand command)
         {
             RectTransform rt = command.context as RectTransform;
             if (rt == null)
@@ -25,17 +25,14 @@ namespace Mane.Inspector.Editor
 
             Undo.RecordObject(rt, "Freeze anchoredPosition into Anchors");
 
-            FreezeAnchoredPositionIntoAnchors(rt, parentRt);
+            BakeRectTransformToAnchors(rt, parentRt);
         }
 
-        private static void FreezeAnchoredPositionIntoAnchors(RectTransform rt, RectTransform parentRt)
+        private static void BakeRectTransformToAnchors(RectTransform rt, RectTransform parentRt)
         {
             Vector2 anchoredPos = rt.anchoredPosition;
-            if (anchoredPos.sqrMagnitude < Mathf.Epsilon)
-            {
-                return;
-            }
-
+            Vector2 sizeDelta = rt.sizeDelta;
+            
             Rect parentRect = parentRt.rect;
             float pw = parentRect.width;
             float ph = parentRect.height;
@@ -50,10 +47,22 @@ namespace Mane.Inspector.Editor
             float deltaAnchorY = anchoredPos.y / ph;
             Vector2 deltaAnchor = new(deltaAnchorX, deltaAnchorY);
 
-            rt.anchorMin += deltaAnchor;
-            rt.anchorMax += deltaAnchor;
+            float deltaWidth = sizeDelta.x / pw;
+            float deltaHeight = sizeDelta.y / ph;
+            
+            Vector2 anchorMin = rt.anchorMin + deltaAnchor;
+            Vector2 anchorMax = rt.anchorMax + deltaAnchor;
+            
+            anchorMin.x -= deltaWidth * .5f;
+            anchorMax.x += deltaWidth * .5f;
+            anchorMin.y -= deltaHeight * .5f;
+            anchorMax.y += deltaHeight * .5f;
+
+            rt.anchorMin = anchorMin;
+            rt.anchorMax = anchorMax;
 
             rt.anchoredPosition = Vector2.zero;
+            rt.sizeDelta = Vector2.zero;
             
             EditorUtility.SetDirty(rt);
         }
