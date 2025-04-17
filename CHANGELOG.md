@@ -1,3 +1,7 @@
+1.15.2:
+    - AvailableIf attribute can work with nested classes and even arrays.
+    - Optimized AvailableIf property drawer logic (bind methods are cached for now).
+
 1.15.1:
     - Improved Rect Transform positions to Anchors converter. Now bake not only position, but size as well.
 

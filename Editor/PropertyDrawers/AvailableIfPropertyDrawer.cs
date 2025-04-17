@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
@@ -8,6 +9,9 @@ namespace Mane.Inspector.Editor
     [CustomPropertyDrawer(typeof(AvailableIfAttribute))]
     public class AvailableIfPropertyDrawer : PropertyDrawer
     {
+        private static readonly Dictionary<(Type type, string fieldName), FieldInfo> FieldCache = new();
+        private static readonly Dictionary<(Type type, string memberName), MemberInfo> MemberCache = new();
+
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             var attr = ProcessAttribute(property);
@@ -40,21 +44,24 @@ namespace Mane.Inspector.Editor
 
             if (!string.IsNullOrEmpty(attr.PropertyName))
             {
-                // Trying to get SerializedProperty
                 SerializedProperty attachedProperty =
                     property.serializedObject.FindProperty(attr.PropertyName);
                 if (attachedProperty == null)
                 {
-                    // Trying to get Method
-                    object target = property.serializedObject.targetObject;
+                    object target = GetTargetObject(property);
                     Type type = target.GetType();
-                    MethodInfo method = type.GetMethod(attr.PropertyName);
-                    // ...or a Property getter
-                    if (method == null)
-                        method = type.GetProperty(attr.PropertyName)?.GetMethod;
-            
-                    if (method != null)
-                        isAvailable = (bool)method.Invoke(target, null);
+                    
+                    var cacheKey = (type, attr.PropertyName);
+                    if (!MemberCache.TryGetValue(cacheKey, out var member))
+                    {
+                        member = type.GetMethod(attr.PropertyName) ?? 
+                                (MemberInfo)type.GetProperty(attr.PropertyName)?.GetMethod;
+                        if (member != null)
+                            MemberCache[cacheKey] = member;
+                    }
+                    
+                    if (member != null)
+                        isAvailable = (bool)((member is MethodInfo method ? method : ((PropertyInfo)member).GetMethod).Invoke(target, null));
                     else
                         Debug.LogError($"AvailableIf: Can't find {attr.PropertyName} in {type}");
                 }
@@ -66,6 +73,48 @@ namespace Mane.Inspector.Editor
                 isAvailable = !isAvailable;
 
             return (isAvailable, attr.Hide);
+        }
+
+        private object GetTargetObject(SerializedProperty property)
+        {
+            string path = property.propertyPath;
+            object obj = property.serializedObject.targetObject;
+            
+            if (string.IsNullOrEmpty(path)) return obj;
+
+            string parentPath = path[..path.LastIndexOf('.')];
+            if (string.IsNullOrEmpty(parentPath)) return obj;
+
+            SerializedProperty parentProperty = property.serializedObject.FindProperty(parentPath);
+            if (parentProperty != null)
+            {
+                string[] elements = parentPath.Split('.');
+                for (int i = 0; i < elements.Length; i++)
+                {
+                    if (elements[i] == "Array")
+                    {
+                        if (elements[i + 1].StartsWith("data["))
+                        {
+                            int index = Convert.ToInt32(elements[i + 1][5..^1]);
+                            obj = ((System.Collections.IList)obj)[index];
+                        }
+                    }
+                    else
+                    {
+                        var cacheKey = (obj.GetType(), elements[i]);
+                        if (!FieldCache.TryGetValue(cacheKey, out var field))
+                        {
+                            field = obj.GetType().GetField(elements[i], BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                            if (field != null)
+                                FieldCache[cacheKey] = field;
+                        }
+                        
+                        if (field != null)
+                            obj = field.GetValue(obj);
+                    }
+                }
+            }
+            return obj;
         }
     }
 }
