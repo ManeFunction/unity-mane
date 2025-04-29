@@ -1,3 +1,6 @@
+1.15.3:
+    - Fixed an issue with AvailableIf, where attribute do not work with private properties/methods and fields at all.
+
 1.15.2:
     - AvailableIf attribute can work with nested classes and even arrays.
     - Optimized AvailableIf property drawer logic (bind methods are cached for now).

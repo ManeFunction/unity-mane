@@ -54,14 +54,37 @@ namespace Mane.Inspector.Editor
                     var cacheKey = (type, attr.PropertyName);
                     if (!MemberCache.TryGetValue(cacheKey, out var member))
                     {
-                        member = type.GetMethod(attr.PropertyName) ?? 
-                                (MemberInfo)type.GetProperty(attr.PropertyName)?.GetMethod;
+                        const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | 
+                                                   BindingFlags.Instance | BindingFlags.Static;
+                        
+                        // method
+                        member = type.GetMethod(attr.PropertyName, flags);
+                        
+                        // property
+                        if (member == null)
+                        {
+                            var propertyInfo = type.GetProperty(attr.PropertyName, flags);
+                            member = propertyInfo?.GetMethod;
+                        }
+                        
+                        // field
+                        if (member == null)
+                        {
+                            var fieldInfo = type.GetField(attr.PropertyName, flags);
+                            member = fieldInfo;
+                        }
+                        
                         if (member != null)
                             MemberCache[cacheKey] = member;
                     }
                     
                     if (member != null)
-                        isAvailable = (bool)((member is MethodInfo method ? method : ((PropertyInfo)member).GetMethod).Invoke(target, null));
+                    {
+                        if (member is FieldInfo field)
+                            isAvailable = (bool)field.GetValue(target);
+                        else
+                            isAvailable = (bool)(member is MethodInfo method ? method : ((PropertyInfo)member).GetMethod).Invoke(target, null);
+                    }
                     else
                         Debug.LogError($"AvailableIf: Can't find {attr.PropertyName} in {type}");
                 }
