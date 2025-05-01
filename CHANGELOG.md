@@ -1,3 +1,6 @@
+1.16.2:
+    - PositionFollower: Fixed some possible NRE.
+
 1.16.1:
     - PositionFollower: Share parameters to public API.
 
