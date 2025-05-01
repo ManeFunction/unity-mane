@@ -1,3 +1,6 @@
+1.16.1:
+    - PositionFollower: Share parameters to public API.
+
 1.16.0:
     - Added PositionFollower component to follow one object by another if you can't bind it directly in hierarchy or need a smooth follow.
 
