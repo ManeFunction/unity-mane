@@ -1,3 +1,6 @@
+1.16.0:
+    - Added PositionFollower component to follow one object by another if you can't bind it directly in hierarchy or need a smooth follow.
+
 1.15.3:
     - Fixed an issue with AvailableIf, where attribute do not work with private properties/methods and fields at all.
 
