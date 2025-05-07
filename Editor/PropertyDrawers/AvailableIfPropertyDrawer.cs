@@ -105,7 +105,10 @@ namespace Mane.Inspector.Editor
             
             if (string.IsNullOrEmpty(path)) return obj;
 
-            string parentPath = path[..path.LastIndexOf('.')];
+            int lastDotIndex = path.LastIndexOf('.');
+            if (lastDotIndex == -1) return obj;
+
+            string parentPath = path[..lastDotIndex];
             if (string.IsNullOrEmpty(parentPath)) return obj;
 
             SerializedProperty parentProperty = property.serializedObject.FindProperty(parentPath);

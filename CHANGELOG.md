@@ -1,3 +1,6 @@
+1.16.3:
+    - AvailableIf attribute: Fixed ArgumentOutOfRange exception if target entity is a property or a method in root class.
+
 1.16.2:
     - PositionFollower: Fixed some possible NRE.
 
