@@ -15,8 +15,8 @@ namespace Mane.Inspector.Editor
         private const float SpacingAfterDropdown = 2f;
         private const string PrefsPrefix = "ManeSRIFoldout_";
 
-        private bool GetFoldoutState(string fieldName) => EditorPrefs.GetBool(PrefsPrefix + fieldName, true);
-        private void SetFoldoutState(string fieldName, bool state) => EditorPrefs.SetBool(PrefsPrefix + fieldName, state);
+        private bool GetFoldoutState(string propertyPath) => EditorPrefs.GetBool(PrefsPrefix + propertyPath, true);
+        private void SetFoldoutState(string propertyPath, bool state) => EditorPrefs.SetBool(PrefsPrefix + propertyPath, state);
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -55,11 +55,11 @@ namespace Mane.Inspector.Editor
             if (hasChildren)
             {
                 var foldoutRect = new Rect(mainLineRect.x, mainLineRect.y, EditorGUIUtility.labelWidth, mainLineRect.height);
-                bool foldout = GetFoldoutState(fieldInfo.Name);
+                bool foldout = GetFoldoutState(property.propertyPath);
                 bool newFoldout = EditorGUI.Foldout(foldoutRect, foldout, label, true);
                 if (foldout != newFoldout)
                 {
-                    SetFoldoutState(fieldInfo.Name, newFoldout);
+                    SetFoldoutState(property.propertyPath, newFoldout);
                 }
                 
                 popupRect.x = foldoutRect.x + EditorGUIUtility.labelWidth;
@@ -87,7 +87,7 @@ namespace Mane.Inspector.Editor
                 property.serializedObject.ApplyModifiedProperties();
             }
 
-            if (hasChildren && property.managedReferenceValue != null && GetFoldoutState(fieldInfo.Name))
+            if (hasChildren && property.managedReferenceValue != null && GetFoldoutState(property.propertyPath))
             {
                 EditorGUI.indentLevel++;
                 
@@ -156,7 +156,7 @@ namespace Mane.Inspector.Editor
                 tempProperty.Next(true);
                 bool hasChildren = tempProperty.propertyPath.StartsWith(parentPath);
 
-                if (hasChildren && GetFoldoutState(fieldInfo.Name))
+                if (hasChildren && GetFoldoutState(property.propertyPath))
                 {
                     height += SpacingAfterDropdown;
 
