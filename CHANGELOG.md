@@ -1,3 +1,6 @@
+1.17.1:
+    - Renamed Enum and DateTime utils classes to EnumUtils and DateTimeUtils to reduced conflicts with system ones.
+
 1.17.0:
     - Added DateTime utils class with Min() and Max() methods.
 

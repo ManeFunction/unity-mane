@@ -5,7 +5,14 @@ using System.Linq;
 
 namespace Mane
 {
-    public static class Enum
+    public static class Collection
+    {
+        public static bool IsNullOrEmpty<T>(IEnumerable<T> collection) => 
+            collection == null || !collection.Any();
+    }
+
+
+    public static class EnumUtils
     {
         public static IEnumerable<T> GetValues<T>() => 
             System.Enum.GetValues(typeof(T)).Cast<T>();
@@ -26,9 +33,9 @@ namespace Mane
         
         public static bool TryParseToIntEnum<T>(this string value, out T result, T defaultValue = default) where T : struct, System.Enum
         {
-            if (int.TryParse(value, out int intValue) && System.Enum.IsDefined(typeof(T), intValue))
+            if (int.TryParse(value, out int intValue) && Enum.IsDefined(typeof(T), intValue))
             {
-                result = (T)System.Enum.ToObject(typeof(T), intValue);
+                result = (T)Enum.ToObject(typeof(T), intValue);
                 return true;
             }
             result = defaultValue;
@@ -36,14 +43,7 @@ namespace Mane
         }
     }
 
-
-    public static class Collection
-    {
-        public static bool IsNullOrEmpty<T>(IEnumerable<T> collection) => 
-            collection == null || !collection.Any();
-    }
-
-    public static class DateTime
+    public static class DateTimeUtils
     {
         public static System.DateTime Max(System.DateTime a, System.DateTime b) => a > b ? a : b;
 
