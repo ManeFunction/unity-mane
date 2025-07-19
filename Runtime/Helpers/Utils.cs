@@ -42,4 +42,11 @@ namespace Mane
         public static bool IsNullOrEmpty<T>(IEnumerable<T> collection) => 
             collection == null || !collection.Any();
     }
+
+    public static class DateTime
+    {
+        public static System.DateTime Max(System.DateTime a, System.DateTime b) => a > b ? a : b;
+
+        public static System.DateTime Min(System.DateTime a, System.DateTime b) => a < b ? a : b;
+    }
 }
