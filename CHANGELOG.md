@@ -1,3 +1,6 @@
+1.17.2:
+    - Added float.SecondsToMilliseconds() extension, returning int.
+
 1.17.1:
     - Renamed Enum and DateTime utils classes to EnumUtils and DateTimeUtils to reduced conflicts with system ones.
 

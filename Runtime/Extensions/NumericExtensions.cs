@@ -96,5 +96,7 @@ namespace Mane.Extensions
                 return int.MaxValue;
             }
         }
+
+        public static int SecondsToMilliseconds(this float value) => (int)(value * 1000);
     }
 }
