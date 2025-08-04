@@ -44,6 +44,11 @@ namespace Mane.Extensions
         
         public static int RoundTo(this int value, int n) => Mathf.RoundToInt((float)value / n) * n;
 
+        public static int RoundUp(this float value) => 
+            (value == (int)value) ? (int)value : (int)value + 1;
+
+        public static int RoundDown(this float value) => (int)value;
+
 
         public static bool IsEven(this int value) => (value >> 1) << 1 == value;
 

@@ -1,3 +1,6 @@
+1.17.3:
+    - Moved RoundUp() and RoundDown() extensions from MMath to NumericExtensions. MMath was deleted.
+
 1.17.2:
     - Added float.SecondsToMilliseconds() extension, returning int.
 
